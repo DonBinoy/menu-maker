@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Mandala from "@/components/Mandala";
 import EditableText from "@/components/EditableText";
 import { AllergenLegend, AllergenIconsList, AllergenType } from "@/components/AllergenIcons";
-import { Plus, Printer, Trash2, Layout, BookOpen } from "lucide-react";
+import { Plus, Printer, Trash2, Layout, BookOpen, Search, Library, X } from "lucide-react";
+import { PRESET_ITEMS, PresetMenuItem } from "@/data/presetItems";
 
 type LocationData = {
   id: string;
@@ -41,6 +42,10 @@ export default function Home() {
   const [restaurantName, setRestaurantName] = useState("kontrast");
   const [subtitle, setSubtitle] = useState("NORTH INDIAN RESTAURANT & BAR");
   const [zoom, setZoom] = useState(0.8);
+  const [isQuickAddOpen, setIsQuickAddOpen] = useState(false);
+  const [quickAddTargetPageId, setQuickAddTargetPageId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -175,6 +180,30 @@ export default function Home() {
       }
       return page;
     }));
+  };
+
+  const addPresetItem = (pageId: string, preset: PresetMenuItem) => {
+    setMenuPages(menuPages.map(page => {
+      if (page.id === pageId) {
+        return {
+          ...page,
+          items: [
+            ...page.items,
+            {
+              id: `item${Date.now()}-${Math.random()}`,
+              name: preset.name,
+              description_sv: preset.description_sv,
+              description_en: preset.description_en,
+              price: preset.price,
+              allergens: preset.allergens
+            }
+          ]
+        };
+      }
+      return page;
+    }));
+    setIsQuickAddOpen(false);
+    setSearchQuery("");
   };
 
   const deleteMenuItem = (pageId: string, itemId: string) => {
@@ -511,14 +540,26 @@ export default function Home() {
                   </div>
                 ))}
 
-                {/* Add Item Button */}
-                <button 
-                  onClick={() => addMenuItem(page.id)}
-                  className="no-print self-start flex items-center gap-2 text-sm text-[#5c5643] hover:text-[#2a2822] hover:bg-[#e8dfc7] px-4 py-2 transition mt-2 border border-dashed border-[#a59e8c] font-lora"
-                  suppressHydrationWarning
-                >
-                  <Plus size={16} /> Add new dish
-                </button>
+                {/* Add Item Buttons */}
+                <div className="no-print flex gap-2 mt-4">
+                  <button 
+                    onClick={() => addMenuItem(page.id)}
+                    className="flex items-center gap-2 text-xs text-[#5c5643] hover:text-[#2a2822] hover:bg-[#e8dfc7] px-3 py-2 transition border border-dashed border-[#a59e8c] font-lora"
+                    suppressHydrationWarning
+                  >
+                    <Plus size={14} /> Add Empty
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setQuickAddTargetPageId(page.id);
+                      setIsQuickAddOpen(true);
+                    }}
+                    className="flex items-center gap-2 text-xs bg-[#2a2822] text-[#f5ead5] hover:bg-[#1a1814] px-3 py-2 transition font-lora shadow-sm"
+                    suppressHydrationWarning
+                  >
+                    <Library size={14} /> Quick Add from Library
+                  </button>
+                </div>
               </div>
 
               {/* Show legend conditionally */}
@@ -534,6 +575,95 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Quick Add Library Modal */}
+      {isQuickAddOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 no-print">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsQuickAddOpen(false)}></div>
+          <div className="bg-[#f5ead5] w-full max-w-4xl max-h-[85vh] rounded-lg shadow-2xl overflow-hidden flex flex-col relative z-10 border border-[#d8d0b7]">
+            {/* Modal Header */}
+            <div className="p-6 border-b border-[#d8d0b7] flex justify-between items-center bg-[#2a2822] text-[#f5ead5]">
+              <div className="flex items-center gap-3">
+                <Library className="text-[#c8bfa7]" />
+                <div>
+                  <h2 className="text-xl font-bold font-cormorant tracking-wider uppercase">Menu Library</h2>
+                  <p className="text-[10px] opacity-70 font-lora">Select a pre-designed dish to instantly add it to your menu</p>
+                </div>
+              </div>
+              <button onClick={() => setIsQuickAddOpen(false)} className="hover:rotate-90 transition-transform p-1">
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Modal Search & Filters */}
+            <div className="p-4 border-b border-[#d8d0b7] bg-white/30 flex flex-col sm:flex-row gap-4 items-center">
+              <div className="relative flex-1 w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <input 
+                  type="text"
+                  placeholder="Search library (e.g. Butter Chicken, Biryani...)"
+                  className="w-full pl-10 pr-4 py-2 bg-white border border-[#d8d0b7] rounded focus:outline-none focus:ring-1 focus:ring-[#2a2822] font-lora"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 w-full sm:w-auto">
+                {Array.from(new Set(PRESET_ITEMS.map(i => i.category))).map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
+                    className={`whitespace-nowrap px-3 py-1 rounded-full text-[10px] font-lora uppercase tracking-widest border transition ${selectedCategory === cat ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-white border-[#d8d0b7] text-[#5c5643] hover:bg-[#e8dfc7]'}`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="flex-1 overflow-y-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#e8dfc7]/20">
+              {PRESET_ITEMS
+                .filter(item => {
+                  const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.description_sv.toLowerCase().includes(searchQuery.toLowerCase());
+                  const matchesCategory = !selectedCategory || item.category === selectedCategory;
+                  return matchesSearch && matchesCategory;
+                })
+                .map((item, idx) => (
+                  <button 
+                    key={idx}
+                    onClick={() => quickAddTargetPageId && addPresetItem(quickAddTargetPageId, item)}
+                    className="flex flex-col text-left bg-white p-4 rounded border border-[#d8d0b7] hover:border-[#2a2822] hover:shadow-md transition group"
+                  >
+                    <div className="flex justify-between items-baseline mb-1">
+                      <span className="font-cormorant font-bold text-lg text-[#2a2822] group-hover:text-amber-800 transition-colors">{item.name}</span>
+                      <span className="font-lora text-sm font-semibold text-[#5c5643]">{item.price}</span>
+                    </div>
+                    <p className="text-xs font-lora text-gray-500 line-clamp-2 mb-2 italic">{item.description_sv}</p>
+                    <div className="flex justify-between items-center mt-auto pt-2 border-t border-gray-100">
+                      <span className="text-[9px] uppercase tracking-widest text-gray-400">{item.category}</span>
+                      <div className="flex gap-1">
+                        <AllergenIconsList allergens={item.allergens} />
+                      </div>
+                    </div>
+                  </button>
+                ))
+              }
+              {PRESET_ITEMS.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                    item.description_sv.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesCategory = !selectedCategory || item.category === selectedCategory;
+                return matchesSearch && matchesCategory;
+              }).length === 0 && (
+                <div className="col-span-full py-12 text-center">
+                  <Search size={48} className="mx-auto mb-4 text-gray-300 opacity-50" />
+                  <p className="text-gray-500 font-lora italic">No items found matching your search.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
