@@ -1,0 +1,509 @@
+"use client";
+
+import { useState } from "react";
+import Mandala from "@/components/Mandala";
+import EditableText from "@/components/EditableText";
+import { AllergenLegend, AllergenIconsList, AllergenType } from "@/components/AllergenIcons";
+import { Plus, Printer, Trash2, Layout, BookOpen } from "lucide-react";
+
+type LocationData = {
+  id: string;
+  name: string;
+  hoursDays: string;
+  hoursTime: string;
+  kitchenClose: string;
+  weekendDays: string;
+  weekendTime: string;
+  weekendKitchen: string;
+  restName: string;
+  addressLine1: string;
+  addressLine2: string;
+  phone: string;
+};
+
+type MenuItemData = {
+  id: string;
+  name: string;
+  description_sv: string;
+  description_en: string;
+  price: string;
+  allergens: AllergenType[];
+};
+
+type MenuPageData = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  items: MenuItemData[];
+};
+
+export default function Home() {
+  const [restaurantName, setRestaurantName] = useState("kontrast");
+  const [subtitle, setSubtitle] = useState("NORTH INDIAN RESTAURANT & BAR");
+  const [zoom, setZoom] = useState(0.8);
+  
+  const [locations, setLocations] = useState<LocationData[]>([
+    {
+      id: "loc1",
+      name: "VÄSTRA HAMNEN",
+      hoursDays: "SUNDAY - THURSDAY",
+      hoursTime: "11:30 - 22:00",
+      kitchenClose: "(KITCHEN CLOSES 21:30)",
+      weekendDays: "FRIDAY - SATURDAY",
+      weekendTime: "11:30 - 01:00",
+      weekendKitchen: "(KITCHEN CLOSES 22:45)",
+      restName: "RESTAURANG KONTRAST",
+      addressLine1: "SUNDSPROMENADEN 7",
+      addressLine2: "211 16 MALMÖ",
+      phone: "040 - 677 14 03",
+    },
+    {
+      id: "loc2",
+      name: "MÖLLEVÅNGSTORGET",
+      hoursDays: "SUNDAY - THURSDAY",
+      hoursTime: "11:30 - 22:00",
+      kitchenClose: "(KITCHEN CLOSES 21:30)",
+      weekendDays: "FRIDAY - SATURDAY",
+      weekendTime: "11:30 - 01:00",
+      weekendKitchen: "(KITCHEN CLOSES 23:00)",
+      restName: "RESTAURANG KONTRAST",
+      addressLine1: "MÖLLEVÅNGSTORGET 6 B",
+      addressLine2: "214 24 MALMÖ",
+      phone: "040 - 30 33 13",
+    }
+  ]);
+
+  const [menuPages, setMenuPages] = useState<MenuPageData[]>([
+    {
+      id: "page1",
+      title: "Vår Meny Erbjudande",
+      subtitle: "MENY ERBJUDANDE",
+      items: [
+        {
+          id: "item1",
+          name: "Lunch:",
+          description_sv: "Den indiska tallriken Thali består av en tillfredsställande 'dagens lunch' vardagar (måndag till fredag) mellan 11:30 till 15:00. Tallriken har en inspirerande kombination av curryrätter tillsammans med ris, yoghurtsås, sallad, pickles samt bröd – allt till ett otroligt pris.",
+          description_en: "Välj fritt bland dagens olika alternativ, varje dag. Är du dessutom en regelbunden gäst, är du sannolikt även lite extra nyfiken på vad som serveras varje dag!",
+          price: "125 kr",
+          allergens: []
+        },
+        {
+          id: "item2",
+          name: "À la carte:",
+          description_sv: "Efter 15:00 på vardagar och under hela dagen på helgen väljer du själv din mat från vårt breda utbud.",
+          description_en: "",
+          price: "Varierar",
+          allergens: []
+        }
+      ]
+    },
+    {
+      id: "page2",
+      title: "Dessert & Dryck",
+      subtitle: "AVSLUTNING",
+      items: [
+        {
+          id: "item3",
+          name: "Kulfi (Indian Ice-Cream)",
+          description_sv: "Långkokt mjölk med nio olika kryddor, serveras med nötter och torkad frukt.",
+          description_en: "Long-cooked milk with nine different spices, served with nuts and dried fruits.",
+          price: "85 kr",
+          allergens: ['milk', 'nuts']
+        },
+        {
+          id: "item4",
+          name: "Gajrella",
+          description_sv: "Morötter kokta i mjölk med malda nötter, serveras med vaniljglass och torkad frukt.",
+          description_en: "Carrots cooked in milk with ground nuts, served with vanilla ice-cream and dried fruits.",
+          price: "85 kr",
+          allergens: ['milk', 'nuts']
+        }
+      ]
+    }
+  ]);
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const addMenuPage = () => {
+    setMenuPages([
+      ...menuPages, 
+      {
+        id: `page${Date.now()}`,
+        title: "Ny Rubrik",
+        subtitle: "NY KATEGORI",
+        items: []
+      }
+    ]);
+  };
+
+  const addMenuItem = (pageId: string) => {
+    setMenuPages(menuPages.map(page => {
+      if (page.id === pageId) {
+        return {
+          ...page,
+          items: [
+            ...page.items,
+            {
+              id: `item${Date.now()}`,
+              name: "Ny Rätt",
+              description_sv: "Beskrivning...",
+              description_en: "",
+              price: "0 kr",
+              allergens: []
+            }
+          ]
+        };
+      }
+      return page;
+    }));
+  };
+
+  const deleteMenuItem = (pageId: string, itemId: string) => {
+    setMenuPages(menuPages.map(page => {
+      if (page.id === pageId) {
+        return {
+          ...page,
+          items: page.items.filter(item => item.id !== itemId)
+        };
+      }
+      return page;
+    }));
+  };
+
+  const deleteMenuPage = (pageId: string) => {
+    setMenuPages(menuPages.filter(p => p.id !== pageId));
+  };
+
+  const updateMenuItem = (pageId: string, itemId: string, field: keyof MenuItemData, value: any) => {
+    setMenuPages(menuPages.map(page => {
+      if (page.id === pageId) {
+        return {
+          ...page,
+          items: page.items.map(item => {
+            if (item.id === itemId) {
+              return { ...item, [field]: value };
+            }
+            return item;
+          })
+        };
+      }
+      return page;
+    }));
+  };
+
+  const updateMenuPage = (pageId: string, field: keyof MenuPageData, value: string) => {
+    setMenuPages(menuPages.map(page => {
+      if (page.id === pageId) {
+        return { ...page, [field]: value };
+      }
+      return page;
+    }));
+  };
+
+  const updateLocation = (locId: string, field: keyof LocationData, value: string) => {
+    setLocations(locations.map(loc => {
+      if (loc.id === locId) {
+        return { ...loc, [field]: value };
+      }
+      return loc;
+    }));
+  };
+
+  const toggleAllergen = (pageId: string, itemId: string, allergen: AllergenType) => {
+    setMenuPages(menuPages.map(page => {
+      if (page.id === pageId) {
+        return {
+          ...page,
+          items: page.items.map(item => {
+            if (item.id === itemId) {
+              const hasAllergen = item.allergens.includes(allergen);
+              return {
+                ...item,
+                allergens: hasAllergen 
+                  ? item.allergens.filter(a => a !== allergen)
+                  : [...item.allergens, allergen]
+              };
+            }
+            return item;
+          })
+        };
+      }
+      return page;
+    }));
+  };
+
+  return (
+    <div className="min-h-screen bg-[#e8dfc7] pb-24 print-container font-lora text-[#2a2822]">
+      
+      {/* Top Navbar Builder Controls - Hidden on Print */}
+      <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#d8d0b7] shadow-sm no-print mb-8">
+        <div className="max-w-[1600px] mx-auto px-6 h-16 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <BookOpen className="text-[#3c3a32]" />
+            <h1 className="text-xl font-bold font-cormorant tracking-wider text-[#3c3a32]">Booklet Builder</h1>
+            <span className="text-xs bg-[#f5ead5] text-[#5c5643] px-2 py-1 rounded-sm border border-[#d8d0b7] ml-2 font-lora uppercase tracking-wider">Beta</span>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 text-sm text-gray-500 font-lora">
+              <span className="flex items-center gap-1"><Layout size={16} /> Zoom</span>
+              <input 
+                type="range" 
+                min="0.5" 
+                max="1" 
+                step="0.05" 
+                value={zoom} 
+                onChange={(e) => setZoom(parseFloat(e.target.value))}
+                className="w-24 accent-[#5c5643]"
+                title="Zoom Preview"
+              />
+            </div>
+            
+            <div className="h-6 w-px bg-gray-300"></div>
+
+            <button 
+              onClick={addMenuPage}
+              className="flex items-center gap-2 text-[#5c5643] hover:bg-[#f5ead5] px-4 py-2 rounded transition text-sm font-medium font-lora"
+            >
+              <Plus size={16} /> Add Page
+            </button>
+            <button 
+              onClick={handlePrint}
+              className="flex items-center gap-2 bg-[#2a2822] text-[#f5ead5] px-5 py-2 hover:bg-[#1a1814] transition shadow-md text-sm font-medium font-lora uppercase tracking-wider"
+            >
+              <Printer size={16} /> Generate PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-[1600px] mx-auto px-6 no-print mb-4">
+        <p className="text-[#6b6452] text-sm text-center font-lora italic">Click on any text on the pages below to edit. Hover over items to add allergens or delete.</p>
+      </div>
+
+      {/* Zoom Wrapper - strictly disabled during print to prevent margin issues */}
+      <div 
+        className="origin-top transition-transform duration-300 ease-out flex justify-center print:!transform-none print:!mb-0"
+        style={{ transform: `scale(${zoom})`, marginBottom: `-${(1 - zoom) * 100}vh` }}
+      >
+        {/* Pages Container - Strict 2 Column Grid for screen, Block for print */}
+        <div className="grid grid-cols-2 gap-x-16 gap-y-12 print:block print:!m-0 print:!p-0 print:w-full w-fit mx-auto">
+          
+          {/* Cover Page */}
+          <div className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative overflow-hidden print-page flex flex-col justify-between shrink-0 p-12 mx-auto">
+          
+          {/* Background Watermark */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] overflow-hidden">
+            <Mandala className="w-[140%] h-[140%] text-[#2a2822]" />
+          </div>
+
+          {/* Elegant Corner Brackets */}
+          <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-[#5c5643] pointer-events-none opacity-60"></div>
+          <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-[#5c5643] pointer-events-none opacity-60"></div>
+          <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-[#5c5643] pointer-events-none opacity-60"></div>
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-[#5c5643] pointer-events-none opacity-60"></div>
+
+          {/* Inner border */}
+          <div className="absolute inset-10 border border-[#a59e8c] pointer-events-none opacity-30"></div>
+
+          <div className="flex-1 flex flex-col items-center justify-center z-10 px-12">
+            <EditableText 
+              value={restaurantName} 
+              onChange={setRestaurantName} 
+              tagName="h1" 
+              className="text-8xl font-cinzel text-center lowercase tracking-widest mb-2 hover:bg-[#e8dfc7] p-2 transition" 
+            />
+            
+            <div className="flex justify-center mb-6 opacity-70">
+              <svg width="160" height="15" viewBox="0 0 160 15" fill="none" className="text-[#5c5643]">
+                <path d="M0 7.5 H 65 M 95 7.5 H 160" stroke="currentColor" strokeWidth="1" />
+                <path d="M80 0 L85 7.5 L80 15 L75 7.5 Z" fill="currentColor" />
+                <circle cx="68" cy="7.5" r="2" fill="currentColor" />
+                <circle cx="92" cy="7.5" r="2" fill="currentColor" />
+              </svg>
+            </div>
+
+            <EditableText 
+              value={subtitle} 
+              onChange={setSubtitle} 
+              tagName="p" 
+              className="text-sm font-lora tracking-[0.3em] text-[#5c5643] text-center mb-24 uppercase hover:bg-[#e8dfc7] p-2 transition" 
+            />
+
+            <div className="flex justify-between w-full gap-8">
+              {locations.map((loc) => (
+                <div key={loc.id} className="flex-1 text-center font-lora text-sm flex flex-col items-center group relative p-4 hover:bg-[#e8dfc7]/50 transition">
+                  <EditableText value={loc.name} onChange={(v) => updateLocation(loc.id, 'name', v)} className="font-cormorant font-bold text-2xl mb-6 uppercase tracking-wider text-[#2a2822]" />
+                  
+                  <div className="mb-2 text-xs text-[#6b6452] tracking-widest uppercase">Opening Hours</div>
+                  
+                  <div className="flex items-center justify-center gap-2 mb-1 w-full">
+                    <EditableText value={loc.hoursDays} onChange={(v) => updateLocation(loc.id, 'hoursDays', v)} className="uppercase text-xs tracking-wider" />
+                    <span className="text-[#a59e8c]">|</span>
+                    <EditableText value={loc.hoursTime} onChange={(v) => updateLocation(loc.id, 'hoursTime', v)} className="" />
+                  </div>
+                  <EditableText value={loc.kitchenClose} onChange={(v) => updateLocation(loc.id, 'kitchenClose', v)} className="text-xs mb-4 uppercase text-[#6b6452]" />
+                  
+                  <div className="flex items-center justify-center gap-2 mb-1 w-full">
+                    <EditableText value={loc.weekendDays} onChange={(v) => updateLocation(loc.id, 'weekendDays', v)} className="uppercase text-xs tracking-wider" />
+                    <span className="text-[#a59e8c]">|</span>
+                    <EditableText value={loc.weekendTime} onChange={(v) => updateLocation(loc.id, 'weekendTime', v)} className="" />
+                  </div>
+                  <EditableText value={loc.weekendKitchen} onChange={(v) => updateLocation(loc.id, 'weekendKitchen', v)} className="text-xs mb-8 uppercase text-[#6b6452]" />
+
+                  <EditableText value={loc.restName} onChange={(v) => updateLocation(loc.id, 'restName', v)} className="text-sm mb-1 uppercase tracking-wider font-bold font-cormorant" />
+                  <EditableText value={loc.addressLine1} onChange={(v) => updateLocation(loc.id, 'addressLine1', v)} className="text-xs mb-1 uppercase tracking-wider" />
+                  <EditableText value={loc.addressLine2} onChange={(v) => updateLocation(loc.id, 'addressLine2', v)} className="text-xs mb-8 uppercase tracking-wider" />
+
+                  <EditableText value={loc.phone} onChange={(v) => updateLocation(loc.id, 'phone', v)} className="text-sm" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Menu Pages */}
+        {menuPages.map((page, pageIndex) => (
+          <div key={page.id} className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative overflow-hidden print-page p-16 flex flex-col group/page shrink-0 mx-auto">
+            
+            {/* Background Watermark */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02] overflow-hidden">
+              <Mandala className="w-[120%] h-[120%] text-[#2a2822]" />
+            </div>
+
+            {/* Elegant Vintage Frame */}
+            <div className="absolute inset-6 border border-[#c8bfa7] pointer-events-none opacity-60"></div>
+            <div className="absolute top-5 left-1/2 -translate-x-1/2 bg-[#f5ead5] px-4 pointer-events-none opacity-60">
+               <svg width="40" height="12" viewBox="0 0 40 12" fill="currentColor" className="text-[#a59e8c]"><path d="M20 0L24 6L20 12L16 6L20 0ZM8 6L12 9L10 12L6 8L8 6ZM32 6L28 9L30 12L34 8L32 6Z"/></svg>
+            </div>
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-[#f5ead5] px-4 pointer-events-none opacity-60">
+               <svg width="40" height="12" viewBox="0 0 40 12" fill="currentColor" className="text-[#a59e8c]"><path d="M20 12L24 6L20 0L16 6L20 12ZM8 6L12 3L10 0L6 4L8 6ZM32 6L28 3L30 0L34 4L32 6Z"/></svg>
+            </div>
+
+            <div className="flex-1 z-10 flex flex-col relative px-4">
+              
+              {/* Page Delete Button */}
+              <button 
+                onClick={() => deleteMenuPage(page.id)}
+                className="absolute -top-12 -right-12 text-red-500 hover:bg-red-50 p-2 no-print opacity-0 group-hover/page:opacity-100 transition shadow-sm z-50 border border-red-200 rounded-full bg-white"
+                title="Delete Page"
+              >
+                <Trash2 size={20} />
+              </button>
+
+              <div className="mb-10 text-left">
+                <div className="border-t-[3px] border-double border-[#5c5643] w-32 mb-4 opacity-70"></div>
+                
+                <EditableText 
+                  value={page.subtitle || "NY KATEGORI"} 
+                  onChange={(v) => updateMenuPage(page.id, 'subtitle', v)} 
+                  tagName="p" 
+                  className="text-xs font-lora uppercase tracking-[0.2em] text-[#6b6452] mb-2 hover:bg-[#e8dfc7] p-1 transition inline-block" 
+                />
+                
+                <EditableText 
+                  value={page.title} 
+                  onChange={(v) => updateMenuPage(page.id, 'title', v)} 
+                  tagName="h2" 
+                  className="text-[2.75rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
+                />
+              </div>
+
+              <div className="flex-1 flex flex-col gap-8">
+                {page.items.map((item, itemIndex) => (
+                  <div key={item.id} className="flex flex-col relative group hover:bg-[#e8dfc7]/60 p-3 -mx-3 transition">
+                    <div className="flex items-baseline gap-3 mb-2">
+                      <EditableText 
+                        value={item.name} 
+                        onChange={(v) => updateMenuItem(page.id, item.id, 'name', v)} 
+                        className="text-[1.65rem] leading-none font-cormorant font-bold tracking-wide text-[#1a1814]" 
+                      />
+                      
+                      <div className="ml-1 opacity-80 scale-90 origin-left flex items-center">
+                        <AllergenIconsList allergens={item.allergens} />
+                      </div>
+
+                      <div className="flex-1"></div>
+
+                      {/* Item Delete Button */}
+                      <button 
+                        onClick={() => deleteMenuItem(page.id, item.id)}
+                        className="text-red-400 hover:text-red-600 ml-2 no-print opacity-0 group-hover:opacity-100 transition"
+                        title="Delete Item"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                    
+                    <EditableText 
+                      value={item.description_sv} 
+                      onChange={(v) => updateMenuItem(page.id, item.id, 'description_sv', v)} 
+                      tagName="p" 
+                      className="text-[15px] font-lora text-[#4a473e] leading-[1.6] mb-1 italic" 
+                    />
+                    
+                    <div className="flex w-full items-end gap-2">
+                      <div className="flex-1">
+                        {item.description_en && (
+                          <EditableText 
+                            value={item.description_en} 
+                            onChange={(v) => updateMenuItem(page.id, item.id, 'description_en', v)} 
+                            tagName="p" 
+                            className="text-[15px] font-lora text-[#4a473e] leading-[1.6] italic" 
+                          />
+                        )}
+                      </div>
+                      <EditableText 
+                        value={item.price} 
+                        onChange={(v) => updateMenuItem(page.id, item.id, 'price', v)} 
+                        className="text-lg font-lora font-semibold tracking-wide whitespace-nowrap text-[#2a2822] mb-1" 
+                      />
+                    </div>
+
+                    {/* Allergen Toggle UI - Only visible on hover in builder */}
+                    <div className="no-print absolute top-[90%] left-0 bg-[#f5ead5] border border-[#d8d0b7] shadow-xl p-3 z-20 flex flex-wrap gap-2 w-64 opacity-0 group-hover:opacity-100 transition-all translate-y-2 pointer-events-none group-hover:pointer-events-auto">
+                      <div className="w-full text-xs text-[#5c5643] mb-1 font-lora italic">Toggle Allergens</div>
+                      {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
+                        <button
+                          key={a}
+                          onClick={() => toggleAllergen(page.id, item.id, a)}
+                          className={`px-2 py-1 text-[10px] uppercase tracking-widest border transition font-lora ${item.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-transparent text-[#5c5643] border-[#a59e8c] hover:bg-[#e8dfc7]'}`}
+                          suppressHydrationWarning
+                        >
+                          {a}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Full dotted separator between items */}
+                    {itemIndex < page.items.length - 1 && (
+                      <div className="w-full border-b-[2px] border-dotted border-[#b8b09d] mt-6 mb-2 opacity-80"></div>
+                    )}
+                  </div>
+                ))}
+
+                {/* Add Item Button */}
+                <button 
+                  onClick={() => addMenuItem(page.id)}
+                  className="no-print self-start flex items-center gap-2 text-sm text-[#5c5643] hover:text-[#2a2822] hover:bg-[#e8dfc7] px-4 py-2 transition mt-2 border border-dashed border-[#a59e8c] font-lora"
+                >
+                  <Plus size={16} /> Add new dish
+                </button>
+              </div>
+
+              {/* Show legend conditionally */}
+              {pageIndex === menuPages.length - 1 && (
+                <div className="mt-auto opacity-90 border-t border-[#a59e8c] pt-4">
+                  <AllergenLegend />
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+        </div>
+      </div>
+    </div>
+  );
+}
