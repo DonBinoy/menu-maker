@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-cinzel: var(--font-cinzel);
+  --font-cormorant: var(--font-cormorant);
+  --font-lora: var(--font-lora);
+}
+
+@layer utilities {
+  .font-cinzel { font-family: var(--font-cinzel); }
+  .font-cormorant { font-family: var(--font-cormorant); }
+  .font-lora { font-family: var(--font-lora); }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: transparent !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-page {
+    margin: 0 !important;
+    padding: 10mm !important; /* Ensure content doesn't hit the physical printer edge */
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    width: 100% !important;
+    height: 100vh !important;
+    max-width: 100% !important;
+    max-height: 100vh !important;
+    transform: none !important;
+    overflow: hidden !important;
+  }
+
+  .print-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
+    display: block !important;
+    transform: none !important;
+    width: auto !important;
+  }
+}
