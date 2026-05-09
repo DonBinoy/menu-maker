@@ -50,12 +50,16 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const setMobileZoom = () => {
-        if (window.innerWidth < 640) {
-          setZoom(0.42);
-        } else if (window.innerWidth < 1024) {
-          setZoom(0.6);
+        if (window.innerWidth < 768) {
+          // Calculate zoom to fit the 210mm page (~794px) perfectly into the screen
+          const horizontalPadding = 40;
+          const targetWidth = window.innerWidth - horizontalPadding;
+          const fitZoom = targetWidth / 794;
+          setZoom(Math.max(0.35, Math.min(0.9, fitZoom)));
+        } else if (window.innerWidth < 1280) {
+          setZoom(0.65);
         } else {
-          setZoom(0.8);
+          setZoom(0.85);
         }
       };
       setMobileZoom();
@@ -283,67 +287,60 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#e8dfc7] pb-24 print-container font-lora text-[#2a2822] overflow-x-hidden">
       
-      {/* Top Navbar Builder Controls - Hidden on Print */}
-      <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#d8d0b7] shadow-sm no-print mb-8">
-        <div className="max-w-[1600px] mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <div className="flex items-center gap-2 justify-center w-full sm:w-auto">
-            <BookOpen className="text-[#3c3a32] w-5 h-5" />
-            <h1 className="text-lg font-bold font-cormorant tracking-wider text-[#3c3a32]">Booklet Builder</h1>
-            <span className="text-[10px] bg-[#f5ead5] text-[#5c5643] px-1.5 py-0.5 rounded-sm border border-[#d8d0b7] font-lora uppercase">Beta</span>
+      {/* Top Navbar - Professional Mobile Layout */}
+      <div className="sticky top-0 z-50 bg-white border-b border-[#d8d0b7] shadow-sm no-print">
+        <div className="max-w-[1600px] mx-auto">
+          {/* Row 1: Brand & Status */}
+          <div className="flex items-center justify-between px-4 py-2 border-b border-[#f0ece0] bg-[#fdfaf3]">
+            <div className="flex items-center gap-2">
+              <BookOpen className="text-[#3c3a32] w-4 h-4" />
+              <h1 className="text-sm font-bold font-cormorant tracking-tight text-[#3c3a32] uppercase">Menu Booklet</h1>
+              <span className="text-[8px] bg-[#2a2822] text-white px-1.5 py-0.5 rounded-full font-lora font-bold">BETA</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[10px] text-[#8b8471] font-lora font-bold uppercase">
+              <Layout size={12} className="text-amber-800" />
+              <span>Zoom {Math.round(zoom * 100)}%</span>
+            </div>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
-            <div className="flex items-center gap-1.5 text-xs text-gray-500 font-lora bg-white/50 px-2 py-1.5 rounded border border-[#d8d0b7]">
-              <Layout size={14} /> 
-              <input 
-                type="range" 
-                min="0.3" 
-                max="1" 
-                step="0.05" 
-                value={zoom} 
-                onChange={(e) => setZoom(parseFloat(e.target.value))}
-                className="w-20 accent-[#5c5643]"
-                title="Zoom Preview"
-              />
-            </div>
-
+          {/* Row 2: Actions */}
+          <div className="flex items-center gap-2 px-3 py-2 bg-white">
             <button 
               onClick={addMenuPage}
-              className="flex items-center gap-1.5 text-[#5c5643] bg-[#f5ead5] hover:bg-[#e8dfc7] px-3 py-1.5 rounded transition text-xs font-medium font-lora border border-[#d8d0b7]"
+              className="flex-1 flex items-center justify-center gap-2 text-[#5c5643] bg-[#f5ead5]/40 hover:bg-[#f5ead5] px-4 py-2.5 rounded-md transition text-xs font-bold font-lora border border-[#d8d0b7] active:scale-95"
               suppressHydrationWarning
             >
-              <Plus size={14} /> Page
+              <Plus size={16} /> ADD PAGE
             </button>
             <button 
               onClick={handlePrint}
-              className="flex items-center gap-1.5 bg-[#2a2822] text-[#f5ead5] px-4 py-1.5 hover:bg-[#1a1814] transition shadow text-xs font-medium font-lora uppercase tracking-wider rounded"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#2a2822] text-[#f5ead5] px-4 py-2.5 hover:bg-[#1a1814] transition shadow-md text-xs font-bold font-lora uppercase tracking-widest rounded-md active:scale-95"
               suppressHydrationWarning
             >
-              <Printer size={14} /> PDF
+              <Printer size={16} /> SAVE PDF
             </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-6 no-print mb-4">
-        <p className="text-[#6b6452] text-sm text-center font-lora italic">Click on any text on the pages below to edit. Hover over items to add allergens or delete.</p>
+      {/* Floating Hint - Less intrusive */}
+      <div className="no-print flex justify-center mt-2 px-4">
+        <div className="bg-[#5c5643]/10 backdrop-blur-sm border border-[#5c5643]/20 px-3 py-1 rounded-full">
+          <p className="text-[#5c5643] text-[9px] sm:text-xs font-lora italic text-center">
+            Tap text to edit • Hold item for allergens
+          </p>
+        </div>
       </div>
 
-      {/* Scroll canvas - horizontally scrollable on mobile */}
-      <div className="overflow-x-auto overflow-y-visible">
-        {/* Transform origin wrapper - scales from top center */}
+      {/* Main Preview Area */}
+      <div className="flex justify-center py-4 sm:py-8 no-print">
+        {/* Zoom Wrapper - uses CSS zoom for correct bounding box on mobile */}
         <div 
-          className="origin-top transition-transform duration-300 ease-out print:!transform-none"
-          style={{
-            transform: `scale(${zoom})`,
-            // collapse the extra whitespace the scale creates below
-            marginBottom: `-${(1 - zoom) * 297 * (menuPages.length + 1)}px`,
-          }}
+          className="transition-all duration-300 ease-out print:!zoom-1 print:!m-0"
+          style={{ zoom: zoom } as React.CSSProperties}
         >
-          {/* Inner centering wrapper */}
-          <div className="flex justify-center">
-            {/* Pages Container - 1 col on small, 2 col on xl, block on print */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-16 gap-y-12 print:block print:!m-0 print:!p-0 w-fit mx-auto">
+          {/* Pages Container - 1 col on small, 2 col on xl, block on print */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-16 gap-y-12 print:block print:!m-0 print:!p-0 w-fit mx-auto">
           
           {/* Cover Page */}
           <div className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative overflow-hidden print-page flex flex-col justify-between shrink-0 p-12 mx-auto">
@@ -518,16 +515,17 @@ export default function Home() {
                       />
                     </div>
 
-                    {/* Allergen Toggle UI - Visible on hover/focus in builder */}
-                    <div className="no-print absolute top-[90%] left-0 bg-[#f5ead5] border border-[#d8d0b7] shadow-xl p-3 z-20 flex flex-wrap gap-2 w-64 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all translate-y-2 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
-                      <div className="w-full text-xs text-[#5c5643] mb-1 font-lora italic">Toggle Allergens</div>
+                    {/* Allergen Toggle UI - Improved for mobile/touch */}
+                    <div className="no-print absolute top-full left-0 sm:left-auto sm:right-0 bg-[#fdfaf3] border border-[#d8d0b7] shadow-2xl p-4 sm:p-3 z-[60] flex flex-wrap gap-2 w-[280px] sm:w-64 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all translate-y-2 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto rounded-md">
+                      <div className="w-full text-[10px] uppercase tracking-widest text-[#8b8471] mb-1 font-lora font-bold border-b border-[#d8d0b7] pb-1">Toggle Allergens</div>
                       {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
                         <button
                           key={a}
                           onClick={() => toggleAllergen(page.id, item.id, a)}
-                          className={`px-2 py-1 text-[10px] uppercase tracking-widest border transition font-lora ${item.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-transparent text-[#5c5643] border-[#a59e8c] hover:bg-[#e8dfc7]'}`}
+                          className={`flex-1 min-w-[80px] xs:min-w-[70px] sm:min-w-0 px-2 py-2 sm:py-1 text-[9px] sm:text-[10px] uppercase tracking-widest border transition font-lora rounded-sm flex items-center justify-center gap-1 ${item.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-white text-[#5c5643] border-[#d8d0b7] hover:bg-[#e8dfc7]'}`}
                           suppressHydrationWarning
                         >
+                          {item.allergens.includes(a) && <div className="w-1 h-1 rounded-full bg-amber-400" />}
                           {a}
                         </button>
                       ))}
@@ -571,16 +569,15 @@ export default function Home() {
             </div>
           </div>
         ))}
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Quick Add Library Modal */}
+      {/* Quick Add Library Modal - Full screen on mobile */}
       {isQuickAddOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 no-print">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsQuickAddOpen(false)}></div>
-          <div className="bg-[#f5ead5] w-full max-w-4xl max-h-[85vh] rounded-lg shadow-2xl overflow-hidden flex flex-col relative z-10 border border-[#d8d0b7]">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 no-print">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsQuickAddOpen(false)}></div>
+          <div className="bg-[#fdfaf3] w-full h-full sm:h-auto sm:max-w-4xl sm:max-h-[85vh] sm:rounded-lg shadow-2xl overflow-hidden flex flex-col relative z-10 border-t sm:border border-[#d8d0b7]">
             {/* Modal Header */}
             <div className="p-6 border-b border-[#d8d0b7] flex justify-between items-center bg-[#2a2822] text-[#f5ead5]">
               <div className="flex items-center gap-3">
