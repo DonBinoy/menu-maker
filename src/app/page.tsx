@@ -303,8 +303,8 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Row 2: Actions */}
-          <div className="flex items-center gap-2 px-3 py-2 bg-white">
+          {/* Row 2: Actions - Hidden on mobile (moved to bottom) */}
+          <div className="hidden sm:flex items-center gap-2 px-3 py-2 bg-white">
             <button 
               onClick={addMenuPage}
               className="flex-1 flex items-center justify-center gap-2 text-[#5c5643] bg-[#f5ead5]/40 hover:bg-[#f5ead5] px-4 py-2.5 rounded-md transition text-xs font-bold font-lora border border-[#d8d0b7] active:scale-95"
@@ -321,6 +321,24 @@ export default function Home() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Bottom Action Bar - Always reachable */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-md border-t border-[#d8d0b7] p-4 shadow-[0_-4px_16px_rgba(0,0,0,0.1)] no-print flex gap-3">
+        <button 
+          onClick={addMenuPage}
+          className="flex-1 flex items-center justify-center gap-2 text-[#5c5643] bg-[#f5ead5] px-4 py-3 rounded-xl transition text-xs font-bold font-lora border border-[#d8d0b7] active:scale-95"
+          suppressHydrationWarning
+        >
+          <Plus size={18} /> ADD PAGE
+        </button>
+        <button 
+          onClick={handlePrint}
+          className="flex-1 flex items-center justify-center gap-2 bg-[#2a2822] text-[#f5ead5] px-4 py-3 transition shadow-lg text-xs font-bold font-lora uppercase tracking-widest rounded-xl active:scale-95"
+          suppressHydrationWarning
+        >
+          <Printer size={18} /> SAVE PDF
+        </button>
       </div>
 
       {/* Floating Hint - Less intrusive */}
@@ -438,7 +456,7 @@ export default function Home() {
               {/* Page Delete Button */}
               <button 
                 onClick={() => deleteMenuPage(page.id)}
-                className="absolute -top-12 -right-12 text-red-500 hover:bg-red-50 p-2 no-print opacity-0 group-hover/page:opacity-100 transition shadow-sm z-50 border border-red-200 rounded-full bg-white"
+                className="absolute -top-12 -right-12 text-red-500 hover:bg-red-50 p-2 no-print opacity-100 sm:opacity-0 sm:group-hover/page:opacity-100 transition shadow-sm z-50 border border-red-200 rounded-full bg-white active:scale-90"
                 title="Delete Page"
                 suppressHydrationWarning
               >
@@ -482,7 +500,7 @@ export default function Home() {
                       {/* Item Delete Button */}
                       <button 
                         onClick={() => deleteMenuItem(page.id, item.id)}
-                        className="text-red-400 hover:text-red-600 ml-2 no-print opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition"
+                        className="text-red-400 hover:text-red-600 ml-2 no-print opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 transition active:scale-90"
                         title="Delete Item"
                         suppressHydrationWarning
                       >
