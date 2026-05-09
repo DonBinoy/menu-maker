@@ -420,7 +420,7 @@ export default function Home() {
 
         {/* Menu Pages */}
         {menuPages.map((page, pageIndex) => (
-          <div key={page.id} className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative overflow-hidden print-page p-16 flex flex-col group/page shrink-0 mx-auto">
+          <div key={page.id} className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative overflow-hidden print-page p-12 flex flex-col group/page shrink-0 mx-auto">
             
             {/* Background Watermark */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02] overflow-hidden">
@@ -448,32 +448,32 @@ export default function Home() {
                 <Trash2 size={20} />
               </button>
 
-              <div className="mb-10 text-left">
-                <div className="border-t-[3px] border-double border-[#5c5643] w-32 mb-4 opacity-70"></div>
+              <div className="mb-6 text-left">
+                <div className="border-t-[3px] border-double border-[#5c5643] w-24 mb-3 opacity-70"></div>
                 
                 <EditableText 
                   value={page.subtitle || "NY KATEGORI"} 
                   onChange={(v) => updateMenuPage(page.id, 'subtitle', v)} 
                   tagName="p" 
-                  className="text-xs font-lora uppercase tracking-[0.2em] text-[#6b6452] mb-2 hover:bg-[#e8dfc7] p-1 transition inline-block" 
+                  className="text-[10px] font-lora uppercase tracking-[0.2em] text-[#6b6452] mb-1 hover:bg-[#e8dfc7] p-1 transition inline-block" 
                 />
                 
                 <EditableText 
                   value={page.title} 
                   onChange={(v) => updateMenuPage(page.id, 'title', v)} 
                   tagName="h2" 
-                  className="text-[2.75rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
+                  className="text-[2.2rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
                 />
               </div>
 
-              <div className="flex-1 flex flex-col gap-8">
+              <div className="flex-1 flex flex-col gap-4">
                 {page.items.map((item, itemIndex) => (
-                  <div key={item.id} className="flex flex-col relative group hover:bg-[#e8dfc7]/60 focus-within:bg-[#e8dfc7]/60 p-3 -mx-3 transition">
-                    <div className="flex items-baseline gap-3 mb-2">
+                  <div key={item.id} className="flex flex-col relative group hover:bg-[#e8dfc7]/60 focus-within:bg-[#e8dfc7]/60 p-2 -mx-2 transition">
+                    <div className="flex items-baseline gap-3 mb-0.5">
                       <EditableText 
                         value={item.name} 
                         onChange={(v) => updateMenuItem(page.id, item.id, 'name', v)} 
-                        className="text-[1.65rem] leading-none font-cormorant font-bold tracking-wide text-[#1a1814]" 
+                        className="text-[1.5rem] leading-none font-cormorant font-bold tracking-wide text-[#1a1814]" 
                       />
                       
                       <div className="ml-1 opacity-80 scale-90 origin-left flex items-center">
@@ -497,7 +497,7 @@ export default function Home() {
                       value={item.description_sv} 
                       onChange={(v) => updateMenuItem(page.id, item.id, 'description_sv', v)} 
                       tagName="p" 
-                      className="text-[15px] font-lora text-[#4a473e] leading-[1.6] mb-1 italic" 
+                      className="text-[14px] font-lora text-[#4a473e] leading-[1.5] mb-0.5 italic" 
                     />
                     
                     <div className="flex w-full items-end gap-2">
@@ -507,7 +507,7 @@ export default function Home() {
                             value={item.description_en} 
                             onChange={(v) => updateMenuItem(page.id, item.id, 'description_en', v)} 
                             tagName="p" 
-                            className="text-[15px] font-lora text-[#4a473e] leading-[1.6] italic" 
+                            className="text-[14px] font-lora text-[#4a473e] leading-[1.5] italic" 
                           />
                         )}
                       </div>
@@ -535,7 +535,7 @@ export default function Home() {
 
                     {/* Full dotted separator between items */}
                     {itemIndex < page.items.length - 1 && (
-                      <div className="w-full border-b-[2px] border-dotted border-[#b8b09d] mt-6 mb-2 opacity-80"></div>
+                      <div className="w-full border-b-[1px] border-dotted border-[#b8b09d] mt-3 mb-1 opacity-60"></div>
                     )}
                   </div>
                 ))}
