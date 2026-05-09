@@ -34,17 +34,21 @@
   
   .print-page {
     margin: 0 !important;
-    padding: 10mm !important; /* Ensure content doesn't hit the physical printer edge */
+    padding: 10mm !important;
     box-shadow: none !important;
     border: none !important;
-    page-break-after: always;
-    page-break-inside: avoid;
-    width: 100% !important;
-    height: 100vh !important;
-    max-width: 100% !important;
-    max-height: 100vh !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-width: 210mm !important;
+    max-height: 297mm !important;
     transform: none !important;
     overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    background-color: #f5ead5 !important;
   }
 
   .print-container {

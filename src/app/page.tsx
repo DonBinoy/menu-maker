@@ -149,7 +149,19 @@ export default function Home() {
   ]);
 
   const handlePrint = () => {
-    window.print();
+    // Save current zoom and force 100% for the print engine
+    const originalZoom = zoom;
+    setZoom(1);
+    
+    // Give the browser a moment to re-render at 100% before opening the print dialog
+    setTimeout(() => {
+      window.print();
+      // Restore the user's zoom after the print dialog opens
+      // (The print job is already captured by this point)
+      setTimeout(() => {
+        setZoom(originalZoom);
+      }, 500);
+    }, 150);
   };
 
   const addMenuPage = () => {
