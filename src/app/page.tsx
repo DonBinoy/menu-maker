@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Mandala from "@/components/Mandala";
 import EditableText from "@/components/EditableText";
 import { AllergenLegend, AllergenIconsList, AllergenType } from "@/components/AllergenIcons";
@@ -41,6 +41,23 @@ export default function Home() {
   const [restaurantName, setRestaurantName] = useState("kontrast");
   const [subtitle, setSubtitle] = useState("NORTH INDIAN RESTAURANT & BAR");
   const [zoom, setZoom] = useState(0.8);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const setMobileZoom = () => {
+        if (window.innerWidth < 640) {
+          setZoom(0.42);
+        } else if (window.innerWidth < 1024) {
+          setZoom(0.6);
+        } else {
+          setZoom(0.8);
+        }
+      };
+      setMobileZoom();
+      window.addEventListener('resize', setMobileZoom);
+      return () => window.removeEventListener('resize', setMobileZoom);
+    }
+  }, []);
   
   const [locations, setLocations] = useState<LocationData[]>([
     {
@@ -235,45 +252,45 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#e8dfc7] pb-24 print-container font-lora text-[#2a2822]">
+    <div className="min-h-screen bg-[#e8dfc7] pb-24 print-container font-lora text-[#2a2822] overflow-x-hidden">
       
       {/* Top Navbar Builder Controls - Hidden on Print */}
       <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#d8d0b7] shadow-sm no-print mb-8">
-        <div className="max-w-[1600px] mx-auto px-6 h-16 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <BookOpen className="text-[#3c3a32]" />
-            <h1 className="text-xl font-bold font-cormorant tracking-wider text-[#3c3a32]">Booklet Builder</h1>
-            <span className="text-xs bg-[#f5ead5] text-[#5c5643] px-2 py-1 rounded-sm border border-[#d8d0b7] ml-2 font-lora uppercase tracking-wider">Beta</span>
+        <div className="max-w-[1600px] mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <div className="flex items-center gap-2 justify-center w-full sm:w-auto">
+            <BookOpen className="text-[#3c3a32] w-5 h-5" />
+            <h1 className="text-lg font-bold font-cormorant tracking-wider text-[#3c3a32]">Booklet Builder</h1>
+            <span className="text-[10px] bg-[#f5ead5] text-[#5c5643] px-1.5 py-0.5 rounded-sm border border-[#d8d0b7] font-lora uppercase">Beta</span>
           </div>
           
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-sm text-gray-500 font-lora">
-              <span className="flex items-center gap-1"><Layout size={16} /> Zoom</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 font-lora bg-white/50 px-2 py-1.5 rounded border border-[#d8d0b7]">
+              <Layout size={14} /> 
               <input 
                 type="range" 
-                min="0.5" 
+                min="0.3" 
                 max="1" 
                 step="0.05" 
                 value={zoom} 
                 onChange={(e) => setZoom(parseFloat(e.target.value))}
-                className="w-24 accent-[#5c5643]"
+                className="w-20 accent-[#5c5643]"
                 title="Zoom Preview"
               />
             </div>
-            
-            <div className="h-6 w-px bg-gray-300"></div>
 
             <button 
               onClick={addMenuPage}
-              className="flex items-center gap-2 text-[#5c5643] hover:bg-[#f5ead5] px-4 py-2 rounded transition text-sm font-medium font-lora"
+              className="flex items-center gap-1.5 text-[#5c5643] bg-[#f5ead5] hover:bg-[#e8dfc7] px-3 py-1.5 rounded transition text-xs font-medium font-lora border border-[#d8d0b7]"
+              suppressHydrationWarning
             >
-              <Plus size={16} /> Add Page
+              <Plus size={14} /> Page
             </button>
             <button 
               onClick={handlePrint}
-              className="flex items-center gap-2 bg-[#2a2822] text-[#f5ead5] px-5 py-2 hover:bg-[#1a1814] transition shadow-md text-sm font-medium font-lora uppercase tracking-wider"
+              className="flex items-center gap-1.5 bg-[#2a2822] text-[#f5ead5] px-4 py-1.5 hover:bg-[#1a1814] transition shadow text-xs font-medium font-lora uppercase tracking-wider rounded"
+              suppressHydrationWarning
             >
-              <Printer size={16} /> Generate PDF
+              <Printer size={14} /> PDF
             </button>
           </div>
         </div>
@@ -283,13 +300,21 @@ export default function Home() {
         <p className="text-[#6b6452] text-sm text-center font-lora italic">Click on any text on the pages below to edit. Hover over items to add allergens or delete.</p>
       </div>
 
-      {/* Zoom Wrapper - strictly disabled during print to prevent margin issues */}
-      <div 
-        className="origin-top transition-transform duration-300 ease-out flex justify-center print:!transform-none print:!mb-0"
-        style={{ transform: `scale(${zoom})`, marginBottom: `-${(1 - zoom) * 100}vh` }}
-      >
-        {/* Pages Container - Strict 2 Column Grid for screen, Block for print */}
-        <div className="grid grid-cols-2 gap-x-16 gap-y-12 print:block print:!m-0 print:!p-0 print:w-full w-fit mx-auto">
+      {/* Scroll canvas - horizontally scrollable on mobile */}
+      <div className="overflow-x-auto overflow-y-visible">
+        {/* Transform origin wrapper - scales from top center */}
+        <div 
+          className="origin-top transition-transform duration-300 ease-out print:!transform-none"
+          style={{
+            transform: `scale(${zoom})`,
+            // collapse the extra whitespace the scale creates below
+            marginBottom: `-${(1 - zoom) * 297 * (menuPages.length + 1)}px`,
+          }}
+        >
+          {/* Inner centering wrapper */}
+          <div className="flex justify-center">
+            {/* Pages Container - 1 col on small, 2 col on xl, block on print */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-16 gap-y-12 print:block print:!m-0 print:!p-0 w-fit mx-auto">
           
           {/* Cover Page */}
           <div className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative overflow-hidden print-page flex flex-col justify-between shrink-0 p-12 mx-auto">
@@ -389,6 +414,7 @@ export default function Home() {
                 onClick={() => deleteMenuPage(page.id)}
                 className="absolute -top-12 -right-12 text-red-500 hover:bg-red-50 p-2 no-print opacity-0 group-hover/page:opacity-100 transition shadow-sm z-50 border border-red-200 rounded-full bg-white"
                 title="Delete Page"
+                suppressHydrationWarning
               >
                 <Trash2 size={20} />
               </button>
@@ -413,7 +439,7 @@ export default function Home() {
 
               <div className="flex-1 flex flex-col gap-8">
                 {page.items.map((item, itemIndex) => (
-                  <div key={item.id} className="flex flex-col relative group hover:bg-[#e8dfc7]/60 p-3 -mx-3 transition">
+                  <div key={item.id} className="flex flex-col relative group hover:bg-[#e8dfc7]/60 focus-within:bg-[#e8dfc7]/60 p-3 -mx-3 transition">
                     <div className="flex items-baseline gap-3 mb-2">
                       <EditableText 
                         value={item.name} 
@@ -430,8 +456,9 @@ export default function Home() {
                       {/* Item Delete Button */}
                       <button 
                         onClick={() => deleteMenuItem(page.id, item.id)}
-                        className="text-red-400 hover:text-red-600 ml-2 no-print opacity-0 group-hover:opacity-100 transition"
+                        className="text-red-400 hover:text-red-600 ml-2 no-print opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition"
                         title="Delete Item"
+                        suppressHydrationWarning
                       >
                         <Trash2 size={16} />
                       </button>
@@ -462,8 +489,8 @@ export default function Home() {
                       />
                     </div>
 
-                    {/* Allergen Toggle UI - Only visible on hover in builder */}
-                    <div className="no-print absolute top-[90%] left-0 bg-[#f5ead5] border border-[#d8d0b7] shadow-xl p-3 z-20 flex flex-wrap gap-2 w-64 opacity-0 group-hover:opacity-100 transition-all translate-y-2 pointer-events-none group-hover:pointer-events-auto">
+                    {/* Allergen Toggle UI - Visible on hover/focus in builder */}
+                    <div className="no-print absolute top-[90%] left-0 bg-[#f5ead5] border border-[#d8d0b7] shadow-xl p-3 z-20 flex flex-wrap gap-2 w-64 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all translate-y-2 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
                       <div className="w-full text-xs text-[#5c5643] mb-1 font-lora italic">Toggle Allergens</div>
                       {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
                         <button
@@ -488,6 +515,7 @@ export default function Home() {
                 <button 
                   onClick={() => addMenuItem(page.id)}
                   className="no-print self-start flex items-center gap-2 text-sm text-[#5c5643] hover:text-[#2a2822] hover:bg-[#e8dfc7] px-4 py-2 transition mt-2 border border-dashed border-[#a59e8c] font-lora"
+                  suppressHydrationWarning
                 >
                   <Plus size={16} /> Add new dish
                 </button>
@@ -502,6 +530,8 @@ export default function Home() {
             </div>
           </div>
         ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
