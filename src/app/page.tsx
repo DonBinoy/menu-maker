@@ -46,6 +46,7 @@ type MenuPageData = {
   title: string;
   subtitle?: string;
   items: MenuItemData[];
+  hideHeader?: boolean;
 };
 
 export default function Home() {
@@ -228,7 +229,7 @@ export default function Home() {
           description_sv: "Fråga personalen om alternativen. Please ask the staff regarding selection", 
           description_en: "", 
           price: "30 kr", 
-          allergens: ["mustard", "sulphites"],
+          allergens: ["mustard", "sesame"],
           hasTopSeparator: true 
         },
         { 
@@ -250,26 +251,94 @@ export default function Home() {
       ]
     },
     {
-      id: "page-starters-2",
-      title: "GOLGAPPE SPECIALS",
-      subtitle: "TRADITIONAL STREET BITES",
-      items: [
-        { id: "s4", name: "Golgappe (8 pcs) (Can be made Vegan)", description_sv: "Känd som “Pani Puri” består av runda ihåliga stekta bröd fyllda med smaksatt myntavatten, tamarind, koriander-mynta-chili, mango och chaat masala.", description_en: "Known as “Pani Puri”, consists of round hollow fried bread, filled with flavoured mint water, tamarind, coriander-mint-chili, mango and chaat masala.", price: "80 kr", allergens: ["gluten"] },
-        { id: "s5", name: "Veggie Bullets (4 pcs)", description_sv: "Morot, ingefära och vitlök formade kulor med tillsatt majsmjöl och panerade med cornflakes och sedan friterade. Serveras med mango, koriander-mynta-chili och tamarind chutney.", description_en: "Carrots, ginger and garlic; shaped into bullets by adding cornflour and battered with cornflakes then deep-fried. Served with mango, coriander-mint-chilli and tamarind chutney.", price: "90 kr", allergens: ["gluten"] },
-        { id: "s6", name: "Gandhi's Revenge Golgappa Chaat (8 Pcs)", description_sv: "Kryddig chaat med krispiga puff puri bollar fyllda med potatis och svarta kikärtor. Toppad med sötsur, och het chutney, vispad yoghurt och en massa grön chilli, spriklat med hackad rödlök, koriander, stark sev och granatäpple.", description_en: "Spicy chaat that is made with crispy puffed puri balls, filled with boiled potatoes and black chickpeas, topped with sweet, tangy, sour and spicy chutneys, beaten curd and lots of green chillies, sprinkled with chopped red onions, coriander, spicy potato sev and pomegranate.", price: "99 kr", allergens: ["gluten", "milk"] }
-      ]
-    },
-    {
       id: "page-chaat",
       title: "CHAAT SPECIALS",
       subtitle: "STREET FOOD FAVORITES",
+      hideHeader: true,
       items: [
-        { id: "ch1", name: "Blooming Onion", description_sv: "En version av Onion Bhaji, friterad skuren lök likt en blomma. Serveras med mango, koriander-mynta-chilli och tamarindsås.", description_en: "A version of onion bhaji, onion cut as a flower, breaded and fried. Served with mango, coriander-mint-chilli and tamarind chutney.", price: "90 kr", allergens: ["gluten"] },
-        { id: "ch2", name: "Pataka Papdi", description_sv: "Krispiga vetemjöls kex som bas, linsdumplings, sötad yoghurt, koriander-mynta- chilli och tamarind chutney, Sev som är knapriga nudlar från kikärtsmjöl, Toppat med granatäpple, färsk koriander och hackad rödlök. Sprinklad med chat masala.", description_en: "This is meant to be like fire-crackers in your mouth, with crispy wheat-flour crackers as the base; lentil dumpling, sweet yoghurt, coriander-mint-chili and tamarind chutney, sev (crunchy noodles from chickpea flour), garnished with pomegranate, fresh coriander and chopped red onions and sprinkled with chaat masala.", price: "90 kr", allergens: ["gluten", "milk"] },
-        { id: "ch3", name: "Tikki Dilbahar", description_sv: "Chaat med en friterad potatisbiff som bas, berikad med tamarind och koriander-mint- chili chutney. Garnerad med riven vit rädisa, hackad rödlök och färsk koriander.", description_en: "Zesty chaat with a fried potato patty as the base, enriched with tamarind and coriander-mint-chili chutney. Garnished with grated white radish, chopped red onions and fresh coriander.", price: "85 kr", allergens: [] },
-        { id: "ch4", name: "Papdi Chaat", description_sv: "Stekt potatisbiff med söt och syrlig smak, krispiga vetemjölsstekta kakor, linsdumplings toppat med en kryddig kikärtssås och mango, koriander-mynta-chili, tamarind chutney och garnerad med lök, äpplen, gurka och koriander.", description_en: "Sweet and tangy flavoured fried potato patty, crispy wheat flour fried cakes, lentil dumplings, topped with a spicy chickpea gravy and mango, coriander-mint-chili, tamarind chutney, and sprinkled with onions, apples, cucumber and coriander.", price: "100 kr", allergens: ["gluten", "milk"] }
+        { id: "ch1", name: "Blooming Onion", description_sv: "En version av Onion Bhaji, friterad skuren lök likt en blomma. Serveras med mango, koriander-mynta-chilli och tamarindsås.", description_en: "A version of onion bhaji, onion cut as a flower, breaded and fried. Served with mango, coriander-mint-chilli and tamarind chutney. (Can be made Vegan)", price: "90 kr", allergens: ["milk", "eggs", "gluten"] },
+        { id: "ch2", name: "Pataka Papdi", description_sv: "Krispiga vetemjöls kex som bas, linsdumplings, sötad yoghurt, koriander-mynta- chilli och tamarind chutney, Sev som är knapriga nudlar från kikärtsmjöl, Toppat med granatäpple, färsk koriander och hackad rödlök. Sprinklad med chat masala.", description_en: "This is meant to be like fire-crackers in your mouth, with crispy wheat-flour crackers as the base; lentil dumpling, sweet yoghurt, coriander-mint-chili and tamarind chutney, sev (crunchy noodles from chickpea flour), garnished with pomegranate, fresh coriander and chopped red onions and sprinkled with chaat masala. (Can be made Vegan)", price: "90 kr", allergens: ["milk", "gluten"] },
+        { id: "ch3", name: "Tikki Dilbahar", description_sv: "Chaat med en friterad potatisbiff som bas, berikad med tamarind och koriander-mint- chili chutney. Garnerad med riven vit rädisa, hackad rödlök och färsk koriander.", description_en: "Zesty chaat with a fried potato patty as the base, enriched with tamarind and coriander-mint-chili chutney. Garnished with grated white radish, chopped red onions and fresh coriander. (Can be made Vegan)", price: "85 kr", allergens: ["milk", "gluten"] },
+        { id: "ch4", name: "Papdi Chaat", description_sv: "Stekt potatisbiff med söt och syrlig smak, krispiga vetemjölsstekta kakor, linsdumplings toppat med en kryddig kikärtssås och mango, koriander-mynta-chili, tamarind chutney och garnerad med lök, äpplen, gurka och koriander.", description_en: "Sweet and tangy flavoured fried potato patty, crispy wheat flour fried cakes, lentil dumplings, topped with a spicy chickpea gravy and mango, coriander-mint-chili, tamarind chutney, and sprinkled with onions, apples, cucumber and coriander. (Can be made Vegan)", price: "100 kr", allergens: ["milk", "gluten"] }
       ]
     },
+    {
+      id: "page-veg-1",
+      title: "CURRYS VEGETARIAN",
+      subtitle: "SERVED WITH A PORTION OF RICE",
+      hideHeader: true,
+      items: [
+        { id: "v1", name: "Mix Veg", description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.", description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce. (Vegan)", price: "165 kr", allergens: [] },
+        { id: "v2", name: "Shahi Navratan Veg", description_sv: "Säsongens grönsaker curry med kokos, grädde, smör och yoghurt.", description_en: "Seasonal vegetable curry with coconut-cream, butter and yoghurt.", price: "165 kr", allergens: ["milk"] },
+        { id: "v3", name: "Tadka Daal", description_sv: "Linsgryta på en blandning av fyra olika gula linser.", description_en: "Lentil curry with a blend of four different yellow lentils. (Vegan)", price: "165 kr", allergens: [] },
+        { id: "v4", name: "Mutter Paneer", description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.", description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk"] },
+        { id: "v5", name: "Paneer Tikka Butter Masala", description_sv: "Hemmalagad Indisk ost curry som kokas i en sås bestående av tomat, ingefära, smör och grädde.", description_en: "Home-made Indian cheese curry, cooked along tomatoes, ginger, butter and cream.", price: "165 kr", allergens: ["milk"] },
+        { id: "v6", name: "Daal Makhni", description_sv: "Klassisk Punjabi rätt, tillagad med svarta linser, smör, grädde och kryddor.", description_en: "Classic Punjabi dish made with black lentils, butter, cream and spices. (Can be made Vegan)", price: "165 kr", allergens: ["milk"] },
+        { id: "v7", name: "Karahi Paneer", description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.", description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk"] }
+      ]
+    },
+    {
+      id: "page-biryani",
+      title: "PUNJABI BIRYANI ( Spicy)",
+      subtitle: "",
+      hideHeader: true,
+      items: [
+        { 
+          id: "bi-group", 
+          name: "PUNJABI BIRYANI ( Spicy)", 
+          description_sv: "Stekt ris med säsongens grönsaker och indiska kryddor. Serveras med raita.", 
+          description_en: "Fried rice with seasonal vegetables and Indian spices. Served with raita.", 
+          price: "", 
+          allergens: ["milk"],
+          subItems: [
+            { id: "bi1", name: "Kyckling/Chicken", price: "179 kr", allergens: [] },
+            { id: "bi2", name: "Lamm/Lamb", price: "189 kr", allergens: [] },
+            { id: "bi3", name: "Vegetarisk (på säsongens grönsaker) / Vegetarian (Made with seasonal vegetables)", price: "169 kr", allergens: [] }
+          ]
+        }
+      ]
+    },
+    {
+      id: "page-golgappe",
+      title: "GOLGAPPE SPECIALS",
+      subtitle: "",
+      hideHeader: true,
+      items: [
+        { 
+          id: "s7", 
+          name: "Bread Pakora (4 pcs)", 
+          description_sv: "Friterad “småratt” känt som “Bread Bhaji” – Spenat i en brödsmet fylld med kryddig potatis och paneer, toppad med färsk lök serveras med mango, koriander-mynta-chili och tamarind chutney.", 
+          description_en: "Deep-fried snack known as “Bread Bhaji” – Spinach battered bread, filled with spicy potatoes and paneer, topped with fresh onions served with mango, coriander-mint-chilli and tamarind chutney.", 
+          price: "99 kr", 
+          allergens: ["gluten", "milk"] 
+        },
+        { 
+          id: "s5", 
+          name: "Veggie Bullets (4 Pcs)", 
+          description_sv: "Morot, ingefära och vitlök formade kulor med tillsatt majsmjöl och panerade med cornflakes och sedan friterade. Serveras med mango, koriander-mynta-chili och tamarind chutney.", 
+          description_en: "Carrots, ginger and garlic; shaped into bullets by adding cornflour and battered with cornflakes then deep-fried. Served with mango, coriander-mint-chilli and tamarind chutney.", 
+          price: "90 kr", 
+          allergens: ["milk", "eggs", "gluten"] 
+        },
+        { 
+          id: "s4", 
+          name: "Golgappe (8 pcs)", 
+          description_sv: "Känd som “Pani Puri” består av runda ihåliga stekta bröd fyllda med smaksatt myntavatten, tamarind, koriander-mynta-chili, mango och chaat masala. \n\nVälj ett av följande alternativ/ choose one of the following choices : \n- Äpple, mynta och morot / Apple, mint and carrots. \n- Kokt potatis och svart kikärtor / Boiled potatoes and black chickpeas. \n- Stekt potatis nudlar, koriander, tomat, lime / Fried potato-noodles, tomatoes, lime, coriander", 
+          description_en: "Known as “Pani Puri”; consists of round hollow fried bread, filled with flavoured mint water, tamarind, coriander-mint-chilli, mango and chaat masala. (Can be made Vegan)", 
+          price: "80 kr", 
+          allergens: ["gluten", "milk", "sulphites"] 
+        },
+        { 
+          id: "s6", 
+          name: "Gandhi's Revenge Golgappa Chaat (8 Pcs)", 
+          description_sv: "Kryddig chaat med krispiga puff puri bollar fyllda med potatis och svarta kikärtor. Toppad med sötsur, och het chutney, vispad yoghurt och en massa grön chilli, spriklat med hackad rödlök, koriander, stark sev och granatäpple.", 
+          description_en: "Spicy chaat that is made with crispy puffed puri balls, filled with boiled potatoes and black chickpeas, topped with sweet, tangy, sour and spicy chutneys, beaten curd and lots of green chillies, sprinkled with chopped red onions, coriander, spicy potato sev and pomegranate.", 
+          price: "99 kr", 
+          allergens: ["milk", "sulphites", "gluten"] 
+        }
+      ]
+    },
+
     {
       id: "page-chicken-1",
       title: "CURRYS CHICKEN",
@@ -303,18 +372,7 @@ export default function Home() {
         { id: "c12", name: "Chicken Madras (spicy)", description_sv: "Kryddig kycklingcurry med currymadras & tamarind.", description_en: "Spicy Chicken stew with curry madras & tamarind.", price: "185 kr", allergens: [] }
       ]
     },
-    {
-      id: "page-veg-1",
-      title: "CURRYS VEGETARIAN",
-      subtitle: "SERVED WITH A PORTION OF RICE",
-      items: [
-        { id: "v1", name: "Mix Veg", description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.", description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce.", price: "165 kr", allergens: [] },
-        { id: "v2", name: "Shahi Navratan Veg", description_sv: "Säsongens grönsaker curry med kokos, grädde, smör och yoghurt.", description_en: "Seasonal vegetable curry with coconut-cream, butter and yoghurt.", price: "165 kr", allergens: ["milk"] },
-        { id: "v3", name: "Tadka Daal", description_sv: "Linsgryta på en blandning av fyra olika gula linser.", description_en: "Lentil curry with a blend of four different yellow lentils.", price: "165 kr", allergens: [] },
-        { id: "v4", name: "Mutter Paneer", description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.", description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce.", price: "165 kr", allergens: ["milk"] },
-        { id: "v5", name: "Paneer Tikka Butter Masala", description_sv: "Hemmalagad Indisk ost curry som kokas i en sås bestående av tomat, ingefära, smör och grädde.", description_en: "Home-made Indian cheese curry, cooked along tomatoes, ginger, butter and cream.", price: "165 kr", allergens: ["milk"] }
-      ]
-    },
+
     {
       id: "page-veg-2",
       title: "CURRYS VEGETARIAN (CONTINUED)",
@@ -399,16 +457,7 @@ export default function Home() {
         { id: "l9", name: "Lamb Rogan Josh (Spicy)", description_sv: "Curry gjord på tomat, kryddpasta, cayennepeppar, lagerblad, yoghurt och grädde.", description_en: "Curry made with tomatoes, spice paste, cayenne pepper, bayleaves, yoghurt and cream.", price: "199 kr", allergens: ["milk"] }
       ]
     },
-    {
-      id: "page-biryani",
-      title: "PUNJABI BIRYANI (Spicy)",
-      subtitle: "SERVED WITH RAITA",
-      items: [
-        { id: "bi1", name: "Kyckling/Chicken", description_sv: "Stekt ris med säsongens grönsaker och indiska kryddor. Serveras med raita.", description_en: "Fried rice with seasonal vegetables and Indian spices. Served with raita.", price: "179 kr", allergens: ["milk"] },
-        { id: "bi2", name: "Lamm/Lamb", description_sv: "Stekt ris med säsongens grönsaker och indiska kryddor. Serveras med raita.", description_en: "Fried rice with seasonal vegetables and Indian spices. Served with raita.", price: "189 kr", allergens: ["milk"] },
-        { id: "bi3", name: "Vegetarisk (på säsongens grönsaker)", description_sv: "Stekt ris med säsongens grönsaker och indiska kryddor. Serveras med raita.", description_en: "Fried rice with seasonal vegetables and Indian spices. Served with raita.", price: "169 kr", allergens: ["milk"] }
-      ]
-    },
+
   ]);
 
   const handlePrint = () => {
@@ -805,23 +854,25 @@ export default function Home() {
                 <Trash2 size={20} />
               </button>
 
-              <div className={`${page.id === 'page-sides' ? 'mb-2' : 'mb-6'} text-left`}>
-                <div className="border-t-[3px] border-double border-[#5c5643] w-24 mb-3 opacity-70"></div>
-                
-                <EditableText 
-                  value={page.subtitle || "NY KATEGORI"} 
-                  onChange={(v) => updateMenuPage(page.id, 'subtitle', v)} 
-                  tagName="p" 
-                  className="text-[10px] font-lora uppercase tracking-[0.2em] text-[#6b6452] mb-1 hover:bg-[#e8dfc7] p-1 transition inline-block" 
-                />
-                
-                <EditableText 
-                  value={page.title} 
-                  onChange={(v) => updateMenuPage(page.id, 'title', v)} 
-                  tagName="h2" 
-                  className="text-[2.2rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
-                />
-              </div>
+              {!page.hideHeader && (
+                <div className={`${page.id === 'page-sides' ? 'mb-2' : 'mb-6'} text-left`}>
+                  <div className="border-t-[3px] border-double border-[#5c5643] w-24 mb-3 opacity-70"></div>
+                  
+                  <EditableText 
+                    value={page.subtitle || "NY KATEGORI"} 
+                    onChange={(v) => updateMenuPage(page.id, 'subtitle', v)} 
+                    tagName="p" 
+                    className="text-[10px] font-lora uppercase tracking-[0.2em] text-[#6b6452] mb-1 hover:bg-[#e8dfc7] p-1 transition inline-block" 
+                  />
+                  
+                  <EditableText 
+                    value={page.title} 
+                    onChange={(v) => updateMenuPage(page.id, 'title', v)} 
+                    tagName="h2" 
+                    className="text-[2.2rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
+                  />
+                </div>
+              )}
 
               <div className={`flex-1 flex flex-col ${page.id === 'page-sides' ? 'gap-0' : 'gap-2.5'}`}>
                 {page.items.map((item, itemIndex) => (
@@ -891,7 +942,7 @@ export default function Home() {
                         value={item.description_sv} 
                         onChange={(v) => updateMenuItem(page.id, item.id, 'description_sv', v)} 
                         tagName="p" 
-                        className="text-[14px] font-lora text-[#4a473e] leading-[1.5] mb-0.5 italic" 
+                        className="text-[14px] font-lora text-[#4a473e] leading-[1.5] mb-0.5 italic whitespace-pre-wrap" 
                       />
                       
                       <div className="flex w-full items-end gap-2">
@@ -901,7 +952,7 @@ export default function Home() {
                               value={item.description_en} 
                               onChange={(v) => updateMenuItem(page.id, item.id, 'description_en', v)} 
                               tagName="p" 
-                              className="text-[14px] font-lora text-[#4a473e] leading-[1.5] italic" 
+                              className="text-[14px] font-lora text-[#4a473e] leading-[1.5] italic whitespace-pre-wrap" 
                             />
                           )}
                         </div>
