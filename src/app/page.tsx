@@ -47,6 +47,7 @@ type MenuPageData = {
   subtitle?: string;
   items: MenuItemData[];
   hideHeader?: boolean;
+  headerAllergen?: AllergenType;
 };
 
 export default function Home() {
@@ -306,7 +307,7 @@ export default function Home() {
       items: [
         { 
           id: "s7", 
-          name: "Bread Pakora (4 pcs)", 
+          name: "Bread Pakora (4 pcs) ( Can be done vegan with Tofu/Soya chunks )", 
           description_sv: "Friterad “småratt” känt som “Bread Bhaji” – Spenat i en brödsmet fylld med kryddig potatis och paneer, toppad med färsk lök serveras med mango, koriander-mynta-chili och tamarind chutney.", 
           description_en: "Deep-fried snack known as “Bread Bhaji” – Spinach battered bread, filled with spicy potatoes and paneer, topped with fresh onions served with mango, coriander-mint-chilli and tamarind chutney.", 
           price: "99 kr", 
@@ -342,81 +343,52 @@ export default function Home() {
     {
       id: "page-chicken-1",
       title: "CURRYS CHICKEN",
-      subtitle: "SERVED WITH A PORTION OF RICE",
+      subtitle: "( CONTAINS- MILK PROTEIN/ MJÖLKPROTEIN ) \nServeras med en portion ris / Served with a portion of rice",
       items: [
         { id: "c1", name: "Davate Punjab", description_sv: "Mer känd som “Teekha Murgh”. Curry med fänkålsfrön, curryblad, mynta och svart kummin.", description_en: "Known as “Teekha Murgh”. Curry with fennel-seeds, curry-leaves, mint and black cumin.", price: "185 kr", allergens: [] },
         { id: "c2", name: "Shan-e-Kashmir", description_sv: "Curry med saffran, harissa pasta, rosvatten, honung, apelsin, kanel, mandel och sesamfrön.", description_en: "Curry with saffron, harissa paste, rose water, honey, orange-syrup, cinnamon, almond and sesame seeds.", price: "210 kr", allergens: ["nuts", "sesame"] },
         { id: "c3", name: "Jalfrezi", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Curry with peppers, yoghurt, onions and plenty of chillies.", price: "185 kr", allergens: ["milk"] },
         { id: "c4", name: "Chicken Tikka Masala", description_sv: "Grillad marinerad kyckling i kryddad tomat och ingefära baserad curry.", description_en: "Grilled marinated chicken in a spicy tomato and ginger-based curry.", price: "185 kr", allergens: ["milk"] },
-        { id: "c5", name: "Butter Chicken (Kontrast Special)", description_sv: "Curry med tomat, yoghurt, riven kokos, grädde, smör och tandoori masala.", description_en: "Curry with tomatoes, yoghurt, butter, coconut, cream and tandoori masala.", price: "185 kr", allergens: ["milk"] }
-      ]
-    },
-    {
-      id: "page-chicken-2",
-      title: "CURRYS CHICKEN (CONTINUED)",
-      subtitle: "SERVED WITH A PORTION OF RICE",
-      items: [
-        { id: "c6", name: "Murgh Makhni", description_sv: "Curry med yoghurt, smör, grädde, riven kokos, och garam masala.", description_en: "Curry with yoghurt, butter, cream, coconut and garam masala.", price: "185 kr", allergens: ["milk"] },
-        { id: "c7", name: "Chicken Dhaba Karahi", description_sv: "Curry med lök, tomater, vitlök, ingefära och bockhornsklöverblad.", description_en: "Curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "185 kr", allergens: [] },
-        { id: "c8", name: "Chili Chicken", description_sv: "Indo-kinesisk curry i sötsur sås med soja, tomat, paprika, stekt lök och rörsocker.", description_en: "Indo-Chinese chicken curry cooked in sweet and sour sauce with soy sauce, tomatoes, peppers, fried onions and cane suger.", price: "185 kr", allergens: ["soya", "gluten"] },
-        { id: "c9", name: "Adraki Kukkad", description_sv: "Aromatisk och smakfull curry med massor av ingefära.", description_en: "Aromatic and tasteful chicken curry with alot of ginger.", price: "185 kr", allergens: [] },
-        { id: "c10", name: "Saag Chicken", description_sv: "Curry gjord på spenat, senapsblad och kikärtsmjöl.", description_en: "Curry made with spinach, mustard leaves and chickpea flour.", price: "185 kr", allergens: ["mustard"] }
-      ]
-    },
-    {
-      id: "page-chicken-3",
-      title: "CURRYS CHICKEN SPECIALS",
-      subtitle: "SERVED WITH A PORTION OF RICE",
-      items: [
-        { id: "c11", name: "Chicken Korma", description_sv: "Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten i sexton olika kryddor.", description_en: "Curry with onion-sauce, cashew-paste, coconut-milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight in sixteen different spices.", price: "185 kr", allergens: ["nuts"] },
-        { id: "c12", name: "Chicken Madras (spicy)", description_sv: "Kryddig kycklingcurry med currymadras & tamarind.", description_en: "Spicy Chicken stew with curry madras & tamarind.", price: "185 kr", allergens: [] }
-      ]
-    },
-
-    {
-      id: "page-veg-2",
-      title: "CURRYS VEGETARIAN (CONTINUED)",
-      subtitle: "SERVED WITH A PORTION OF RICE",
-      items: [
-        { id: "v6", name: "Daal Makhni", description_sv: "Klassisk Punjabi rätt, tillagad med svarta linser, smör, grädde och kryddor.", description_en: "Classic Punjabi dish made with black lentils, butter, cream and spices.", price: "165 kr", allergens: ["milk"] },
-        { id: "v7", name: "Karahi Paneer", description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.", description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions.", price: "165 kr", allergens: ["milk"] },
-        { id: "v8", name: "Palaak Paneer", description_sv: "Vår hemmagjorda indiska ost i en spenatbaserad curry.", description_en: "Home-made Indian cheese in a spinach based curry.", price: "165 kr", allergens: ["milk"] },
-        { id: "v9", name: "Chilli Paneer", description_sv: "Vår hemmagjorda indiska ost serveras i en sötsur gryta baserad på tomat, ingefära, soja, rörsocker, lök och paprika.", description_en: "Homemade Indian cheese served in a sweet and sour curry based on tomatoes, soy sauce, cane sugar, peppers and onions.", price: "165 kr", allergens: ["milk", "soya"] },
-        { id: "v10", name: "Punjabi Daal", description_sv: "Linsgryta på fyra olika linser och röda kidneybönor.", description_en: "Blend of four different lentils and red kidney-beans.", price: "165 kr", allergens: [] }
-      ]
-    },
-    {
-      id: "page-veg-3",
-      title: "VEGETARIAN & VEGAN",
-      subtitle: "SERVED WITH A PORTION OF RICE",
-      items: [
-        { id: "v11", name: "Veggie Balls Korma", description_sv: "Säsongens grönsaker strimlas och rullas till små bollar som sedan paneras och friteras. Serveras i en curry på lök, malda cashewnötter och kokosmjölk.", description_en: "Seasonal vegetables shredded and rolled into balls, then breaded and deep-fried. Served in a curry with onions, grinded cashew-nuts and coconut-milk.", price: "165 kr", allergens: ["nuts", "gluten"] },
-        { id: "v12", name: "Ambersari Cholle", description_sv: "Kikärtsgryta, en variant av chana masala med smaker av svart te och bockhornsklöver.", description_en: "Chickpeas curry - A version of chana masala with flavours of black tea and fenugreek leaves.", price: "165 kr", allergens: [] },
-        { id: "v13", name: "Paneer Jalfreezy", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Home made Indian cheese curry with peppers, yoghurt, onions and plenty of chillies.", price: "165 kr", allergens: ["milk"] },
-        { id: "v14", name: "Rajma", description_sv: "Red kidney bönor curry med lök, tomat, vitlök och ingefära.", description_en: "Red Kidney-bean curry with onions, tomatoes, garlic and ginger.", price: "165 kr", allergens: [] }
+        { id: "c5", name: "Butter Chicken (Kontrast Special)", description_sv: "Curry med tomat, yoghurt, riven kokos, grädde, smör och tandoori masala.", description_en: "Curry with tomatoes, yoghurt, butter, coconut, cream and tandoori masala.", price: "185 kr", allergens: ["milk", "mustard"] },
+        { id: "c6", name: "Murgh Makhni", description_sv: "Curry med yoghurt, smör, grädde, riven kokos, och garam masala.", description_en: "Curry with yoghurt, butter, cream, coconut and garam masala.", price: "185 kr", allergens: ["milk"] }
       ]
     },
     {
       id: "page-seafood",
       title: "CURRY FISH AND SEA FOOD",
-      subtitle: "SERVED WITH A PORTION OF RICE AND SALAD",
+      subtitle: "Serveras med en portion ris och sallad / Served with a portion of rice",
+      headerAllergen: "fish",
       items: [
-        { id: "f1", name: "Coconut Curry", description_sv: "Kryddig curry med stora räkor och smaker av kokosmjölk, koriander, grön paprika och grön chilipasta.", description_en: "Spiced curry of big shrimps with flavours of coconut-milk, coriander, green peppers and green chilli paste.", price: "209 kr", allergens: ["crustaceans"] },
+        { id: "f1", name: "Coconut Curry", description_sv: "Kryddig curry med stora räkor och smaker av kokosmjölk, koriander, grön paprika och grön chilipasta.", description_en: "Spiced curry of big shrimps with flavours of coconut-milk, coriander, green peppers and green chilli paste.", price: "209 kr", allergens: ["crustaceans", "milk"] },
         { id: "f2", name: "Ghee Roast", description_sv: "Räkor stekta i klarat smör med bitar av lök och vitlök som sedan kokas i en tomat baserad gräddsås.", description_en: "Shrimps fried in clarified butter, onions and garlic chunks, then cooked in tomato-based cream sauce.", price: "209 kr", allergens: ["crustaceans", "milk"] },
-        { id: "f3", name: "Mirch Masala", description_sv: "Räk curry med lök, tomat, vitlök, ingefära och bockhornsklöver.", description_en: "Shrimp-curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "209 kr", allergens: ["crustaceans"] },
+        { id: "f3", name: "Mirch Masala", description_sv: "Räk curry med lök, tomat, vitlök, ingefära och bockhornsklöver.", description_en: "Shrimp-curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "209 kr", allergens: ["crustaceans", "milk"] },
         { id: "f4", name: "Malai Macchi", description_sv: "Kryddad torsk curry med skirat smör, yoghurt, grädde och bockhornsklöver.", description_en: "Spiced cod curry with butter, yoghurt, cream and fenugreek leaves.", price: "209 kr", allergens: ["fish", "milk"] },
         { id: "f5", name: "Haryali Machhi", description_sv: "Het curry med torskrygg, spenat, bockhornsklöver, lök, vitlök, och chilli.", description_en: "Spicy codfish curry with spinach, fenugreek, onions, garlic and chillies.", price: "209 kr", allergens: ["fish"] },
         { id: "f6", name: "Machhi Masala Mar ke", description_sv: "Het och kryddig curry på torskrygg, med bitar av ingefära, vitlök och grön chilli.", description_en: "Hot and spicy fish with chunks of ginger, garlic and green chillies.", price: "209 kr", allergens: ["fish"] }
       ]
     },
     {
+      id: "page-veg-2",
+      title: "CURRYS VEGETARIAN",
+      subtitle: "Serveras med en portion ris / Served with a portion of rice",
+      items: [
+        { id: "v8", name: "Palaak Paneer", description_sv: "Vår hemmagjorda indiska ost i en spenatbaserad curry.", description_en: "Home-made Indian cheese in a spinach based curry. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk"] },
+        { id: "v9", name: "Chilli Paneer", description_sv: "Vår hemmagjorda indiska ost serveras i en sötsur gryta baserad på tomat, ingefära, soja, rörsocker, lök och paprika.", description_en: "Homemade Indian cheese served in a sweet and sour curry based on tomatoes, soy sauce, cane sugar, peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk", "soya", "gluten"] },
+        { id: "v10", name: "Punjabi Daal", description_sv: "Linsgryta på fyra olika linser och röda kidneybönor.", description_en: "Blend of four different lentils and red kidney-beans. (Vegan )", price: "165 kr", allergens: [] },
+        { id: "v11", name: "Veggie Balls Korma", description_sv: "Säsongens grönsaker strimlas och rullas till små bollar som sedan paneras och friteras. Serveras i en curry på lök, malda cashewnötter och kokosmjölk.", description_en: "Seasonal vegetables shredded and rolled into balls, then breaded and deep-fried. Served in a curry with onions, grinded cashew-nuts and coconut-milk. (Vegan )", price: "165 kr", allergens: ["nuts", "gluten"] },
+        { id: "v12", name: "Ambersari Cholle", description_sv: "Kikärtsgryta, en variant av chana masala med smaker av svart te och bockhornsklöver.", description_en: "Chickpeas curry - A version of chana masala with flavours of black tea and fenugreek leaves. (Vegan )", price: "165 kr", allergens: [] },
+        { id: "v13", name: "Paneer Jalfreezy", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Home made Indian cheese curry with peppers, yoghurt, onions and plenty of chillies.", price: "165 kr", allergens: ["milk"] },
+        { id: "v14", name: "Rajma", description_sv: "Red Kidney bönor curry med lök, tomat, vitlök och ingefära.", description_en: "Red Kidney-bean curry with onions, tomatoes, garlic and ginger.", price: "165 kr", allergens: [] }
+      ]
+    },
+    {
       id: "page-grills",
       title: "GRILLS",
-      subtitle: "SERVED WITH A PORTION OF RICE",
+      subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
         { id: "g1", name: "Chicken Tikka", description_sv: "Bitar av benfri kyckling, marineras över natten med yoghurt,örter och kryddor. Serveras med en tomat och ingefärasås.", description_en: "Pieces of chicken marinated in yoghurt, herbs and spices. Served with tomato and ginger sauce.", price: "185 kr", allergens: ["milk"] },
         { id: "g2", name: "Paneer Tikka", description_sv: "Vår hemmagjorda indiska ost. Marineras över natten med örter och kryddor. Serveras med tomat och ingefära sås.", description_en: "Home-made Indian cheese, marinated overnight then carefully grilled. Served with tomato and ginger sauce.", price: "170 kr", allergens: ["milk"] },
-        { id: "g3", name: "Seekh Kebab", description_sv: "Malet nötkött, som marineras över natten med örter och kryddor. Grillas på spett och serveras med en currysås.", description_en: "Minced beef with coriander, mint, green chillies and spices, grilled on skewers. Served with a curry sauce.", price: "190 kr", allergens: [] },
+        { id: "g3", name: "Seekh Kebab", description_sv: "Malet nötkött, som marineras över natten med örter och kryddor. Grillas på spett och serveras med en currysås.", description_en: "Minced beef with coriander, mint, green chillies and spices, grilled on skewers.", price: "190 kr", allergens: [] },
         { id: "g4", name: "Tandori Murgh", description_sv: "Kyckling lår som syras över natten med örter kryddor och yoghurt. Serveras med en currysås.", description_en: "Chicken thigh that's been marinated in yoghurt, herbs and spices. Served with a curry sauce.", price: "195 kr", allergens: ["milk"] },
         { id: "g5", name: "Mixed Grill", description_sv: "Mix av paneer, chicken tikka, seekh kebab, lamm, Tandoori Murgh. Serveras med en currysås.", description_en: "Mix of paneer, chicken, seekh kebab, lamb, tandoori murgh. Served with a curry sauce.", price: "225 kr", allergens: ["milk"] }
       ]
@@ -424,16 +396,32 @@ export default function Home() {
     {
       id: "page-beef",
       title: "CURRY BEEF",
-      subtitle: "SERVED WITH A PORTION OF RICE",
+      subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
         { id: "b1", name: "Kofta Karahi", description_sv: "Indiska köttbullar i en aromatisk och välbalanserad curry.", description_en: "Indian meatballs in aromatic and well balanced curry.", price: "189 kr", allergens: [] },
         { id: "b2", name: "Bhayankar Maas (Super Spicy)", description_sv: "En curry för chili fanatiker med massor av chili, vitlök, ingefära och bockhornsklöver.", description_en: "A Curry for chili fanatics with lots of chilies, garlic, ginger and fenugreek leaves.", price: "189 kr", allergens: [] },
         { id: "b3", name: "Tawa Isthtyle", description_sv: "Långkokt nötkött med bitar av paprika och lök i en reducerad sås på lök och vitlök.", description_en: "Long-cooked beef with chunks of peppers and onions in garlic and onion-based sauce.", price: "189 kr", allergens: [] },
-        { id: "b4", name: "Lassoni Gosht", description_sv: "Biff curry med en skarp smak av vitlök, chili, gurkmeja, kummin och koriander.", description_en: "Beef curry with strong taste of garlic, chilies, turmeric, cumin and coriander.", price: "189 kr", allergens: [] },
+        { id: "b4", name: "Lassoni Gosht", description_sv: "Biff curry med en skarp smak av vitlök, chili, gurkmeja, kummin och koriander.", description_en: "Beef curry with strong taste of garlic, chilies, turmeric, cumin and coriander.", price: "189 kr", allergens: ["mustard"] },
         { id: "b5", name: "Vindaloo (Spicy)", description_sv: "Originalrecept på nötkött marinerat i vinäger, vitlök och chili, från tiden med portugisiska kolonier i Indien.", description_en: "Original recipe of beef marinated in vinegar, garlic and chilies from the time of the portuguese colonies in India.", price: "189 kr", allergens: ["sulphites"] },
         { id: "b6", name: "Firdausi Makhni", description_sv: "Mild och aromatisk curry med smaker av krossade nötter, grädde och kardemumma.", description_en: "Very mild and aromatic curry with flavours of crushed nuts, cream and cardamoms.", price: "189 kr", allergens: ["milk", "nuts"] }
       ]
     },
+    {
+      id: "page-chicken-remaining",
+      title: "CURRYS CHICKEN",
+      subtitle: "",
+      hideHeader: true,
+      items: [
+        { id: "c7", name: "Chicken Dhaba Karahi", description_sv: "Curry med lök, tomater, vitlök, ingefära och bockhornsklöverblad.", description_en: "Curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "185 kr", allergens: [] },
+        { id: "c8", name: "Chili Chicken", description_sv: "Indo-kinesisk curry i sötsur sås med soja, tomat, paprika, stekt lök och rörsocker.", description_en: "Indo-Chinese chicken curry cooked in sweet and sour sauce with soy sauce, tomatoes, peppers, fried onions and cane suger.", price: "185 kr", allergens: ["soya", "gluten"] },
+        { id: "c9", name: "Adraki Kukkad", description_sv: "Aromatisk och smakfull curry med massor av ingefära.", description_en: "Aromatic and tasteful chicken curry with alot of ginger.", price: "185 kr", allergens: [] },
+        { id: "c10", name: "Saag Chicken", description_sv: "Curry gjord på spenat, senapsblad och kikärtsmjöl.", description_en: "Curry made with spinach, mustard leaves and chickpea flour", price: "185 kr", allergens: ["mustard"] },
+        { id: "c11", name: "Chicken Korma", description_sv: "Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten i sexton olika kryddor", description_en: "Curry with onion-sauce, cashew-paste, coconut-milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight in sixteen different spices.", price: "185 kr", allergens: ["nuts"] },
+        { id: "c12", name: "Chicken Madras ( spicy)", description_sv: "Kryddig kycklingcurry med currymadras & tamarind", description_en: "Spicy Chicken stew with curry madras & tamarind", price: "185 kr", allergens: [] }
+      ]
+    },
+
+
     {
       id: "page-lamb",
       title: "CURRYS LAMB",
@@ -858,18 +846,25 @@ export default function Home() {
                 <div className={`${page.id === 'page-sides' ? 'mb-2' : 'mb-6'} text-left`}>
                   <div className="border-t-[3px] border-double border-[#5c5643] w-24 mb-3 opacity-70"></div>
                   
+                  <div className="flex items-center gap-4 mb-1">
+                    <EditableText 
+                      value={page.title} 
+                      onChange={(v) => updateMenuPage(page.id, 'title', v)} 
+                      tagName="h2" 
+                      className="text-[2.2rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
+                    />
+                    {page.headerAllergen && (
+                      <div className="scale-150 origin-left">
+                        <AllergenIconsList allergens={[page.headerAllergen]} />
+                      </div>
+                    )}
+                  </div>
+
                   <EditableText 
-                    value={page.subtitle || "NY KATEGORI"} 
+                    value={page.subtitle || ""} 
                     onChange={(v) => updateMenuPage(page.id, 'subtitle', v)} 
                     tagName="p" 
-                    className="text-[10px] font-lora uppercase tracking-[0.2em] text-[#6b6452] mb-1 hover:bg-[#e8dfc7] p-1 transition inline-block" 
-                  />
-                  
-                  <EditableText 
-                    value={page.title} 
-                    onChange={(v) => updateMenuPage(page.id, 'title', v)} 
-                    tagName="h2" 
-                    className="text-[2.2rem] leading-none font-cormorant font-bold text-[#2a2822] hover:bg-[#e8dfc7] p-1 -ml-1 transition" 
+                    className="text-[10px] font-lora uppercase tracking-[0.15em] text-[#6b6452] mb-1 hover:bg-[#e8dfc7] p-1 transition inline-block whitespace-pre-wrap" 
                   />
                 </div>
               )}
@@ -915,11 +910,26 @@ export default function Home() {
                       )}
                       <div className={`flex flex-col relative group hover:bg-[#e8dfc7]/60 focus-within:bg-[#e8dfc7]/60 -mx-2 transition ${(!item.description_sv && !item.description_en && (!item.subItems || item.subItems.length === 0)) ? 'py-0.5 px-2' : 'p-2'}`}>
                       <div className="flex items-baseline gap-3 mb-0.5">
-                        <EditableText 
-                          value={item.name} 
-                          onChange={(v) => updateMenuItem(page.id, item.id, 'name', v)} 
-                          className={`${page.id === 'page-sides' ? 'text-[1.25rem]' : 'text-[1.5rem]'} leading-none font-cormorant font-bold tracking-wide text-[#1a1814]`} 
-                        />
+                        <div className={`${page.id === 'page-sides' ? 'text-[1.25rem]' : 'text-[1.5rem]'} leading-none font-cormorant font-bold tracking-wide text-[#1a1814] flex items-baseline gap-2`}>
+                          <EditableText 
+                            value={item.name} 
+                            onChange={(v) => updateMenuItem(page.id, item.id, 'name', v)} 
+                            renderValue={(val) => {
+                              const parts = val.split(/(\(.*?\))/);
+                              return (
+                                <>
+                                  {parts.map((part, i) => 
+                                    part.startsWith('(') ? (
+                                      <span key={i} className="text-sm font-lora font-normal text-[#1a1814] italic">{part}</span>
+                                    ) : (
+                                      <span key={i}>{part}</span>
+                                    )
+                                  )}
+                                </>
+                              );
+                            }}
+                          />
+                        </div>
                         
                         <div className="ml-1 opacity-80 scale-90 origin-left flex items-center">
                           <AllergenIconsList allergens={item.allergens} />
@@ -974,6 +984,20 @@ export default function Home() {
                                 value={sub.name} 
                                 onChange={(v) => updateSubItem(page.id, item.id, sub.id, 'name', v)} 
                                 className="text-[14px] font-lora text-[#2a2822] flex-1" 
+                                renderValue={(val) => {
+                                  const parts = val.split(/(\(.*?\))/);
+                                  return (
+                                    <>
+                                      {parts.map((part, i) => 
+                                        part.startsWith('(') ? (
+                                          <span key={i} className="text-[11px] font-lora font-normal text-[#1a1814] italic">{part}</span>
+                                        ) : (
+                                          <span key={i}>{part}</span>
+                                        )
+                                      )}
+                                    </>
+                                  );
+                                }}
                               />
                               <div className="scale-75 origin-left">
                                 <AllergenIconsList allergens={sub.allergens} />

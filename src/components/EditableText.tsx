@@ -7,9 +7,10 @@ interface EditableTextProps {
   className?: string;
   tagName?: any;
   placeholder?: string;
+  renderValue?: (value: string) => React.ReactNode;
 }
 
-export default function EditableText({ value, onChange, className = "", tagName = "div", placeholder = "Enter text..." }: EditableTextProps) {
+export default function EditableText({ value, onChange, className = "", tagName = "div", placeholder = "Enter text...", renderValue }: EditableTextProps) {
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const Tag = tagName as any;
@@ -54,7 +55,7 @@ export default function EditableText({ value, onChange, className = "", tagName 
       className={`cursor-pointer hover:bg-gray-100/50 transition-colors empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400 ${className}`}
       data-placeholder={placeholder}
     >
-      {value || ""}
+      {renderValue ? renderValue(value) : (value || "")}
     </Tag>
   );
 }
