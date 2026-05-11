@@ -669,10 +669,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#e8dfc7] pb-24 font-lora text-[#2a2822] print:overflow-visible overflow-x-hidden print:p-0 print:m-0">
+    <div className="min-h-screen bg-[#e8dfc7] pb-24 font-lora text-[#2a2822] print:overflow-visible print:p-0 print:m-0">
       
       {/* Top Navbar - Professional Mobile Layout */}
-      <div className="sticky top-0 z-50 bg-white border-b border-[#d8d0b7] shadow-sm no-print">
+      <div className="fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-md border-b border-[#d8d0b7] shadow-sm no-print">
         <div className="max-w-[1600px] mx-auto">
           {/* Row 1: Brand & Status */}
           <div className="flex items-center justify-between px-4 py-2 border-b border-[#f0ece0] bg-[#fdfaf3]">
@@ -752,7 +752,7 @@ export default function Home() {
       </div>
 
       {/* Main Preview Area */}
-      <div className="flex justify-center py-4 sm:py-8 print-visible print:block print:p-0 print:m-0">
+      <div className="flex justify-center py-4 sm:py-8 pt-32 sm:pt-40 print-visible print:block print:p-0 print:m-0">
         {/* Zoom Wrapper - uses CSS zoom for correct bounding box on mobile */}
         <div 
           className="transition-all duration-300 ease-out print:!transform-none print:!m-0 print:!p-0 origin-top"
