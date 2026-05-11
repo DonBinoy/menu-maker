@@ -273,37 +273,36 @@ export default function Home() {
       ]
     },
     {
-      id: "page-sides-1",
-      title: "SIDE ORDERS - BREADS",
-      subtitle: "OVEN FRESH NAN",
+      id: "page-sides",
+      title: "SIDE ORDERS",
+      subtitle: "BREADS & ACCOMPANIMENTS",
       items: [
+        /* Breads */
         { id: "br1", name: "Smör/Butter naan", description_sv: "", description_en: "", price: "30 kr", allergens: ["milk", "gluten"] },
         { id: "br2", name: "Vitlök/Garlic Naan", description_sv: "", description_en: "", price: "35 kr", allergens: ["milk", "gluten"] },
-        { id: "br3", name: "Parontha", description_sv: "", description_en: "", price: "35 kr", allergens: ["milk", "gluten"] },
-        { id: "br4", name: "Peshawari Naan", description_sv: "(Mandel, Russin, Kokos)", description_en: "", price: "50 kr", allergens: ["milk", "gluten", "nuts"] },
-        { id: "br5", name: "Makki di roti", description_sv: "(Majsbröd/Cornbread)(Glutenfri)", description_en: "", price: "35 kr", allergens: [] },
+        { id: "br3", name: "Parontha (Vegan)", description_sv: "", description_en: "", price: "35 kr", allergens: ["gluten"] },
+        { id: "br4", name: "Peshawari Naan", description_sv: "(Mandel,Russin,Kokos)", description_en: "", price: "50 kr", allergens: ["milk", "gluten", "nuts"] },
+        { id: "br5", name: "Makki di roti (Majsbröd/Cornbread)(Glutenfri)", description_sv: "(Vegan)", description_en: "", price: "35 kr", allergens: [] },
         { id: "br6", name: "Ost/Cheese Naan", description_sv: "", description_en: "", price: "45 kr", allergens: ["milk", "gluten"] },
-        { id: "br7", name: "Vitlök chili Ost/Garlic Chilli Cheese Naan", description_sv: "", description_en: "", price: "55 kr", allergens: ["milk", "gluten"] },
-        { id: "br8", name: "Lacha Parontha", description_sv: "", description_en: "", price: "55 kr", allergens: ["milk", "gluten"] },
-        { id: "br9", name: "Aaloo Parontha", description_sv: "", description_en: "", price: "65 kr", allergens: ["milk", "gluten"] },
-        { id: "br10", name: "Tandori Aaloo Naan", description_sv: "", description_en: "", price: "75 kr", allergens: ["milk", "gluten"] },
-        { id: "br11", name: "Tandoori Roti", description_sv: "", description_en: "", price: "35 kr", allergens: ["gluten"] }
-      ]
-    },
-    {
-      id: "page-sides-2",
-      title: "SIDES & CONDIMENTS",
-      subtitle: "ACCOMPANIMENTS",
-      items: [
+        { id: "br7", name: "Vitlök Ost/Garlic Cheese Naan", description_sv: "", description_en: "", price: "55 kr", allergens: ["milk", "gluten"] },
+        { id: "br8", name: "Vitlök chili Ost/Garlic Chilli Cheese Naan", description_sv: "", description_en: "", price: "60 kr", allergens: ["milk", "gluten"] },
+        { id: "br9", name: "Lacha Parontha", description_sv: "", description_en: "", price: "55 kr", allergens: ["milk", "gluten"] },
+        { id: "br10", name: "Aaloo Parontha (Vegan)", description_sv: "", description_en: "", price: "65 kr", allergens: ["gluten"] },
+        { id: "br11", name: "Tandori Aaloo Naan", description_sv: "", description_en: "", price: "75 kr", allergens: ["milk", "gluten"] },
+        { id: "br12", name: "Tandoori Roti (Vegan)", description_sv: "", description_en: "", price: "35 kr", allergens: ["gluten"] },
+        /* Seasonal Salad */
         { id: "si1", name: "Seasonal Salad", description_sv: "", description_en: "", price: "20 kr", allergens: [] },
+        /* Yoghurt Sauce */
         { id: "si2", name: "Plain Raita", description_sv: "", description_en: "", price: "30 kr", allergens: ["milk"] },
         { id: "si3", name: "Boondi Raita", description_sv: "", description_en: "", price: "40 kr", allergens: ["milk"] },
         { id: "si4", name: "Kachumber Raita", description_sv: "", description_en: "", price: "45 kr", allergens: ["milk"] },
-        { id: "si5", name: "Pickles", description_sv: "Fråga personalen om alternativen.", description_en: "Please ask the staff regarding selection.", price: "30 kr", allergens: ["mustard"] },
-        { id: "si6", name: "Mango Chutney", description_sv: "", description_en: "", price: "15 kr", allergens: [] },
-        { id: "si7", name: "Tamarind Chutney", description_sv: "", description_en: "", price: "15 kr", allergens: [] },
-        { id: "si8", name: "Koriander-mint-chilli Chutney", description_sv: "", description_en: "", price: "15 kr", allergens: [] },
-        { id: "si9", name: "Tomat/Tomato Chutney", description_sv: "", description_en: "", price: "20 kr", allergens: [] },
+        /* Pickles */
+        { id: "si5", name: "Pickles (Vegan)", description_sv: "Fråga personalen om alternativen. Please ask the staff regarding selection", description_en: "", price: "30 kr", allergens: ["mustard"] },
+        /* Chutneys */
+        { id: "si6", name: "Mango (Vegan)", description_sv: "", description_en: "", price: "15 kr", allergens: [] },
+        { id: "si7", name: "Tamarind (Vegan)", description_sv: "", description_en: "", price: "15 kr", allergens: [] },
+        { id: "si8", name: "Koriander-mint-chilli/ Coriander-mint-chillies", description_sv: "(Can be made Vegan)", description_en: "", price: "15 kr", allergens: ["milk"] },
+        { id: "si9", name: "Tomat/Tomato (Vegan)", description_sv: "", description_en: "", price: "20 kr", allergens: [] },
         { id: "si10", name: "SET OF 3 CHUTNEY", description_sv: "", description_en: "", price: "45 kr", allergens: [] }
       ]
     },
