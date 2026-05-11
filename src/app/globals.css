@@ -10,54 +10,93 @@
   .font-cinzel { font-family: var(--font-cinzel); }
   .font-cormorant { font-family: var(--font-cormorant); }
   .font-lora { font-family: var(--font-lora); }
+  
+  @media print {
+    .print-visible {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
 }
 
 @media print {
   @page {
-    size: A3 landscape;
+    size: 420mm 297mm;
     margin: 0;
   }
   
   html, body {
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    background-color: transparent !important;
+    background-color: white !important;
+    overflow: visible !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
   }
 
   .no-print {
     display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-visible {
+    display: block !important;
+    visibility: visible !important;
+  }
+
   .print-page {
     margin: 0 !important;
     padding: 10mm !important;
     box-shadow: none !important;
     border: none !important;
-    page-break-after: auto !important;
     page-break-inside: avoid !important;
-    width: 210mm !important;
+    break-inside: avoid !important;
+    width: 209.5mm !important;
     height: 297mm !important;
-    max-width: 210mm !important;
-    max-height: 297mm !important;
-    transform: none !important;
-    overflow: hidden !important;
-    display: flex !important;
+    display: inline-flex !important;
     flex-direction: column !important;
     position: relative !important;
     background-color: #f5ead5 !important;
+    overflow: hidden !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+    vertical-align: top !important;
+  }
+
+  .print-page:nth-child(2n):not(:last-child) {
+    page-break-after: always !important;
   }
 
   .print-container {
     padding: 0 !important;
     margin: 0 !important;
     background: none !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
+    display: block !important;
     width: 420mm !important;
     transform: none !important;
+    font-size: 0 !important;
+    white-space: normal !important;
+  }
+
+  #__next, [data-reactroot], #__next > div {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
 }

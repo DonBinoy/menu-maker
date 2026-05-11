@@ -212,25 +212,25 @@ export const AllergenLegend = () => {
 export const AllergenIconsList = ({ allergens }: { allergens: AllergenType[] }) => {
   const getIcon = (type: AllergenType) => {
     switch (type) {
-      case 'gluten': return <GlutenIcon className="w-4 h-4 mx-0.5" />;
-      case 'celery': return <CeleryIcon className="w-4 h-4 mx-0.5" />;
-      case 'fish': return <FishIcon className="w-4 h-4 mx-0.5" />;
-      case 'nuts': return <NutsIcon className="w-4 h-4 mx-0.5" />;
-      case 'eggs': return <EggsIcon className="w-4 h-4 mx-0.5" />;
-      case 'peanuts': return <PeanutsIcon className="w-4 h-4 mx-0.5" />;
-      case 'milk': return <MilkIcon className="w-4 h-4 mx-0.5" />;
-      case 'sulphites': return <SulphitesIcon className="w-4 h-4 mx-0.5" />;
-      case 'mustard': return <MustardIcon className="w-4 h-4 mx-0.5" />;
-      case 'soya': return <SoyaBeansIcon className="w-4 h-4 mx-0.5" />;
-      case 'crustaceans': return <CrustaceansIcon className="w-4 h-4 mx-0.5" />;
-      case 'sesame': return <SesameIcon className="w-4 h-4 mx-0.5" />;
+      case 'gluten': return <GlutenIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'celery': return <CeleryIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'fish': return <FishIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'nuts': return <NutsIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'eggs': return <EggsIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'peanuts': return <PeanutsIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'milk': return <MilkIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'sulphites': return <SulphitesIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'mustard': return <MustardIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'soya': return <SoyaBeansIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'crustaceans': return <CrustaceansIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'sesame': return <SesameIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
       default: return null;
     }
   };
 
   return (
     <div className="inline-flex items-center">
-      {allergens.map((a, i) => <span key={i} className="text-[#2a2822]">{getIcon(a)}</span>)}
+      {allergens.map((a, i) => <span key={i} className="text-[#1a1814]">{getIcon(a)}</span>)}
     </div>
   );
 };

@@ -58,6 +58,7 @@ export default function Home() {
   const [quickAddTargetPageId, setQuickAddTargetPageId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isLibraryEnabled, setIsLibraryEnabled] = useState(false); // Set to true to enable library features
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -425,24 +426,25 @@ export default function Home() {
     {
       id: "page-lamb",
       title: "CURRYS LAMB",
-      subtitle: "SERVED WITH A PORTION OF RICE",
+      subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
-        { id: "l1", name: "Gosht Darbari", description_sv: "Curry med Kanel, kardemumma, muskot, kummin, yoghurt och stekt lök.", description_en: "Curry with cinnamon, black cardamom, nutmeg, cumin, yoghurt and fried onion.", price: "199 kr", allergens: ["milk"] },
+        { id: "l1", name: "Gosht Darbari", description_sv: "Curry med Kanel, kardemumma, svart peppar, korianderfrön, muskot, kummin, yoghurt, stekt lök och dyvelsträck.", description_en: "Curry with cinnamon, black cardamom, black peppers, coriander-seeds, nutmeg, cumin, yoghurt, fried onions and asafoetida.", price: "199 kr", allergens: ["milk", "mustard"] },
         { id: "l2", name: "Pahadi Lamb", description_sv: "Mynta,koriander,paprika baserad curry med smaker av lime, honung, muskot, kardemumma och lagerblad.", description_en: "Mint,coriander,peppers mixed curry with flavours of lime, honey, nutmeg, cardamom and bayleaves.", price: "199 kr", allergens: [] },
         { id: "l3", name: "Palaak Lamb", description_sv: "Spenat baserad curry med mört lamm.", description_en: "Spinach based curry with tender-lamb.", price: "199 kr", allergens: [] },
-        { id: "l4", name: "Dopiaza", description_sv: "Curry gjord på tre variationer av lök-gullök, rödlök samt friterad lök.", description_en: "Curry made of three variations of onions- yellow onions, red onions and deep-fried onions.", price: "199 kr", allergens: [] },
-        { id: "l5", name: "Muglai Lamb", description_sv: "Mer känd som “Korma”. Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten med sexton olika kryddor.", description_en: "Also known as “Korma”. Curry with onion-sauce, cashewpaste, coconut milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight with sixteen different spices.", price: "199 kr", allergens: ["nuts"] },
+        { id: "l4", name: "Dopiaza", description_sv: "Curry gjord på tre variationer av lök-gullök, rödlök samt friterad lök.", description_en: "Curry made of three variations of onions- yellow onions, red onions and deep-fried onions.", price: "199 kr", allergens: ["gluten"] },
+        { id: "l5", name: "Muglai Lamb", description_sv: "Mer känd som “Korma”. Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten med sexton olika kryddor", description_en: "Also known as “Korma”. Curry with onion-sauce, cashewpaste, coconut milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight with sixteen different spices.", price: "199 kr", allergens: ["nuts"] },
         { id: "l6", name: "Kashmiri Lamb", description_sv: "En lite mildare curry med fänkålsfrön, kardemumma, riven mandel, grädde, kryddnejlika, vallmofrön och tomat.", description_en: "A milder curry variant with fennel-seeds, cardamom, ground almond cream, cloves, poppy seeds and tomatoes.", price: "199 kr", allergens: ["milk", "nuts"] }
       ]
     },
     {
       id: "page-lamb-2",
-      title: "CURRYS LAMB SPECIALS",
-      subtitle: "SERVED WITH A PORTION OF RICE",
+      title: "CURRYS LAMB",
+      subtitle: "",
+      hideHeader: true,
       items: [
-        { id: "l7", name: "Ambersari Bhuna Lamb (Kontrast Special)", description_sv: "Vad som gör denna curry speciell är “Bhuna” delen. Köttet är stekt i en panna med indiska kryddor, lök, vitlök, ingefära och tomater. Köttet kokas sedan i sin egen saft, vilket ger den sin djupa och rika smak. Denna rätt är tidskrävande men resultatet är fantastiskt.", description_en: "What makes this dish so special is the “Bhuna” part. The meat is pan-fried with Indian spices, onions, garlic, ginger and tomatoes, cooked in its own stock, adding deep and rich flavours, It is time consuming, but the end result is amazing.", price: "199 kr", allergens: [] },
-        { id: "l8", name: "Shahi Lamb", description_sv: "Mildare curry gjord på grädde, kardemumma, smör, honung och tomat.", description_en: "Milder curry made with cream, cardamom, butter, honey and tomatoes.", price: "199 kr", allergens: ["milk"] },
-        { id: "l9", name: "Lamb Rogan Josh (Spicy)", description_sv: "Curry gjord på tomat, kryddpasta, cayennepeppar, lagerblad, yoghurt och grädde.", description_en: "Curry made with tomatoes, spice paste, cayenne pepper, bayleaves, yoghurt and cream.", price: "199 kr", allergens: ["milk"] }
+        { id: "l7", name: "Ambersari Bhuna Lamb ( Kontrast Special )", description_sv: "Vad som gör denna curry speciell är “Bhuna” delen. Köttet är stekt i en panna med indiska kryddor, lök, vitlök, ingefära och tomater. Köttet kokas sedan i sin egen saft, vilket ger den sin djupa och rika smak. Denna rätt är tidskrävande men resultatet är fantastiskt.", description_en: "What makes this dish so special is the “Bhuna” part. The meat is pan-fried with Indian spices, onions, garlic, ginger and tomatoes, cooked in its own stock, adding deep and rich flavours, It is time consuming, but the end result is amazing.", price: "199 kr", allergens: [] },
+        { id: "l8", name: "Lamb Rogan Josh ( Spicy )", description_sv: "Curry gjord på tomat, kryddpasta, cayennepeppar, lagerblad, yoghurt och grädde.", description_en: "Curry made with tomatoes, spice paste, cayenne pepper, bayleaves, yoghurt and cream.", price: "199 kr", allergens: ["milk"] },
+        { id: "l9", name: "Shahi Lamb", description_sv: "Mildare curry gjord på grädde, kardemumma, smör, honung och tomat.", description_en: "Milder curry made with cream, cardemom, butter, honey and tomatoes.", price: "199 kr", allergens: ["milk"] }
       ]
     },
 
@@ -457,11 +459,10 @@ export default function Home() {
     setTimeout(() => {
       window.print();
       // Restore the user's zoom after the print dialog opens
-      // (The print job is already captured by this point)
       setTimeout(() => {
         setZoom(originalZoom);
       }, 500);
-    }, 150);
+    }, 1000);
   };
 
   const addMenuPage = () => {
@@ -668,7 +669,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#e8dfc7] pb-24 print-container font-lora text-[#2a2822] overflow-x-hidden">
+    <div className="min-h-screen bg-[#e8dfc7] pb-24 font-lora text-[#2a2822] print:overflow-visible overflow-x-hidden print:p-0 print:m-0">
       
       {/* Top Navbar - Professional Mobile Layout */}
       <div className="sticky top-0 z-50 bg-white border-b border-[#d8d0b7] shadow-sm no-print">
@@ -702,6 +703,15 @@ export default function Home() {
             >
               <Printer size={16} /> SAVE PDF
             </button>
+            {isLibraryEnabled && (
+              <button 
+                onClick={() => setIsQuickAddOpen(true)}
+                className="w-12 flex items-center justify-center bg-white text-[#5c5643] border border-[#d8d0b7] rounded-md hover:bg-[#f5ead5] transition shadow-sm active:scale-95"
+                title="Library"
+              >
+                <Library size={18} />
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -722,6 +732,14 @@ export default function Home() {
         >
           <Printer size={18} /> SAVE PDF
         </button>
+        {isLibraryEnabled && (
+          <button 
+            onClick={() => setIsQuickAddOpen(true)}
+            className="w-14 flex items-center justify-center bg-white text-[#5c5643] border border-[#d8d0b7] rounded-xl transition shadow-md active:scale-95"
+          >
+            <Library size={20} />
+          </button>
+        )}
       </div>
 
       {/* Floating Hint - Less intrusive */}
@@ -734,14 +752,14 @@ export default function Home() {
       </div>
 
       {/* Main Preview Area */}
-      <div className="flex justify-center py-4 sm:py-8 no-print">
+      <div className="flex justify-center py-4 sm:py-8 print-visible print:block print:p-0 print:m-0">
         {/* Zoom Wrapper - uses CSS zoom for correct bounding box on mobile */}
         <div 
-          className="transition-all duration-300 ease-out print:!zoom-1 print:!m-0"
+          className="transition-all duration-300 ease-out print:!transform-none print:!m-0 print:!p-0 origin-top"
           style={{ zoom: zoom } as React.CSSProperties}
         >
           {/* Pages Container - 1 col on small, 2 col on xl, block on print */}
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-16 gap-y-12 print:!m-0 print:!p-0 w-fit mx-auto">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-16 gap-y-12 print:grid-cols-2 print:gap-0 print:!m-0 print:!p-0 w-fit mx-auto print:w-[420mm] print:!mx-0 print-container print-visible">
           
         {/* Menu Pages */}
         {menuPages.map((page, pageIndex) => (
@@ -759,12 +777,13 @@ export default function Home() {
               <div className="absolute inset-10 border border-[#a59e8c] pointer-events-none opacity-30"></div>
 
               <div className="flex-1 flex flex-col items-center justify-center z-10 px-12">
-                <EditableText 
-                  value={restaurantName} 
-                  onChange={setRestaurantName} 
-                  tagName="h1" 
-                  className="text-8xl font-cinzel text-center lowercase tracking-widest mb-2 hover:bg-[#e8dfc7] p-2 transition" 
-                />
+                <div className="mb-6 flex justify-center">
+                  <img 
+                    src="/image.png" 
+                    alt={restaurantName} 
+                    className="h-32 w-auto object-contain"
+                  />
+                </div>
                 
                 <div className="flex justify-center mb-6 opacity-70">
                   <svg width="160" height="15" viewBox="0 0 160 15" fill="none" className="text-[#5c5643]">
@@ -810,6 +829,18 @@ export default function Home() {
                       <EditableText value={loc.phone} onChange={(v) => updateLocation(loc.id, 'phone', v)} className="text-sm" />
                     </div>
                   ))}
+                </div>
+
+                {/* Gallery QR Code */}
+                <div className="mt-12 flex flex-col items-center">
+                  <div className="w-32 h-32 p-2 bg-white border border-[#d8d0b7] shadow-sm">
+                    <img 
+                      src="/gallery_qr.png" 
+                      alt="Gallery QR Code" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <p className="mt-2 text-[10px] font-lora uppercase tracking-[0.2em] text-[#6b6452]">Scan for Gallery</p>
                 </div>
               </div>
             </div>
@@ -931,7 +962,7 @@ export default function Home() {
                           />
                         </div>
                         
-                        <div className="ml-1 opacity-80 scale-90 origin-left flex items-center">
+                        <div className="ml-1 opacity-100 flex items-center">
                           <AllergenIconsList allergens={item.allergens} />
                         </div>
 
@@ -999,7 +1030,7 @@ export default function Home() {
                                   );
                                 }}
                               />
-                              <div className="scale-75 origin-left">
+                              <div className="flex items-center">
                                 <AllergenIconsList allergens={sub.allergens} />
                               </div>
                               <div className="flex-1 border-b border-dotted border-[#b8b09d] mx-2 opacity-30"></div>
@@ -1065,16 +1096,18 @@ export default function Home() {
                   >
                     <Plus size={14} /> Add Empty
                   </button>
-                  <button 
-                    onClick={() => {
-                      setQuickAddTargetPageId(page.id);
-                      setIsQuickAddOpen(true);
-                    }}
-                    className="flex items-center gap-2 text-xs bg-[#2a2822] text-[#f5ead5] hover:bg-[#1a1814] px-3 py-2 transition font-lora shadow-sm"
-                    suppressHydrationWarning
-                  >
-                    <Library size={14} /> Quick Add from Library
-                  </button>
+                  {isLibraryEnabled && (
+                    <button 
+                      onClick={() => {
+                        setQuickAddTargetPageId(page.id);
+                        setIsQuickAddOpen(true);
+                      }}
+                      className="flex items-center gap-2 text-xs bg-[#2a2822] text-[#f5ead5] hover:bg-[#1a1814] px-3 py-2 transition font-lora shadow-sm"
+                      suppressHydrationWarning
+                    >
+                      <Library size={14} /> Quick Add from Library
+                    </button>
+                  )}
                 </div>
               </div>
 
