@@ -349,7 +349,7 @@ export default function Home() {
         { id: "c1", name: "Davate Punjab", description_sv: "Mer känd som “Teekha Murgh”. Curry med fänkålsfrön, curryblad, mynta och svart kummin.", description_en: "Known as “Teekha Murgh”. Curry with fennel-seeds, curry-leaves, mint and black cumin.", price: "185 kr", allergens: [] },
         { id: "c2", name: "Shan-e-Kashmir", description_sv: "Curry med saffran, harissa pasta, rosvatten, honung, apelsin, kanel, mandel och sesamfrön.", description_en: "Curry with saffron, harissa paste, rose water, honey, orange-syrup, cinnamon, almond and sesame seeds.", price: "210 kr", allergens: ["nuts", "sesame"] },
         { id: "c3", name: "Jalfrezi", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Curry with peppers, yoghurt, onions and plenty of chillies.", price: "185 kr", allergens: ["milk"] },
-        { id: "c4", name: "Chicken Tikka Masala", description_sv: "Grillad marinerad kyckling i kryddad tomat och ingefära baserad curry.", description_en: "Grilled marinated chicken in a spicy tomato and ginger-based curry.", price: "185 kr", allergens: ["milk"] },
+        { id: "c4", name: "Chicken Tikka Masala", description_sv: "Grillad marinerad kyckling i kryddad tomat och ingefära baserad curry.", description_en: "Grilled marinated chicken in a spicy tomato and ginger-based curry.", price: "185 kr", allergens: [] },
         { id: "c5", name: "Butter Chicken (Kontrast Special)", description_sv: "Curry med tomat, yoghurt, riven kokos, grädde, smör och tandoori masala.", description_en: "Curry with tomatoes, yoghurt, butter, coconut, cream and tandoori masala.", price: "185 kr", allergens: ["milk", "mustard"] },
         { id: "c6", name: "Murgh Makhni", description_sv: "Curry med yoghurt, smör, grädde, riven kokos, och garam masala.", description_en: "Curry with yoghurt, butter, cream, coconut and garam masala.", price: "185 kr", allergens: ["milk"] }
       ]
@@ -360,12 +360,12 @@ export default function Home() {
       subtitle: "Serveras med en portion ris och sallad / Served with a portion of rice",
       headerAllergen: "fish",
       items: [
-        { id: "f1", name: "Coconut Curry", description_sv: "Kryddig curry med stora räkor och smaker av kokosmjölk, koriander, grön paprika och grön chilipasta.", description_en: "Spiced curry of big shrimps with flavours of coconut-milk, coriander, green peppers and green chilli paste.", price: "209 kr", allergens: ["crustaceans", "milk"] },
+        { id: "f1", name: "Coconut Curry", description_sv: "Kryddig curry med stora räkor och smaker av kokosmjölk, koriander, grön paprika och grön chilipasta.", description_en: "Spiced curry of big shrimps with flavours of coconut-milk, coriander, green peppers and green chilli paste.", price: "209 kr", allergens: ["crustaceans"] },
         { id: "f2", name: "Ghee Roast", description_sv: "Räkor stekta i klarat smör med bitar av lök och vitlök som sedan kokas i en tomat baserad gräddsås.", description_en: "Shrimps fried in clarified butter, onions and garlic chunks, then cooked in tomato-based cream sauce.", price: "209 kr", allergens: ["crustaceans", "milk"] },
-        { id: "f3", name: "Mirch Masala", description_sv: "Räk curry med lök, tomat, vitlök, ingefära och bockhornsklöver.", description_en: "Shrimp-curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "209 kr", allergens: ["crustaceans", "milk"] },
-        { id: "f4", name: "Malai Macchi", description_sv: "Kryddad torsk curry med skirat smör, yoghurt, grädde och bockhornsklöver.", description_en: "Spiced cod curry with butter, yoghurt, cream and fenugreek leaves.", price: "209 kr", allergens: ["fish", "milk"] },
-        { id: "f5", name: "Haryali Machhi", description_sv: "Het curry med torskrygg, spenat, bockhornsklöver, lök, vitlök, och chilli.", description_en: "Spicy codfish curry with spinach, fenugreek, onions, garlic and chillies.", price: "209 kr", allergens: ["fish"] },
-        { id: "f6", name: "Machhi Masala Mar ke", description_sv: "Het och kryddig curry på torskrygg, med bitar av ingefära, vitlök och grön chilli.", description_en: "Hot and spicy fish with chunks of ginger, garlic and green chillies.", price: "209 kr", allergens: ["fish"] }
+        { id: "f3", name: "Mirch Masala", description_sv: "Räk curry med lök, tomat, vitlök, ingefära och bockhornsklöver.", description_en: "Shrimp-curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "209 kr", allergens: ["crustaceans"] },
+        { id: "f4", name: "Malai Macchi", description_sv: "Kryddad torsk curry med skirat smör, yoghurt, grädde och bockhornsklöver.", description_en: "Spiced cod curry with butter, yoghurt, cream and fenugreek leaves.", price: "209 kr", allergens: ["milk"] },
+        { id: "f5", name: "Haryali Machhi", description_sv: "Het curry med torskrygg, spenat, bockhornsklöver, lök, vitlök, och chilli.", description_en: "Spicy codfish curry with spinach, fenugreek, onions, garlic and chillies.", price: "209 kr", allergens: [] },
+        { id: "f6", name: "Machhi Masala Mar ke", description_sv: "Het och kryddig curry på torskrygg, med bitar av ingefära, vitlök och grön chilli.", description_en: "Hot and spicy fish with chunks of ginger, garlic and green chillies.", price: "209 kr", allergens: [] }
       ]
     },
     {
