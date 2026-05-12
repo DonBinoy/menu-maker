@@ -270,13 +270,13 @@ export default function Home() {
       subtitle: "SERVED WITH A PORTION OF RICE",
       hideHeader: true,
       items: [
-        { id: "v1", name: "Mix Veg", description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.", description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce. (Vegan)", price: "165 kr", allergens: [] },
-        { id: "v2", name: "Shahi Navratan Veg", description_sv: "Säsongens grönsaker curry med kokos, grädde, smör och yoghurt.", description_en: "Seasonal vegetable curry with coconut-cream, butter and yoghurt.", price: "165 kr", allergens: ["milk"] },
-        { id: "v3", name: "Tadka Daal", description_sv: "Linsgryta på en blandning av fyra olika gula linser.", description_en: "Lentil curry with a blend of four different yellow lentils. (Vegan)", price: "165 kr", allergens: [] },
-        { id: "v4", name: "Mutter Paneer", description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.", description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk"] },
-        { id: "v5", name: "Paneer Tikka Butter Masala", description_sv: "Hemmalagad Indisk ost curry som kokas i en sås bestående av tomat, ingefära, smör och grädde.", description_en: "Home-made Indian cheese curry, cooked along tomatoes, ginger, butter and cream.", price: "165 kr", allergens: ["milk"] },
-        { id: "v6", name: "Daal Makhni", description_sv: "Klassisk Punjabi rätt, tillagad med svarta linser, smör, grädde och kryddor.", description_en: "Classic Punjabi dish made with black lentils, butter, cream and spices. (Can be made Vegan)", price: "165 kr", allergens: ["milk"] },
-        { id: "v7", name: "Karahi Paneer", description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.", description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk"] }
+        { id: "v1", name: "Mix Veg", description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.", description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce. (Vegan)", price: "170 kr", allergens: [] },
+        { id: "v2", name: "Shahi Navratan Veg", description_sv: "Säsongens grönsaker curry med kokos, grädde, smör och yoghurt.", description_en: "Seasonal vegetable curry with coconut-cream, butter and yoghurt.", price: "170 kr", allergens: ["milk"] },
+        { id: "v3", name: "Tadka Daal", description_sv: "Linsgryta på en blandning av fyra olika gula linser.", description_en: "Lentil curry with a blend of four different yellow lentils. (Vegan)", price: "170 kr", allergens: [] },
+        { id: "v4", name: "Mutter Paneer", description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.", description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk"] },
+        { id: "v5", name: "Paneer Tikka Butter Masala", description_sv: "Hemmalagad Indisk ost curry som kokas i en sås bestående av tomat, ingefära, smör och grädde.", description_en: "Home-made Indian cheese curry, cooked along tomatoes, ginger, butter and cream.", price: "170 kr", allergens: ["milk"] },
+        { id: "v6", name: "Daal Makhni", description_sv: "Klassisk Punjabi rätt, tillagad med svarta linser, smör, grädde och kryddor.", description_en: "Classic Punjabi dish made with black lentils, butter, cream and spices. (Can be made Vegan)", price: "170 kr", allergens: ["milk"] },
+        { id: "v7", name: "Karahi Paneer", description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.", description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk"] }
       ]
     },
     {
@@ -293,9 +293,10 @@ export default function Home() {
           price: "", 
           allergens: ["milk"],
           subItems: [
-            { id: "bi1", name: "Kyckling/Chicken", price: "179 kr", allergens: [] },
-            { id: "bi2", name: "Lamm/Lamb", price: "189 kr", allergens: [] },
-            { id: "bi3", name: "Vegetarisk (på säsongens grönsaker) / Vegetarian (Made with seasonal vegetables)", price: "169 kr", allergens: [] }
+            { id: "bi1", name: "Kyckling/Chicken", price: "195 kr", allergens: [] },
+            { id: "bi2", name: "Lamm/Lamb", price: "205 kr", allergens: [] },
+            { id: "bi3", name: "Vegetarisk (på säsongens grönsaker) / Vegetarian (Made with seasonal vegetables)", price: "170 kr", allergens: [] },
+            { id: "bi4", name: "Shrimp", price: "209 kr", allergens: ["crustaceans"] }
           ]
         }
       ]
@@ -343,15 +344,16 @@ export default function Home() {
 
     {
       id: "page-chicken-1",
-      title: "CURRYS CHICKEN",
+      title: "CURRYS CHICKEN (HALAL)",
       subtitle: "( CONTAINS- MILK PROTEIN/ MJÖLKPROTEIN ) \nServeras med en portion ris / Served with a portion of rice",
       items: [
-        { id: "c1", name: "Davate Punjab", description_sv: "Mer känd som “Teekha Murgh”. Curry med fänkålsfrön, curryblad, mynta och svart kummin.", description_en: "Known as “Teekha Murgh”. Curry with fennel-seeds, curry-leaves, mint and black cumin.", price: "185 kr", allergens: [] },
-        { id: "c2", name: "Shan-e-Kashmir", description_sv: "Curry med saffran, harissa pasta, rosvatten, honung, apelsin, kanel, mandel och sesamfrön.", description_en: "Curry with saffron, harissa paste, rose water, honey, orange-syrup, cinnamon, almond and sesame seeds.", price: "210 kr", allergens: ["nuts", "sesame"] },
-        { id: "c3", name: "Jalfrezi", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Curry with peppers, yoghurt, onions and plenty of chillies.", price: "185 kr", allergens: ["milk"] },
-        { id: "c4", name: "Chicken Tikka Masala", description_sv: "Grillad marinerad kyckling i kryddad tomat och ingefära baserad curry.", description_en: "Grilled marinated chicken in a spicy tomato and ginger-based curry.", price: "185 kr", allergens: [] },
+        { id: "c1", name: "Davate Punjab", description_sv: "Mer känd som “Teekha Murgh”. Curry med fänkålsfrön, curryblad, mynta och svart kummin.", description_en: "Known as “Teekha Murgh”. Curry with fennel-seeds, curry-leaves, mint and black cumin.", price: "195 kr", allergens: [] },
+        { id: "c2", name: "Shan-e-Kashmir", description_sv: "Curry med saffran, harissa pasta, rosvatten, honung, apelsin, kanel, mandel och sesamfrön.", description_en: "Curry with saffron, harissa paste, rose water, honey, orange-syrup, cinnamon, almond and sesame seeds.", price: "215 kr", allergens: ["nuts", "sesame"] },
+        { id: "c3", name: "Jalfrezi", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Curry with peppers, yoghurt, onions and plenty of chillies.", price: "195 kr", allergens: ["milk"] },
+        { id: "c4", name: "Chicken Tikka Masala", description_sv: "Grillad marinerad kyckling i kryddad tomat och ingefära baserad curry.", description_en: "Grilled marinated chicken in a spicy tomato and ginger-based curry.", price: "195 kr", allergens: [] },
         { id: "c5", name: "Butter Chicken (Kontrast Special)", description_sv: "Curry med tomat, yoghurt, riven kokos, grädde, smör och tandoori masala.", description_en: "Curry with tomatoes, yoghurt, butter, coconut, cream and tandoori masala.", price: "185 kr", allergens: ["milk", "mustard"] },
-        { id: "c6", name: "Murgh Makhni", description_sv: "Curry med yoghurt, smör, grädde, riven kokos, och garam masala.", description_en: "Curry with yoghurt, butter, cream, coconut and garam masala.", price: "185 kr", allergens: ["milk"] }
+        { id: "c6", name: "Murgh Makhni", description_sv: "Curry med yoghurt, smör, grädde, riven kokos, och garam masala.", description_en: "Curry with yoghurt, butter, cream, coconut and garam masala.", price: "185 kr", allergens: ["milk"] },
+        { id: "c13", name: "Mango Chicken", description_sv: "En söt och mild curry med bitar av kyckling och mango.", description_en: "A sweet and mild chicken curry with mango pieces.", price: "195 kr", allergens: [] }
       ]
     },
     {
@@ -360,12 +362,12 @@ export default function Home() {
       subtitle: "Serveras med en portion ris och sallad / Served with a portion of rice",
       headerAllergen: "fish",
       items: [
-        { id: "f1", name: "Coconut Curry", description_sv: "Kryddig curry med stora räkor och smaker av kokosmjölk, koriander, grön paprika och grön chilipasta.", description_en: "Spiced curry of big shrimps with flavours of coconut-milk, coriander, green peppers and green chilli paste.", price: "209 kr", allergens: ["crustaceans"] },
-        { id: "f2", name: "Ghee Roast", description_sv: "Räkor stekta i klarat smör med bitar av lök och vitlök som sedan kokas i en tomat baserad gräddsås.", description_en: "Shrimps fried in clarified butter, onions and garlic chunks, then cooked in tomato-based cream sauce.", price: "209 kr", allergens: ["crustaceans", "milk"] },
-        { id: "f3", name: "Mirch Masala", description_sv: "Räk curry med lök, tomat, vitlök, ingefära och bockhornsklöver.", description_en: "Shrimp-curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "209 kr", allergens: ["crustaceans"] },
-        { id: "f4", name: "Malai Macchi", description_sv: "Kryddad torsk curry med skirat smör, yoghurt, grädde och bockhornsklöver.", description_en: "Spiced cod curry with butter, yoghurt, cream and fenugreek leaves.", price: "209 kr", allergens: ["milk"] },
-        { id: "f5", name: "Haryali Machhi", description_sv: "Het curry med torskrygg, spenat, bockhornsklöver, lök, vitlök, och chilli.", description_en: "Spicy codfish curry with spinach, fenugreek, onions, garlic and chillies.", price: "209 kr", allergens: [] },
-        { id: "f6", name: "Machhi Masala Mar ke", description_sv: "Het och kryddig curry på torskrygg, med bitar av ingefära, vitlök och grön chilli.", description_en: "Hot and spicy fish with chunks of ginger, garlic and green chillies.", price: "209 kr", allergens: [] }
+        { id: "f1", name: "Coconut Curry", description_sv: "Kryddig curry med stora räkor och smaker av kokosmjölk, koriander, grön paprika och grön chilipasta.", description_en: "Spiced curry of big shrimps with flavours of coconut-milk, coriander, green peppers and green chilli paste.", price: "215 kr", allergens: ["crustaceans"] },
+        { id: "f2", name: "Ghee Roast", description_sv: "Räkor stekta i klarat smör med bitar av lök och vitlök som sedan kokas i en tomat baserad gräddsås.", description_en: "Shrimps fried in clarified butter, onions and garlic chunks, then cooked in tomato-based cream sauce.", price: "195 kr", allergens: ["crustaceans", "milk"] },
+        { id: "f3", name: "Mirch Masala", description_sv: "Räk curry med lök, tomat, vitlök, ingefära och bockhornsklöver.", description_en: "Shrimp-curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "195 kr", allergens: ["crustaceans"] },
+        { id: "f4", name: "Malai Macchi", description_sv: "Kryddad torsk curry med skirat smör, yoghurt, grädde och bockhornsklöver.", description_en: "Spiced cod curry with butter, yoghurt, cream and fenugreek leaves.", price: "195 kr", allergens: ["milk"] },
+        { id: "f5", name: "Haryali Machhi", description_sv: "Het curry med torskrygg, spenat, bockhornsklöver, lök, vitlök, och chilli.", description_en: "Spicy codfish curry with spinach, fenugreek, onions, garlic and chillies.", price: "195 kr", allergens: [] },
+        { id: "f6", name: "Machhi Masala Mar ke", description_sv: "Het och kryddig curry på torskrygg, med bitar av ingefära, vitlök och grön chilli.", description_en: "Hot and spicy fish with chunks of ginger, garlic and green chillies.", price: "195 kr", allergens: [] }
       ]
     },
     {
@@ -373,38 +375,39 @@ export default function Home() {
       title: "CURRYS VEGETARIAN",
       subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
-        { id: "v8", name: "Palaak Paneer", description_sv: "Vår hemmagjorda indiska ost i en spenatbaserad curry.", description_en: "Home-made Indian cheese in a spinach based curry. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk"] },
-        { id: "v9", name: "Chilli Paneer", description_sv: "Vår hemmagjorda indiska ost serveras i en sötsur gryta baserad på tomat, ingefära, soja, rörsocker, lök och paprika.", description_en: "Homemade Indian cheese served in a sweet and sour curry based on tomatoes, soy sauce, cane sugar, peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "165 kr", allergens: ["milk", "soya", "gluten"] },
-        { id: "v10", name: "Punjabi Daal", description_sv: "Linsgryta på fyra olika linser och röda kidneybönor.", description_en: "Blend of four different lentils and red kidney-beans. (Vegan )", price: "165 kr", allergens: [] },
-        { id: "v11", name: "Veggie Balls Korma", description_sv: "Säsongens grönsaker strimlas och rullas till små bollar som sedan paneras och friteras. Serveras i en curry på lök, malda cashewnötter och kokosmjölk.", description_en: "Seasonal vegetables shredded and rolled into balls, then breaded and deep-fried. Served in a curry with onions, grinded cashew-nuts and coconut-milk. (Vegan )", price: "165 kr", allergens: ["nuts", "gluten"] },
-        { id: "v12", name: "Ambersari Cholle", description_sv: "Kikärtsgryta, en variant av chana masala med smaker av svart te och bockhornsklöver.", description_en: "Chickpeas curry - A version of chana masala with flavours of black tea and fenugreek leaves. (Vegan )", price: "165 kr", allergens: [] },
-        { id: "v13", name: "Paneer Jalfreezy", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Home made Indian cheese curry with peppers, yoghurt, onions and plenty of chillies.", price: "165 kr", allergens: ["milk"] },
-        { id: "v14", name: "Rajma", description_sv: "Red Kidney bönor curry med lök, tomat, vitlök och ingefära.", description_en: "Red Kidney-bean curry with onions, tomatoes, garlic and ginger.", price: "165 kr", allergens: [] }
+        { id: "v8", name: "Palaak Paneer", description_sv: "Vår hemmagjorda indiska ost i en spenatbaserad curry.", description_en: "Home-made Indian cheese in a spinach based curry. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk"] },
+        { id: "v9", name: "Chilli Paneer", description_sv: "Vår hemmagjorda indiska ost serveras i en sötsur gryta baserad på tomat, ingefära, soja, rörsocker, lök och paprika.", description_en: "Homemade Indian cheese served in a sweet and sour curry based on tomatoes, soy sauce, cane sugar, peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk", "soya", "gluten"] },
+        { id: "v10", name: "Punjabi Daal", description_sv: "Linsgryta på fyra olika linser och röda kidneybönor.", description_en: "Blend of four different lentils and red kidney-beans. (Vegan )", price: "170 kr", allergens: [] },
+        { id: "v11", name: "Veggie Balls Korma", description_sv: "Säsongens grönsaker strimlas och rullas till små bollar som sedan paneras och friteras. Serveras i en curry på lök, malda cashewnötter och kokosmjölk.", description_en: "Seasonal vegetables shredded and rolled into balls, then breaded and deep-fried. Served in a curry with onions, grinded cashew-nuts and coconut-milk. (Vegan )", price: "170 kr", allergens: ["nuts", "gluten"] },
+        { id: "v12", name: "Ambersari Cholle", description_sv: "Kikärtsgryta, en variant av chana masala med smaker av svart te och bockhornsklöver.", description_en: "Chickpeas curry - A version of chana masala with flavours of black tea and fenugreek leaves. (Vegan )", price: "170 kr", allergens: [] },
+        { id: "v13", name: "Paneer Jalfreezy", description_sv: "Curry med paprika, yoghurt, lök och rikligt med chili.", description_en: "Home made Indian cheese curry with peppers, yoghurt, onions and plenty of chillies.", price: "170 kr", allergens: ["milk"] },
+        { id: "v14", name: "Rajma", description_sv: "Red Kidney bönor curry med lök, tomat, vitlök och ingefära.", description_en: "Red Kidney-bean curry with onions, tomatoes, garlic and ginger.", price: "170 kr", allergens: [] }
       ]
     },
     {
       id: "page-grills",
-      title: "GRILLS",
+      title: "GRILLS (HALAL)",
       subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
         { id: "g1", name: "Chicken Tikka", description_sv: "Bitar av benfri kyckling, marineras över natten med yoghurt,örter och kryddor. Serveras med en tomat och ingefärasås.", description_en: "Pieces of chicken marinated in yoghurt, herbs and spices. Served with tomato and ginger sauce.", price: "185 kr", allergens: ["milk"] },
         { id: "g2", name: "Paneer Tikka", description_sv: "Vår hemmagjorda indiska ost. Marineras över natten med örter och kryddor. Serveras med tomat och ingefära sås.", description_en: "Home-made Indian cheese, marinated overnight then carefully grilled. Served with tomato and ginger sauce.", price: "170 kr", allergens: ["milk"] },
-        { id: "g3", name: "Seekh Kebab", description_sv: "Malet nötkött, som marineras över natten med örter och kryddor. Grillas på spett och serveras med en currysås.", description_en: "Minced beef with coriander, mint, green chillies and spices, grilled on skewers.", price: "190 kr", allergens: [] },
+        { id: "g3", name: "Seekh Kebab", description_sv: "Malet nötkött, som marineras över natten med örter och kryddor. Grillas på spett och serveras med en currysås.", description_en: "Minced beef with coriander, mint, green chillies and spices, grilled on skewers.", price: "195 kr", allergens: [] },
         { id: "g4", name: "Tandori Murgh", description_sv: "Kyckling lår som syras över natten med örter kryddor och yoghurt. Serveras med en currysås.", description_en: "Chicken thigh that's been marinated in yoghurt, herbs and spices. Served with a curry sauce.", price: "195 kr", allergens: ["milk"] },
-        { id: "g5", name: "Mixed Grill", description_sv: "Mix av paneer, chicken tikka, seekh kebab, lamm, Tandoori Murgh. Serveras med en currysås.", description_en: "Mix of paneer, chicken, seekh kebab, lamb, tandoori murgh. Served with a curry sauce.", price: "225 kr", allergens: ["milk"] }
+        { id: "g5", name: "Mixed Grill", description_sv: "Mix av paneer, chicken tikka, seekh kebab, lamm, Tandoori Murgh. Serveras med en currysås.", description_en: "Mix of paneer, chicken, seekh kebab, lamb, tandoori murgh. Served with a curry sauce.", price: "225 kr", allergens: ["milk"] },
+        { id: "g6", name: "Tangri Kebab (Not Halal)", description_sv: "Kycklingklubbor marinerade i kryddor och grillade i tandoorugn.", description_en: "Chicken drumsticks marinated in spices and grilled in tandoor oven.", price: "185 kr", allergens: [] }
       ]
     },
     {
       id: "page-beef",
-      title: "CURRY BEEF",
+      title: "CURRY BEEF (HALAL)",
       subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
-        { id: "b1", name: "Kofta Karahi", description_sv: "Indiska köttbullar i en aromatisk och välbalanserad curry.", description_en: "Indian meatballs in aromatic and well balanced curry.", price: "189 kr", allergens: [] },
-        { id: "b2", name: "Bhayankar Maas (Super Spicy)", description_sv: "En curry för chili fanatiker med massor av chili, vitlök, ingefära och bockhornsklöver.", description_en: "A Curry for chili fanatics with lots of chilies, garlic, ginger and fenugreek leaves.", price: "189 kr", allergens: [] },
-        { id: "b3", name: "Tawa Isthtyle", description_sv: "Långkokt nötkött med bitar av paprika och lök i en reducerad sås på lök och vitlök.", description_en: "Long-cooked beef with chunks of peppers and onions in garlic and onion-based sauce.", price: "189 kr", allergens: [] },
-        { id: "b4", name: "Lassoni Gosht", description_sv: "Biff curry med en skarp smak av vitlök, chili, gurkmeja, kummin och koriander.", description_en: "Beef curry with strong taste of garlic, chilies, turmeric, cumin and coriander.", price: "189 kr", allergens: ["mustard"] },
-        { id: "b5", name: "Vindaloo (Spicy)", description_sv: "Originalrecept på nötkött marinerat i vinäger, vitlök och chili, från tiden med portugisiska kolonier i Indien.", description_en: "Original recipe of beef marinated in vinegar, garlic and chilies from the time of the portuguese colonies in India.", price: "189 kr", allergens: ["sulphites"] },
-        { id: "b6", name: "Firdausi Makhni", description_sv: "Mild och aromatisk curry med smaker av krossade nötter, grädde och kardemumma.", description_en: "Very mild and aromatic curry with flavours of crushed nuts, cream and cardamoms.", price: "189 kr", allergens: ["milk", "nuts"] }
+        { id: "b1", name: "Kofta Karahi", description_sv: "Indiska köttbullar i en aromatisk och välbalanserad curry.", description_en: "Indian meatballs in aromatic and well balanced curry.", price: "195 kr", allergens: [] },
+        { id: "b2", name: "Bhayankar Maas (Super Spicy)", description_sv: "En curry för chili fanatiker med massor av chili, vitlök, ingefära och bockhornsklöver.", description_en: "A Curry for chili fanatics with lots of chilies, garlic, ginger and fenugreek leaves.", price: "195 kr", allergens: [] },
+        { id: "b3", name: "Tawa Isthtyle", description_sv: "Långkokt nötkött med bitar av paprika och lök i en reducerad sås på lök och vitlök.", description_en: "Long-cooked beef with chunks of peppers and onions in garlic and onion-based sauce.", price: "195 kr", allergens: [] },
+        { id: "b4", name: "Lassoni Gosht", description_sv: "Biff curry med en skarp smak av vitlök, chili, gurkmeja, kummin och koriander.", description_en: "Beef curry with strong taste of garlic, chilies, turmeric, cumin and coriander.", price: "195 kr", allergens: ["mustard"] },
+        { id: "b5", name: "Vindaloo (Spicy)", description_sv: "Originalrecept på nötkött marinerat i vinäger, vitlök och chili, från tiden med portugisiska kolonier i Indien.", description_en: "Original recipe of beef marinated in vinegar, garlic and chilies from the time of the portuguese colonies in India.", price: "195 kr", allergens: ["sulphites"] },
+        { id: "b6", name: "Firdausi Makhni", description_sv: "Mild och aromatisk curry med smaker av krossade nötter, grädde och kardemumma.", description_en: "Very mild and aromatic curry with flavours of crushed nuts, cream and cardamoms.", price: "195 kr", allergens: ["milk", "nuts"] }
       ]
     },
     {
@@ -413,27 +416,27 @@ export default function Home() {
       subtitle: "",
       hideHeader: true,
       items: [
-        { id: "c7", name: "Chicken Dhaba Karahi", description_sv: "Curry med lök, tomater, vitlök, ingefära och bockhornsklöverblad.", description_en: "Curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "185 kr", allergens: [] },
-        { id: "c8", name: "Chili Chicken", description_sv: "Indo-kinesisk curry i sötsur sås med soja, tomat, paprika, stekt lök och rörsocker.", description_en: "Indo-Chinese chicken curry cooked in sweet and sour sauce with soy sauce, tomatoes, peppers, fried onions and cane suger.", price: "185 kr", allergens: ["soya", "gluten"] },
-        { id: "c9", name: "Adraki Kukkad", description_sv: "Aromatisk och smakfull curry med massor av ingefära.", description_en: "Aromatic and tasteful chicken curry with alot of ginger.", price: "185 kr", allergens: [] },
-        { id: "c10", name: "Saag Chicken", description_sv: "Curry gjord på spenat, senapsblad och kikärtsmjöl.", description_en: "Curry made with spinach, mustard leaves and chickpea flour", price: "185 kr", allergens: ["mustard"] },
-        { id: "c11", name: "Chicken Korma", description_sv: "Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten i sexton olika kryddor", description_en: "Curry with onion-sauce, cashew-paste, coconut-milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight in sixteen different spices.", price: "185 kr", allergens: ["nuts"] },
-        { id: "c12", name: "Chicken Madras ( spicy)", description_sv: "Kryddig kycklingcurry med currymadras & tamarind", description_en: "Spicy Chicken stew with curry madras & tamarind", price: "185 kr", allergens: [] }
+        { id: "c7", name: "Chicken Dhaba Karahi", description_sv: "Curry med lök, tomater, vitlök, ingefära och bockhornsklöverblad.", description_en: "Curry with onions, tomatoes, garlic, ginger and fenugreek leaves.", price: "195 kr", allergens: [] },
+        { id: "c8", name: "Chili Chicken", description_sv: "Indo-kinesisk curry i sötsur sås med soja, tomat, paprika, stekt lök och rörsocker.", description_en: "Indo-Chinese chicken curry cooked in sweet and sour sauce with soy sauce, tomatoes, peppers, fried onions and cane suger.", price: "195 kr", allergens: ["soya", "gluten"] },
+        { id: "c9", name: "Adraki Kukkad", description_sv: "Aromatisk och smakfull curry med massor av ingefära.", description_en: "Aromatic and tasteful chicken curry with alot of ginger.", price: "195 kr", allergens: [] },
+        { id: "c10", name: "Saag Chicken", description_sv: "Curry gjord på spenat, senapsblad och kikärtsmjöl.", description_en: "Curry made with spinach, mustard leaves and chickpea flour", price: "195 kr", allergens: ["mustard"] },
+        { id: "c11", name: "Chicken Korma", description_sv: "Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten i sexton olika kryddor", description_en: "Curry with onion-sauce, cashew-paste, coconut-milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight in sixteen different spices.", price: "195 kr", allergens: ["nuts"] },
+        { id: "c12", name: "Chicken Madras ( spicy)", description_sv: "Kryddig kycklingcurry med currymadras & tamarind", description_en: "Spicy Chicken stew with curry madras & tamarind", price: "195 kr", allergens: [] }
       ]
     },
 
 
     {
       id: "page-lamb",
-      title: "CURRYS LAMB",
+      title: "CURRYS LAMB (HALAL)",
       subtitle: "Serveras med en portion ris / Served with a portion of rice",
       items: [
-        { id: "l1", name: "Gosht Darbari", description_sv: "Curry med Kanel, kardemumma, svart peppar, korianderfrön, muskot, kummin, yoghurt, stekt lök och dyvelsträck.", description_en: "Curry with cinnamon, black cardamom, black peppers, coriander-seeds, nutmeg, cumin, yoghurt, fried onions and asafoetida.", price: "199 kr", allergens: ["milk", "mustard"] },
-        { id: "l2", name: "Pahadi Lamb", description_sv: "Mynta,koriander,paprika baserad curry med smaker av lime, honung, muskot, kardemumma och lagerblad.", description_en: "Mint,coriander,peppers mixed curry with flavours of lime, honey, nutmeg, cardamom and bayleaves.", price: "199 kr", allergens: [] },
-        { id: "l3", name: "Palaak Lamb", description_sv: "Spenat baserad curry med mört lamm.", description_en: "Spinach based curry with tender-lamb.", price: "199 kr", allergens: [] },
-        { id: "l4", name: "Dopiaza", description_sv: "Curry gjord på tre variationer av lök-gullök, rödlök samt friterad lök.", description_en: "Curry made of three variations of onions- yellow onions, red onions and deep-fried onions.", price: "199 kr", allergens: ["gluten"] },
-        { id: "l5", name: "Muglai Lamb", description_sv: "Mer känd som “Korma”. Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten med sexton olika kryddor", description_en: "Also known as “Korma”. Curry with onion-sauce, cashewpaste, coconut milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight with sixteen different spices.", price: "199 kr", allergens: ["nuts"] },
-        { id: "l6", name: "Kashmiri Lamb", description_sv: "En lite mildare curry med fänkålsfrön, kardemumma, riven mandel, grädde, kryddnejlika, vallmofrön och tomat.", description_en: "A milder curry variant with fennel-seeds, cardamom, ground almond cream, cloves, poppy seeds and tomatoes.", price: "199 kr", allergens: ["milk", "nuts"] }
+        { id: "l1", name: "Gosht Darbari", description_sv: "Curry med Kanel, kardemumma, svart peppar, korianderfrön, muskot, kummin, yoghurt, stekt lök och dyvelsträck.", description_en: "Curry with cinnamon, black cardamom, black peppers, coriander-seeds, nutmeg, cumin, yoghurt, fried onions and asafoetida.", price: "205 kr", allergens: ["milk", "mustard"] },
+        { id: "l2", name: "Pahadi Lamb", description_sv: "Mynta,koriander,paprika baserad curry med smaker av lime, honung, muskot, kardemumma och lagerblad.", description_en: "Mint,coriander,peppers mixed curry with flavours of lime, honey, nutmeg, cardamom and bayleaves.", price: "205 kr", allergens: [] },
+        { id: "l3", name: "Palaak Lamb", description_sv: "Spenat baserad curry med mört lamm.", description_en: "Spinach based curry with tender-lamb.", price: "205 kr", allergens: [] },
+        { id: "l4", name: "Dopiaza", description_sv: "Curry gjord på tre variationer av lök-gullök, rödlök samt friterad lök.", description_en: "Curry made of three variations of onions- yellow onions, red onions and deep-fried onions.", price: "205 kr", allergens: ["gluten"] },
+        { id: "l5", name: "Muglai Lamb", description_sv: "Mer känd som “Korma”. Curry på lök, malda cashewnötter, kokosmjölk, lagerblad, muskot, majsmjöl och kardemumma. Marinerad över natten med sexton olika kryddor", description_en: "Also known as “Korma”. Curry with onion-sauce, cashewpaste, coconut milk, bayleaves, nutmeg, cornflour and cardamom. Marinated overnight with sixteen different spices.", price: "205 kr", allergens: ["nuts"] },
+        { id: "l6", name: "Kashmiri Lamb", description_sv: "En lite mildare curry med fänkålsfrön, kardemumma, riven mandel, grädde, kryddnejlika, vallmofrön och tomat.", description_en: "A milder curry variant with fennel-seeds, cardamom, ground almond cream, cloves, poppy seeds and tomatoes.", price: "205 kr", allergens: ["milk", "nuts"] }
       ]
     },
     {
@@ -442,9 +445,9 @@ export default function Home() {
       subtitle: "",
       hideHeader: true,
       items: [
-        { id: "l7", name: "Ambersari Bhuna Lamb ( Kontrast Special )", description_sv: "Vad som gör denna curry speciell är “Bhuna” delen. Köttet är stekt i en panna med indiska kryddor, lök, vitlök, ingefära och tomater. Köttet kokas sedan i sin egen saft, vilket ger den sin djupa och rika smak. Denna rätt är tidskrävande men resultatet är fantastiskt.", description_en: "What makes this dish so special is the “Bhuna” part. The meat is pan-fried with Indian spices, onions, garlic, ginger and tomatoes, cooked in its own stock, adding deep and rich flavours, It is time consuming, but the end result is amazing.", price: "199 kr", allergens: [] },
-        { id: "l8", name: "Lamb Rogan Josh ( Spicy )", description_sv: "Curry gjord på tomat, kryddpasta, cayennepeppar, lagerblad, yoghurt och grädde.", description_en: "Curry made with tomatoes, spice paste, cayenne pepper, bayleaves, yoghurt and cream.", price: "199 kr", allergens: ["milk"] },
-        { id: "l9", name: "Shahi Lamb", description_sv: "Mildare curry gjord på grädde, kardemumma, smör, honung och tomat.", description_en: "Milder curry made with cream, cardemom, butter, honey and tomatoes.", price: "199 kr", allergens: ["milk"] }
+        { id: "l7", name: "Ambersari Bhuna Lamb ( Kontrast Special )", description_sv: "Vad som gör denna curry speciell är “Bhuna” delen. Köttet är stekt i en panna med indiska kryddor, lök, vitlök, ingefära och tomater. Köttet kokas sedan i sin egen saft, vilket ger den sin djupa och rika smak. Denna rätt är tidskrävande men resultatet är fantastiskt.", description_en: "What makes this dish so special is the “Bhuna” part. The meat is pan-fried with Indian spices, onions, garlic, ginger and tomatoes, cooked in its own stock, adding deep and rich flavours, It is time consuming, but the end result is amazing.", price: "205 kr", allergens: [] },
+        { id: "l8", name: "Lamb Rogan Josh ( Spicy )", description_sv: "Curry gjord på tomat, kryddpasta, cayennepeppar, lagerblad, yoghurt och grädde.", description_en: "Curry made with tomatoes, spice paste, cayenne pepper, bayleaves, yoghurt and cream.", price: "205 kr", allergens: ["milk"] },
+        { id: "l9", name: "Shahi Lamb", description_sv: "Mildare curry gjord på grädde, kardemumma, smör, honung och tomat.", description_en: "Milder curry made with cream, cardemom, butter, honey and tomatoes.", price: "205 kr", allergens: ["milk"] }
       ]
     },
 
