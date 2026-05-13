@@ -1076,6 +1076,13 @@ export default function Home() {
                                 onChange={(v) => updateSubItem(page.id, item.id, sub.id, 'price', v)} 
                                 className="text-[14px] font-lora font-bold text-[#2a2822]" 
                               />
+                              <button 
+                                onClick={() => deleteSubItem(page.id, item.id, sub.id)}
+                                className="text-red-300 hover:text-red-500 no-print opacity-0 group-hover/sub:opacity-100 transition"
+                                title="Delete option"
+                              >
+                                <Trash2 size={12} />
+                              </button>
                             </div>
                           ))}
                         </div>
