@@ -1133,7 +1133,7 @@ export default function Home() {
                         <div className={`absolute left-0 right-0 h-8 bg-transparent hidden sm:block ${itemIndex > 2 ? 'top-full' : 'bottom-full'}`} />
                         <div className="w-full text-[10px] uppercase tracking-widest text-[#8b8471] mb-1 font-lora font-bold border-b border-[#d8d0b7] pb-1">Toggle Allergens</div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                          {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
+                          {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'lupin', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
                             <button
                               key={a}
                               onClick={() => toggleAllergen(page.id, item.id, a)}
