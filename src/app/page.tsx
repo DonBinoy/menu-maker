@@ -50,6 +50,20 @@ type MenuPageData = {
   headerAllergen?: AllergenType;
 };
 
+const getPageAllergens = (page: MenuPageData): AllergenType[] => {
+  const allergens = new Set<AllergenType>();
+  if (page.headerAllergen) allergens.add(page.headerAllergen);
+  
+  page.items.forEach(item => {
+    item.allergens.forEach(a => allergens.add(a));
+    item.subItems?.forEach(sub => {
+      sub.allergens.forEach(a => allergens.add(a));
+    });
+  });
+  
+  return Array.from(allergens);
+};
+
 export default function Home() {
   const [restaurantName, setRestaurantName] = useState("kontrast");
   const [subtitle, setSubtitle] = useState("NORTH INDIAN RESTAURANT & BAR");
@@ -210,7 +224,7 @@ export default function Home() {
             { id: "br12", name: "Tandoori Roti (Vegan)", price: "35 kr", allergens: ["gluten"] }
           ]
         },
-        { id: "si1", name: "Seasonal Salad", description_sv: "", description_en: "", price: "20 kr", allergens: [], hasTopSeparator: true },
+        { id: "si1", name: "Mixed Salad", description_sv: "", description_en: "", price: "20 kr", allergens: [], isHeader: true },
         { 
           id: "raita-group", 
           name: "Yoghurt sås/Yoghurt Sauce", 
@@ -218,7 +232,7 @@ export default function Home() {
           description_en: "", 
           price: "", 
           allergens: ["milk"],
-          isHeader: true,
+          isHeader: false,
           subItems: [
             { id: "si2", name: "Plain Raita", price: "30 kr", allergens: ["milk"] },
             { id: "si3", name: "Boondi Raita", price: "40 kr", allergens: ["milk", "gluten"] },
@@ -916,7 +930,7 @@ export default function Home() {
               </div>
             </div>
           ) : (
-          <div key={page.id} className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative print-page p-12 flex flex-col group/page shrink-0 mx-auto">
+          <div key={page.id} className={`w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative print-page ${page.id === 'page-sides' ? 'p-8' : 'p-12'} flex flex-col group/page shrink-0 mx-auto`}>
             
             {/* Background Watermark - Clipped to page */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02] overflow-hidden">
@@ -945,8 +959,8 @@ export default function Home() {
               </button>
 
               {!page.hideHeader && (
-                <div className={`${page.id === 'page-sides' ? 'mb-2' : 'mb-6'} text-left`}>
-                  <div className="border-t-[3px] border-double border-[#5c5643] w-24 mb-3 opacity-70"></div>
+                <div className={`${page.id === 'page-sides' ? 'mb-0.5' : 'mb-2'} text-left`}>
+                  <div className={`border-t-[${page.id === 'page-sides' ? '2px' : '3px'}] border-double border-[#5c5643] w-24 mb-2 opacity-70`}></div>
                   
                   <div className="flex items-center gap-4 mb-1">
                     <EditableText 
@@ -966,19 +980,19 @@ export default function Home() {
                     value={page.subtitle || ""} 
                     onChange={(v) => updateMenuPage(page.id, 'subtitle', v)} 
                     tagName="p" 
-                    className="text-[10px] font-lora uppercase tracking-[0.15em] text-[#6b6452] mb-1 hover:bg-[#e8dfc7] p-1 transition inline-block whitespace-pre-wrap" 
+                    className={`${page.id === 'page-sides' ? 'text-[9px]' : 'text-[10px]'} font-lora uppercase tracking-[0.15em] text-[#6b6452] mb-0 hover:bg-[#e8dfc7] p-1 transition inline-block whitespace-pre-wrap`} 
                   />
                 </div>
               )}
 
-              <div className={`flex-1 flex flex-col ${page.id === 'page-sides' ? 'gap-0' : 'gap-2.5'}`}>
+              <div className={`flex-1 flex flex-col ${page.id === 'page-sides' ? 'gap-0' : 'gap-1'}`}>
                 {page.items.map((item, itemIndex) => (
                   item.isHeader ? (
-                    <div key={item.id} className={`${page.id === 'page-sides' ? 'mt-1 first:mt-0 mb-0' : 'mt-6 first:mt-0 mb-2'}`}>
+                    <div key={item.id} className={`${page.id === 'page-sides' ? 'mt-1 first:mt-0 mb-0' : 'mt-3 first:mt-0 mb-0.5'}`}>
                       <EditableText 
                         value={item.name} 
                         onChange={(v) => updateMenuItem(page.id, item.id, 'name', v)} 
-                        className={`${page.id === 'page-sides' ? 'text-[1.6rem]' : 'text-[1.8rem]'} font-cormorant font-bold text-[#2a2822] border-b border-[#d8d0b7] pb-1 inline-block`} 
+                        className={`${page.id === 'page-sides' ? 'text-[1.5rem] pb-0' : 'text-[1.8rem] pb-1'} font-cormorant font-bold text-[#2a2822] border-b border-[#d8d0b7] inline-block`} 
                       />
                       
                       {/* Render Sub-items for headers too */}
@@ -989,7 +1003,7 @@ export default function Home() {
                               <EditableText 
                                 value={sub.name} 
                                 onChange={(v) => updateSubItem(page.id, item.id, sub.id, 'name', v)} 
-                                className="text-[14px] font-lora text-[#2a2822] flex-1" 
+                                className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#2a2822] flex-1`} 
                               />
                               <div className="scale-75 origin-left">
                                 <AllergenIconsList allergens={sub.allergens} />
@@ -1008,11 +1022,11 @@ export default function Home() {
                   ) : (
                     <Fragment key={item.id}>
                       {item.hasTopSeparator && (
-                        <div className="w-full border-b-[1px] border-dotted border-[#b8b09d] mt-2 mb-1 opacity-60"></div>
+                        <div className={`w-full border-b-[1px] border-dotted border-[#b8b09d] ${page.id === 'page-sides' ? 'my-0.5' : 'mt-2 mb-1'} opacity-60`}></div>
                       )}
                       <div className={`flex flex-col relative group hover:bg-[#e8dfc7]/60 focus-within:bg-[#e8dfc7]/60 -mx-2 transition ${(!item.description_sv && !item.description_en && (!item.subItems || item.subItems.length === 0)) ? 'py-0.5 px-2' : 'p-2'}`}>
                       <div className="flex items-baseline gap-3 mb-0.5">
-                        <div className={`${page.id === 'page-sides' ? 'text-[1.25rem]' : 'text-[1.5rem]'} leading-none font-cormorant font-bold tracking-wide text-[#1a1814] flex items-baseline gap-2`}>
+                        <div className={`${page.id === 'page-sides' ? 'text-[1.2rem]' : 'text-[1.5rem]'} leading-none font-cormorant font-bold tracking-wide text-[#1a1814] flex items-baseline gap-2`}>
                           <EditableText 
                             value={item.name} 
                             onChange={(v) => updateMenuItem(page.id, item.id, 'name', v)} 
@@ -1022,7 +1036,7 @@ export default function Home() {
                                 <>
                                   {parts.map((part, i) => 
                                     part.startsWith('(') ? (
-                                      <span key={i} className="text-sm font-lora font-normal text-[#1a1814] italic">{part}</span>
+                                      <span key={i} className={`${page.id === 'page-sides' ? 'text-xs' : 'text-sm'} font-lora font-normal text-[#1a1814] italic`}>{part}</span>
                                     ) : (
                                       <span key={i}>{part}</span>
                                     )
@@ -1054,7 +1068,7 @@ export default function Home() {
                         value={item.description_sv} 
                         onChange={(v) => updateMenuItem(page.id, item.id, 'description_sv', v)} 
                         tagName="p" 
-                        className="text-[14px] font-lora text-[#4a473e] leading-[1.5] mb-0.5 italic whitespace-pre-wrap" 
+                        className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#4a473e] leading-[1.5] mb-0.5 italic whitespace-pre-wrap`} 
                       />
                       
                       <div className="flex w-full items-end gap-2">
@@ -1064,7 +1078,7 @@ export default function Home() {
                               value={item.description_en} 
                               onChange={(v) => updateMenuItem(page.id, item.id, 'description_en', v)} 
                               tagName="p" 
-                              className="text-[14px] font-lora text-[#4a473e] leading-[1.5] italic whitespace-pre-wrap" 
+                              className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#4a473e] leading-[1.5] italic whitespace-pre-wrap`} 
                             />
                           )}
                         </div>
@@ -1079,7 +1093,7 @@ export default function Home() {
 
                       {/* Render Sub-items (Options like Chicken/Veg) */}
                       {item.subItems && item.subItems.length > 0 && (
-                        <div className="mt-2 flex flex-col gap-1">
+                        <div className={`${page.id === 'page-sides' ? 'mt-0.5 gap-0' : 'mt-2 gap-1'} flex flex-col`}>
                           {item.subItems.map((sub, subIndex) => (
                             <div key={sub.id} className="flex items-center gap-2 group/sub">
                               <EditableText 
@@ -1150,7 +1164,7 @@ export default function Home() {
                       {/* Full dotted separator between items */}
                       {itemIndex < page.items.length - 1 && (
                         (page.id === 'page-sides' ? page.items[itemIndex+1].isHeader : !page.items[itemIndex+1].isHeader) && (
-                          <div className={`w-full border-b-[1px] border-dotted border-[#b8b09d] ${page.id === 'page-sides' ? 'mt-1 mb-1' : 'mt-3 mb-1'} opacity-60`}></div>
+                          <div className={`w-full border-b-[1px] border-dotted border-[#b8b09d] ${page.id === 'page-sides' ? 'mt-1 mb-1' : 'mt-1 mb-1'} opacity-60`}></div>
                         )
                       )}
                     </div>
@@ -1182,10 +1196,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Show legend conditionally */}
-              {pageIndex === menuPages.length - 1 && (
-                <div className="mt-auto opacity-90 border-t border-[#a59e8c] pt-4">
-                  <AllergenLegend />
+              {/* Localized Page Legend */}
+              {page.id !== 'page-cover' && (
+                <div className={`mt-auto opacity-90 border-t border-[#a59e8c]/30 ${page.id === 'page-sides' ? 'pt-1 pb-0.5' : 'pt-2 pb-1'}`}>
+                  <AllergenLegend showOnly={getPageAllergens(page)} />
                 </div>
               )}
             </div>

@@ -195,27 +195,33 @@ const SesameIcon = ({ className }: { className?: string }) => (
   </SvgIcon>
 );
 
-export const AllergenLegend = () => {
-  const allergens = [
-    { type: 'gluten', icon: <GlutenIcon className="w-8 h-8 mb-2" />, label: 'GLUTEN' },
-    { type: 'celery', icon: <CeleryIcon className="w-8 h-8 mb-2" />, label: 'CELERY' },
-    { type: 'fish', icon: <FishIcon className="w-8 h-8 mb-2" />, label: 'FISH' },
-    { type: 'nuts', icon: <NutsIcon className="w-8 h-8 mb-2" />, label: 'NUTS' },
-    { type: 'eggs', icon: <EggsIcon className="w-8 h-8 mb-2" />, label: 'EGGS' },
-    { type: 'peanuts', icon: <PeanutsIcon className="w-8 h-8 mb-2" />, label: 'PEANUTS' },
-    { type: 'lupin', icon: <LupinIcon className="w-8 h-8 mb-2" />, label: 'LUPIN' },
-    { type: 'milk', icon: <MilkIcon className="w-8 h-8 mb-2" />, label: 'MILK' },
-    { type: 'sulphites', icon: <SulphitesIcon className="w-8 h-8 mb-2" />, label: 'SULPHITES' },
-    { type: 'mustard', icon: <MustardIcon className="w-8 h-8 mb-2" />, label: 'MUSTARD' },
-    { type: 'soya', icon: <SoyaBeansIcon className="w-8 h-8 mb-2" />, label: 'SOYA BEANS' },
-    { type: 'crustaceans', icon: <CrustaceansIcon className="w-8 h-8 mb-2" />, label: 'CRUSTACEANS' },
-    { type: 'sesame', icon: <SesameIcon className="w-8 h-8 mb-2" />, label: 'SESAME SEEDS' },
+export const AllergenLegend = ({ showOnly }: { showOnly?: AllergenType[] }) => {
+  const allAllergens = [
+    { type: 'gluten', icon: <GlutenIcon className="w-7 h-7 mb-1.5" />, label: 'GLUTEN' },
+    { type: 'celery', icon: <CeleryIcon className="w-7 h-7 mb-1.5" />, label: 'CELERY' },
+    { type: 'fish', icon: <FishIcon className="w-7 h-7 mb-1.5" />, label: 'FISH' },
+    { type: 'nuts', icon: <NutsIcon className="w-7 h-7 mb-1.5" />, label: 'NUTS' },
+    { type: 'eggs', icon: <EggsIcon className="w-7 h-7 mb-1.5" />, label: 'EGGS' },
+    { type: 'peanuts', icon: <PeanutsIcon className="w-7 h-7 mb-1.5" />, label: 'PEANUTS' },
+    { type: 'lupin', icon: <LupinIcon className="w-7 h-7 mb-1.5" />, label: 'LUPIN' },
+    { type: 'milk', icon: <MilkIcon className="w-7 h-7 mb-1.5" />, label: 'MILK' },
+    { type: 'sulphites', icon: <SulphitesIcon className="w-7 h-7 mb-1.5" />, label: 'SULPHITES' },
+    { type: 'mustard', icon: <MustardIcon className="w-7 h-7 mb-1.5" />, label: 'MUSTARD' },
+    { type: 'soya', icon: <SoyaBeansIcon className="w-7 h-7 mb-1.5" />, label: 'SOYA BEANS' },
+    { type: 'crustaceans', icon: <CrustaceansIcon className="w-7 h-7 mb-1.5" />, label: 'CRUSTACEANS' },
+    { type: 'sesame', icon: <SesameIcon className="w-7 h-7 mb-1.5" />, label: 'SESAME SEEDS' },
   ];
 
+  const allergens = showOnly 
+    ? allAllergens.filter(a => showOnly.includes(a.type as AllergenType))
+    : allAllergens;
+
+  if (allergens.length === 0) return null;
+
   return (
-    <div className="grid grid-cols-7 gap-y-6 gap-x-2 w-full mt-4 justify-items-center">
+    <div className="flex flex-wrap justify-center gap-y-3 gap-x-5 w-full mt-2">
       {allergens.map((a) => (
-        <div key={a.type} className="flex flex-col items-center text-center">
+        <div key={a.type} className="flex flex-col items-center text-center min-w-[50px]">
           {a.icon}
           <span className="text-[7px] uppercase tracking-wider font-lora font-bold">{a.label}</span>
         </div>
