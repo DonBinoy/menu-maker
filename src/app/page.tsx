@@ -72,7 +72,8 @@ export default function Home() {
   const [quickAddTargetPageId, setQuickAddTargetPageId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [isLibraryEnabled, setIsLibraryEnabled] = useState(false); // Set to true to enable library features
+  const [isLibraryEnabled, setIsLibraryEnabled] = useState(false);
+  const [openSubAllergenId, setOpenSubAllergenId] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -1036,24 +1037,37 @@ export default function Home() {
                                 onChange={(v) => updateSubItem(page.id, item.id, sub.id, 'name', v)} 
                                 className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#2a2822] flex-1`} 
                               />
-                              <div className="scale-75 origin-left relative group/sub-allergen">
+                              <div className="scale-75 origin-left flex items-center gap-1">
                                 <AllergenIconsList allergens={sub.allergens} />
-                                
-                                {/* Sub-item Allergen Toggle UI */}
-                                <div className={`no-print absolute left-0 bg-[#fdfaf3] border border-[#d8d0b7] shadow-2xl p-3 z-[70] flex flex-col gap-2 w-[280px] opacity-0 group-hover/sub-allergen:opacity-100 transition-all pointer-events-none group-hover/sub-allergen:pointer-events-auto rounded-md bottom-full mb-2`}>
-                                  <div className="w-full text-[10px] uppercase tracking-widest text-[#8b8471] mb-1 font-lora font-bold border-b border-[#d8d0b7] pb-1">Option Allergens</div>
-                                  <div className="grid grid-cols-3 gap-1">
-                                    {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'lupin', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
-                                      <button
-                                        key={a}
-                                        onClick={() => toggleSubAllergen(page.id, item.id, sub.id, a)}
-                                        className={`px-1.5 py-1 text-[9px] uppercase tracking-widest border transition font-lora rounded-sm flex items-center justify-center gap-1 ${sub.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-white text-[#5c5643] border-[#d8d0b7] hover:bg-[#e8dfc7]'}`}
-                                      >
-                                        {sub.allergens.includes(a) && <div className="w-1 h-1 rounded-full bg-amber-400" />}
-                                        {a}
-                                      </button>
-                                    ))}
-                                  </div>
+                                {/* Allergen picker button - click to open */}
+                                <div className="relative no-print opacity-0 group-hover/sub:opacity-100 transition">
+                                  <button
+                                    onClick={(e) => { e.stopPropagation(); setOpenSubAllergenId(openSubAllergenId === sub.id ? null : sub.id); }}
+                                    className="text-[#a59e8c] hover:text-[#2a2822] transition p-0.5 rounded"
+                                    title="Edit allergens"
+                                  >
+                                    <Plus size={10} />
+                                  </button>
+                                  {openSubAllergenId === sub.id && (
+                                    <div className="absolute left-0 bg-[#fdfaf3] border border-[#d8d0b7] shadow-2xl p-3 z-[70] flex flex-col gap-2 w-[280px] rounded-md bottom-full mb-2">
+                                      <div className="flex justify-between items-center border-b border-[#d8d0b7] pb-1 mb-1">
+                                        <span className="text-[10px] uppercase tracking-widest text-[#8b8471] font-lora font-bold">Option Allergens</span>
+                                        <button onClick={() => setOpenSubAllergenId(null)} className="text-[#a59e8c] hover:text-[#2a2822]"><X size={12} /></button>
+                                      </div>
+                                      <div className="grid grid-cols-3 gap-1">
+                                        {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'lupin', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
+                                          <button
+                                            key={a}
+                                            onClick={() => toggleSubAllergen(page.id, item.id, sub.id, a)}
+                                            className={`px-1.5 py-1 text-[9px] uppercase tracking-widest border transition font-lora rounded-sm flex items-center justify-center gap-1 ${sub.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-white text-[#5c5643] border-[#d8d0b7] hover:bg-[#e8dfc7]'}`}
+                                          >
+                                            {sub.allergens.includes(a) && <div className="w-1 h-1 rounded-full bg-amber-400" />}
+                                            {a}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="flex-1 border-b border-dotted border-[#b8b09d] mx-2 opacity-30"></div>
@@ -1163,24 +1177,37 @@ export default function Home() {
                                   );
                                 }}
                               />
-                              <div className="relative group/sub-allergen flex items-center">
+                              <div className="relative flex items-center gap-1">
                                 <AllergenIconsList allergens={sub.allergens} />
-                                
-                                {/* Sub-item Allergen Toggle UI */}
-                                <div className={`no-print absolute left-0 bg-[#fdfaf3] border border-[#d8d0b7] shadow-2xl p-3 z-[70] flex flex-col gap-2 w-[280px] opacity-0 group-hover/sub-allergen:opacity-100 transition-all pointer-events-none group-hover/sub-allergen:pointer-events-auto rounded-md bottom-full mb-2`}>
-                                  <div className="w-full text-[10px] uppercase tracking-widest text-[#8b8471] mb-1 font-lora font-bold border-b border-[#d8d0b7] pb-1">Option Allergens</div>
-                                  <div className="grid grid-cols-3 gap-1">
-                                    {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'lupin', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
-                                      <button
-                                        key={a}
-                                        onClick={() => toggleSubAllergen(page.id, item.id, sub.id, a)}
-                                        className={`px-1.5 py-1 text-[9px] uppercase tracking-widest border transition font-lora rounded-sm flex items-center justify-center gap-1 ${sub.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-white text-[#5c5643] border-[#d8d0b7] hover:bg-[#e8dfc7]'}`}
-                                      >
-                                        {sub.allergens.includes(a) && <div className="w-1 h-1 rounded-full bg-amber-400" />}
-                                        {a}
-                                      </button>
-                                    ))}
-                                  </div>
+                                {/* Allergen picker button - click to open */}
+                                <div className="relative no-print opacity-0 group-hover/sub:opacity-100 transition">
+                                  <button
+                                    onClick={(e) => { e.stopPropagation(); setOpenSubAllergenId(openSubAllergenId === sub.id ? null : sub.id); }}
+                                    className="text-[#a59e8c] hover:text-[#2a2822] transition p-0.5 rounded"
+                                    title="Edit allergens"
+                                  >
+                                    <Plus size={10} />
+                                  </button>
+                                  {openSubAllergenId === sub.id && (
+                                    <div className="absolute left-0 bg-[#fdfaf3] border border-[#d8d0b7] shadow-2xl p-3 z-[70] flex flex-col gap-2 w-[280px] rounded-md bottom-full mb-2">
+                                      <div className="flex justify-between items-center border-b border-[#d8d0b7] pb-1 mb-1">
+                                        <span className="text-[10px] uppercase tracking-widest text-[#8b8471] font-lora font-bold">Option Allergens</span>
+                                        <button onClick={() => setOpenSubAllergenId(null)} className="text-[#a59e8c] hover:text-[#2a2822]"><X size={12} /></button>
+                                      </div>
+                                      <div className="grid grid-cols-3 gap-1">
+                                        {(['milk', 'nuts', 'gluten', 'fish', 'eggs', 'soya', 'crustaceans', 'celery', 'peanuts', 'lupin', 'sulphites', 'mustard', 'sesame'] as AllergenType[]).map(a => (
+                                          <button
+                                            key={a}
+                                            onClick={() => toggleSubAllergen(page.id, item.id, sub.id, a)}
+                                            className={`px-1.5 py-1 text-[9px] uppercase tracking-widest border transition font-lora rounded-sm flex items-center justify-center gap-1 ${sub.allergens.includes(a) ? 'bg-[#2a2822] text-[#f5ead5] border-[#2a2822]' : 'bg-white text-[#5c5643] border-[#d8d0b7] hover:bg-[#e8dfc7]'}`}
+                                          >
+                                            {sub.allergens.includes(a) && <div className="w-1 h-1 rounded-full bg-amber-400" />}
+                                            {a}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="flex-1 border-b border-dotted border-[#b8b09d] mx-2 opacity-30"></div>
