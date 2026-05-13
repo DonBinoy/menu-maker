@@ -1,7 +1,7 @@
 import React from "react";
 import { Wheat } from "lucide-react";
 
-export type AllergenType = 'gluten' | 'celery' | 'fish' | 'nuts' | 'eggs' | 'peanuts' | 'milk' | 'sulphites' | 'mustard' | 'soya' | 'crustaceans' | 'sesame';
+export type AllergenType = 'gluten' | 'celery' | 'fish' | 'nuts' | 'eggs' | 'peanuts' | 'lupin' | 'milk' | 'sulphites' | 'mustard' | 'soya' | 'crustaceans' | 'sesame';
 
 // Custom SVGs matched to the requested design
 
@@ -99,6 +99,20 @@ const PeanutsIcon = ({ className }: { className?: string }) => (
   </SvgIcon>
 );
 
+const LupinIcon = ({ className }: { className?: string }) => (
+  <SvgIcon className={className}>
+    <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+    <circle cx="12" cy="6.5" r="2.2" fill="currentColor" />
+    <circle cx="12" cy="17.5" r="2.2" fill="currentColor" />
+    <circle cx="6.5" cy="12" r="2.2" fill="currentColor" />
+    <circle cx="17.5" cy="12" r="2.2" fill="currentColor" />
+    <circle cx="8.5" cy="8.5" r="2" fill="currentColor" />
+    <circle cx="15.5" cy="15.5" r="2" fill="currentColor" />
+    <circle cx="8.5" cy="15.5" r="2" fill="currentColor" />
+    <circle cx="15.5" cy="8.5" r="2" fill="currentColor" />
+  </SvgIcon>
+);
+
 const MilkIcon = ({ className }: { className?: string }) => (
   <SvgIcon className={className}>
     <path d="M9 2H15V4H9V2Z" />
@@ -189,6 +203,7 @@ export const AllergenLegend = () => {
     { type: 'nuts', icon: <NutsIcon className="w-8 h-8 mb-2" />, label: 'NUTS' },
     { type: 'eggs', icon: <EggsIcon className="w-8 h-8 mb-2" />, label: 'EGGS' },
     { type: 'peanuts', icon: <PeanutsIcon className="w-8 h-8 mb-2" />, label: 'PEANUTS' },
+    { type: 'lupin', icon: <LupinIcon className="w-8 h-8 mb-2" />, label: 'LUPIN' },
     { type: 'milk', icon: <MilkIcon className="w-8 h-8 mb-2" />, label: 'MILK' },
     { type: 'sulphites', icon: <SulphitesIcon className="w-8 h-8 mb-2" />, label: 'SULPHITES' },
     { type: 'mustard', icon: <MustardIcon className="w-8 h-8 mb-2" />, label: 'MUSTARD' },
@@ -198,7 +213,7 @@ export const AllergenLegend = () => {
   ];
 
   return (
-    <div className="grid grid-cols-6 gap-y-6 gap-x-2 w-full mt-4 justify-items-center">
+    <div className="grid grid-cols-7 gap-y-6 gap-x-2 w-full mt-4 justify-items-center">
       {allergens.map((a) => (
         <div key={a.type} className="flex flex-col items-center text-center">
           {a.icon}
@@ -218,6 +233,7 @@ export const AllergenIconsList = ({ allergens }: { allergens: AllergenType[] }) 
       case 'nuts': return <NutsIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
       case 'eggs': return <EggsIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
       case 'peanuts': return <PeanutsIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
+      case 'lupin': return <LupinIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
       case 'milk': return <MilkIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
       case 'sulphites': return <SulphitesIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;
       case 'mustard': return <MustardIcon className="w-5 h-5 mx-0.5 text-[#1a1814]" />;

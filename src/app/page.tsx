@@ -4,7 +4,7 @@ import { useState, useEffect, Fragment } from "react";
 import Mandala from "@/components/Mandala";
 import EditableText from "@/components/EditableText";
 import { AllergenLegend, AllergenIconsList, AllergenType } from "@/components/AllergenIcons";
-import { Plus, Printer, Trash2, Layout, BookOpen, Search, Library, X } from "lucide-react";
+import { Plus, Printer, Trash2, Layout, BookOpen, Search, Library, X, Download, Upload } from "lucide-react";
 import { PRESET_ITEMS, PresetMenuItem } from "@/data/presetItems";
 
 type LocationData = {
@@ -258,10 +258,10 @@ export default function Home() {
       subtitle: "STREET FOOD FAVORITES",
       hideHeader: true,
       items: [
-        { id: "ch1", name: "Blooming Onion", description_sv: "En version av Onion Bhaji, friterad skuren lök likt en blomma. Serveras med mango, koriander-mynta-chilli och tamarindsås.", description_en: "A version of onion bhaji, onion cut as a flower, breaded and fried. Served with mango, coriander-mint-chilli and tamarind chutney. (Can be made Vegan)", price: "90 kr", allergens: ["milk", "eggs", "gluten"] },
-        { id: "ch2", name: "Pataka Papdi", description_sv: "Krispiga vetemjöls kex som bas, linsdumplings, sötad yoghurt, koriander-mynta- chilli och tamarind chutney, Sev som är knapriga nudlar från kikärtsmjöl, Toppat med granatäpple, färsk koriander och hackad rödlök. Sprinklad med chat masala.", description_en: "This is meant to be like fire-crackers in your mouth, with crispy wheat-flour crackers as the base; lentil dumpling, sweet yoghurt, coriander-mint-chili and tamarind chutney, sev (crunchy noodles from chickpea flour), garnished with pomegranate, fresh coriander and chopped red onions and sprinkled with chaat masala. (Can be made Vegan)", price: "90 kr", allergens: ["milk", "gluten"] },
-        { id: "ch3", name: "Tikki Dilbahar", description_sv: "Chaat med en friterad potatisbiff som bas, berikad med tamarind och koriander-mint- chili chutney. Garnerad med riven vit rädisa, hackad rödlök och färsk koriander.", description_en: "Zesty chaat with a fried potato patty as the base, enriched with tamarind and coriander-mint-chili chutney. Garnished with grated white radish, chopped red onions and fresh coriander. (Can be made Vegan)", price: "85 kr", allergens: ["milk", "gluten"] },
-        { id: "ch4", name: "Papdi Chaat", description_sv: "Stekt potatisbiff med söt och syrlig smak, krispiga vetemjölsstekta kakor, linsdumplings toppat med en kryddig kikärtssås och mango, koriander-mynta-chili, tamarind chutney och garnerad med lök, äpplen, gurka och koriander.", description_en: "Sweet and tangy flavoured fried potato patty, crispy wheat flour fried cakes, lentil dumplings, topped with a spicy chickpea gravy and mango, coriander-mint-chili, tamarind chutney, and sprinkled with onions, apples, cucumber and coriander. (Can be made Vegan)", price: "100 kr", allergens: ["milk", "gluten"] }
+        { id: "ch1", name: "Blooming Onion (Can be made Vegan )", description_sv: "En version av Onion Bhaji, friterad skuren lök likt en blomma. Serveras med mango, koriander-mynta-chilli och tamarindsås.", description_en: "A version of onion bhaji, onion cut as a flower, breaded and fried. Served with mango, coriander-mint-chilli and tamarind chutney.", price: "90 kr", allergens: ["milk", "mustard", "eggs", "gluten"] },
+        { id: "ch2", name: "Pataka Papdi (Can be made Vegan )", description_sv: "Krispiga vetemjölskex som bas, linsdumplings, sötad yoghurt, koriander-mynta-chilli och tamarind chutney, Sev som är knapriga nudlar från kikärtsmjöl, Toppat med granatäpple, färsk koriander och hackad rödlök. Sprinklad med chat masala.", description_en: "This is meant to be like fire-crackers in your mouth, with crispy wheat-flour crackers as the base; lentil dumpling, sweet yoghurt, coriander-mint-chilli and tamarind chutney, sev (crunchy noodles from chickpea flour), garnished with pomegranate, fresh coriander and chopped red onions and sprinkled with chaat masala.", price: "90 kr", allergens: ["milk", "mustard", "eggs", "gluten"] },
+        { id: "ch5", name: "Tangri Kebab (Not Halal)", description_sv: "Friterade Dhaba- stil panerade kycklingklubbor marinerade i aromatiska kryddor, vitlök-ingefära och citron, Serveras med tamarind, koriander-mynta-chili och raita sås.", description_en: "Dhaba style breaded chicken drumsticks marinated in aromatic spices, garlic-ginger paste and lemon juice. Fried and served with tamarind and coriander-mint-chilli and raita sauce.", price: "85 kr", allergens: ["lupin", "milk", "eggs", "gluten"] },
+        { id: "ch4", name: "Papdi Chaat (Can be made Vegan )", description_sv: "Stekt potatisbiff med söt och syrlig smak, krispiga vetemjölsstekta kakor, linsdumplings toppat med en kryddig kikärtssås och mango, koriander-mynta-chili, tamarind chutney och garnerad med lök, äpplen, gurka och koriander.", description_en: "Sweet and tangy flavoured fried potato patty, crispy wheat flour fried cakes, lentil dumplings, topped with a spicy chickpea gravy and mango, coriander-mint-chilli, tamarind chutney, and sprinkled with onions, apples, cucumber and coriander.", price: "100 kr", allergens: ["lupin", "gluten"] }
       ]
     },
     {
@@ -270,13 +270,13 @@ export default function Home() {
       subtitle: "SERVED WITH A PORTION OF RICE",
       hideHeader: true,
       items: [
-        { id: "v1", name: "Mix Veg", description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.", description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce. (Vegan)", price: "170 kr", allergens: [] },
-        { id: "v2", name: "Shahi Navratan Veg", description_sv: "Säsongens grönsaker curry med kokos, grädde, smör och yoghurt.", description_en: "Seasonal vegetable curry with coconut-cream, butter and yoghurt.", price: "170 kr", allergens: ["milk"] },
-        { id: "v3", name: "Tadka Daal", description_sv: "Linsgryta på en blandning av fyra olika gula linser.", description_en: "Lentil curry with a blend of four different yellow lentils. (Vegan)", price: "170 kr", allergens: [] },
-        { id: "v4", name: "Mutter Paneer", description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.", description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk"] },
+        { id: "v1", name: "Mix Veg", description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.", description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce. (Vegan)", price: "170 kr", allergens: ["soya"] },
+        { id: "v2", name: "Shahi Navratan Veg", description_sv: "Säsongens grönsaker curry med kokos, grädde, smör och yoghurt.", description_en: "Seasonal vegetable curry with coconut-cream, butter and yoghurt.", price: "170 kr", allergens: ["milk", "soya"] },
+        { id: "v3", name: "Tadka Daal", description_sv: "Linsgryta på en blandning av fyra olika gula linser.", description_en: "Lentil curry with a blend of four different yellow lentils. (Vegan)", price: "170 kr", allergens: ["soya"] },
+        { id: "v4", name: "Mutter Paneer", description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.", description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk", "soya"] },
         { id: "v5", name: "Paneer Tikka Butter Masala", description_sv: "Hemmalagad Indisk ost curry som kokas i en sås bestående av tomat, ingefära, smör och grädde.", description_en: "Home-made Indian cheese curry, cooked along tomatoes, ginger, butter and cream.", price: "170 kr", allergens: ["milk"] },
-        { id: "v6", name: "Daal Makhni", description_sv: "Klassisk Punjabi rätt, tillagad med svarta linser, smör, grädde och kryddor.", description_en: "Classic Punjabi dish made with black lentils, butter, cream and spices. (Can be made Vegan)", price: "170 kr", allergens: ["milk"] },
-        { id: "v7", name: "Karahi Paneer", description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.", description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk"] }
+        { id: "v6", name: "Daal Makhni", description_sv: "Klassisk Punjabi rätt, tillagad med svarta linser, smör, grädde och kryddor.", description_en: "Classic Punjabi dish made with black lentils, butter, cream and spices. (Can be made Vegan)", price: "170 kr", allergens: ["milk", "soya"] },
+        { id: "v7", name: "Karahi Paneer", description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.", description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions. ( Can be done vegan with Tofu/Soya chunks )", price: "170 kr", allergens: ["milk", "soya"] }
       ]
     },
     {
@@ -393,8 +393,7 @@ export default function Home() {
         { id: "g2", name: "Paneer Tikka", description_sv: "Vår hemmagjorda indiska ost. Marineras över natten med örter och kryddor. Serveras med tomat och ingefära sås.", description_en: "Home-made Indian cheese, marinated overnight then carefully grilled. Served with tomato and ginger sauce.", price: "170 kr", allergens: ["milk"] },
         { id: "g3", name: "Seekh Kebab", description_sv: "Malet nötkött, som marineras över natten med örter och kryddor. Grillas på spett och serveras med en currysås.", description_en: "Minced beef with coriander, mint, green chillies and spices, grilled on skewers.", price: "195 kr", allergens: [] },
         { id: "g4", name: "Tandori Murgh", description_sv: "Kyckling lår som syras över natten med örter kryddor och yoghurt. Serveras med en currysås.", description_en: "Chicken thigh that's been marinated in yoghurt, herbs and spices. Served with a curry sauce.", price: "195 kr", allergens: ["milk"] },
-        { id: "g5", name: "Mixed Grill", description_sv: "Mix av paneer, chicken tikka, seekh kebab, lamm, Tandoori Murgh. Serveras med en currysås.", description_en: "Mix of paneer, chicken, seekh kebab, lamb, tandoori murgh. Served with a curry sauce.", price: "225 kr", allergens: ["milk"] },
-        { id: "g6", name: "Tangri Kebab (Not Halal)", description_sv: "Kycklingklubbor marinerade i kryddor och grillade i tandoorugn.", description_en: "Chicken drumsticks marinated in spices and grilled in tandoor oven.", price: "185 kr", allergens: [] }
+        { id: "g5", name: "Mixed Grill", description_sv: "Mix av paneer, chicken tikka, seekh kebab, lamm, Tandoori Murgh. Serveras med en currysås.", description_en: "Mix of paneer, chicken, seekh kebab, lamb, tandoori murgh. Served with a curry sauce.", price: "225 kr", allergens: ["milk"] }
       ]
     },
     {
@@ -671,6 +670,44 @@ export default function Home() {
     }));
   };
 
+  const handleExportConfig = () => {
+    const config = {
+      restaurantName,
+      subtitle,
+      locations,
+      menuPages
+    };
+    const blob = new Blob([JSON.stringify(config, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${restaurantName.toLowerCase()}_menu_config.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImportConfig = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const config = JSON.parse(event.target?.result as string);
+        if (config.restaurantName) setRestaurantName(config.restaurantName);
+        if (config.subtitle) setSubtitle(config.subtitle);
+        if (config.locations) setLocations(config.locations);
+        if (config.menuPages) setMenuPages(config.menuPages);
+        alert("Menu configuration applied successfully!");
+      } catch (error) {
+        alert("Failed to parse the configuration file. Please ensure it's a valid JSON.");
+      }
+    };
+    reader.readAsText(file);
+    // Reset file input so same file can be uploaded again
+    e.target.value = "";
+  };
+
   return (
     <div className="min-h-screen bg-[#e8dfc7] pb-24 font-lora text-[#2a2822] print:overflow-visible print:p-0 print:m-0">
       
@@ -715,6 +752,22 @@ export default function Home() {
                 <Library size={18} />
               </button>
             )}
+            <button 
+              onClick={handleExportConfig}
+              className="w-12 flex items-center justify-center bg-white text-blue-600 border border-blue-200 rounded-md hover:bg-blue-50 transition shadow-sm active:scale-95"
+              title="Export Config (JSON)"
+            >
+              <Download size={18} />
+            </button>
+            <label className="w-12 flex items-center justify-center bg-white text-green-600 border border-green-200 rounded-md hover:bg-green-50 transition shadow-sm active:scale-95 cursor-pointer" title="Import Config (JSON)">
+              <Upload size={18} />
+              <input 
+                type="file" 
+                accept=".json" 
+                onChange={handleImportConfig} 
+                className="hidden" 
+              />
+            </label>
           </div>
         </div>
       </div>
@@ -743,6 +796,21 @@ export default function Home() {
             <Library size={20} />
           </button>
         )}
+        <button 
+          onClick={handleExportConfig}
+          className="w-14 flex items-center justify-center bg-white text-blue-600 border border-blue-200 rounded-xl transition shadow-md active:scale-95"
+        >
+          <Download size={20} />
+        </button>
+        <label className="w-14 flex items-center justify-center bg-white text-green-600 border border-green-200 rounded-xl transition shadow-md active:scale-95 cursor-pointer">
+          <Upload size={20} />
+          <input 
+            type="file" 
+            accept=".json" 
+            onChange={handleImportConfig} 
+            className="hidden" 
+          />
+        </label>
       </div>
 
       {/* Floating Hint - Less intrusive */}

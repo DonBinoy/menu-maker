@@ -160,11 +160,27 @@ export const PRESET_ITEMS: PresetMenuItem[] = [
     category: "CURRYS VEGETARIAN"
   },
   {
-    name: "Punjabi Daal",
-    description_sv: "Linsgryta på fyra olika linser och röda kidneybönor.",
-    description_en: "Blend of four different lentils and red kidney beans based curry.",
-    price: "155 kr",
-    allergens: [],
+    name: "Mix Veg",
+    description_sv: "Säsongens grönsaker ångkokas i en stekt lök och tomat baserad sås.",
+    description_en: "Seasonal vegetables steamed in fried onions and tomato-based sauce.",
+    price: "170 kr",
+    allergens: ["soya"],
+    category: "CURRYS VEGETARIAN"
+  },
+  {
+    name: "Tadka Daal",
+    description_sv: "Linsgryta på en blandning av fyra olika gula linser.",
+    description_en: "Lentil curry with a blend of four different yellow lentils.",
+    price: "170 kr",
+    allergens: ["mustard", "soya"],
+    category: "CURRYS VEGETARIAN"
+  },
+  {
+    name: "Mutter Paneer",
+    description_sv: "En curry bestående av vår hemmalagade ost och ärtor som kokas i en tomat och lök baserad sås.",
+    description_en: "Curry with home-made Indian cheese and peas, cooked in tomato and onion-based sauce. ( Can be done vegan with Tofu/Soya chunks )",
+    price: "170 kr",
+    allergens: ["milk", "mustard", "soya"],
     category: "CURRYS VEGETARIAN"
   },
   {
@@ -187,25 +203,57 @@ export const PRESET_ITEMS: PresetMenuItem[] = [
     name: "Shahi Navratan Veg",
     description_sv: "Säsongens grönsaker i en curry med kokos, grädde, smör och yoghurt.",
     description_en: "Seasonal vegetables in a curry with coconut-cream, butter and yoghurt.",
-    price: "155 kr",
-    allergens: ["milk"],
+    price: "170 kr",
+    allergens: ["milk", "mustard", "soya"],
     category: "CURRYS VEGETARIAN"
   },
   {
     name: "Paneer Tikka Butter Masala",
     description_sv: "Hemmalagad Indisk ost curry som kokas i en sås bestående av tomat, ingefära, smör och grädde.",
     description_en: "Home-made Indian cheese curry, cooked along tomato, ginger, butter and cream.",
-    price: "155 kr",
-    allergens: ["milk"],
+    price: "170 kr",
+    allergens: ["milk", "soya"],
     category: "CURRYS VEGETARIAN"
   },
   {
     name: "Daal Makhni",
     description_sv: "Klassisk Punjabi rätt tillagad med svarta linser, smör, grädde och kryddor.",
     description_en: "Classic Punjabi dish made black lentils, butter, cream and spices.",
-    price: "155 kr",
-    allergens: ["milk"],
+    price: "170 kr",
+    allergens: ["milk", "mustard", "soya"],
     category: "CURRYS VEGETARIAN"
+  },
+  {
+    name: "Karahi Paneer",
+    description_sv: "Indisk Färskost, tillagad med lök, tomat, vitlök och ingefärasås med bitar av paprika och lök.",
+    description_en: "Indian cheese curry cooked in onion, tomato, garlic and ginger sauce with chunks of peppers and onions. ( Can be done vegan with Tofu/Soya chunks )",
+    price: "170 kr",
+    allergens: ["milk", "mustard", "soya"],
+    category: "CURRYS VEGETARIAN"
+  },
+  {
+    name: "Blooming Onion",
+    description_sv: "En version av Onion Bhaji, friterad skuren lök likt en blomma. Serveras med mango, koriander-mynta-chilli och tamarindsås.",
+    description_en: "A version of onion bhaji, onion cut as a flower, breaded and fried. Served with mango, coriander-mint-chilli and tamarind chutney.",
+    price: "90 kr",
+    allergens: ["milk", "eggs", "lupin", "gluten"],
+    category: "STARTERS"
+  },
+  {
+    name: "Pataka Papdi",
+    description_sv: "Krispiga vetemjölskex som bas, linsdumplings, sötad yoghurt, koriander-mynta-chilli och tamarind chutney, Sev som är knapriga nudlar från kikärtsmjöl, Toppat med granatäpple, färsk koriander och hackad rödlök. Sprinklad med chat masala.",
+    description_en: "This is meant to be like fire-crackers in your mouth, with crispy wheat-flour crackers as the base; lentil dumpling, sweet yoghurt, coriander-mint-chilli and tamarind chutney, sev (crunchy noodles from chickpea flour), garnished with pomegranate, fresh coriander and chopped red onions and sprinkled with chaat masala.",
+    price: "90 kr",
+    allergens: ["milk", "eggs", "lupin", "gluten"],
+    category: "STARTERS"
+  },
+  {
+    name: "Papdi Chaat",
+    description_sv: "Stekt potatisbiff med söt och syrlig smak, krispiga vetemjölsstekta kakor, linsdumplings toppat med en kryddig kikärtssås och mango, koriander-mynta-chili, tamarind chutney och garnerad med lök, äpplen, gurka och koriander.",
+    description_en: "Sweet and tangy flavoured fried potato patty, crispy wheat flour fried cakes, lentil dumplings, topped with a spicy chickpea gravy and mango, coriander-mint-chilli, tamarind chutney, and sprinkled with onions, apples, cucumber and coriander.",
+    price: "100 kr",
+    allergens: ["lupin", "gluten"],
+    category: "STARTERS"
   },
 
   // FISH & SEAFOOD
