@@ -881,101 +881,320 @@ export default function Home() {
         {/* Menu Pages */}
         {menuPages.map((page, pageIndex) => (
           page.id === 'page-cover' ? (
-            <div key={page.id} className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative print-page flex flex-col justify-between shrink-0 p-12 mx-auto overflow-hidden">
-              {/* Background Watermark */}
-              <div className="absolute -top-[20%] -left-[20%] pointer-events-none opacity-[0.05]">
-                <Mandala className="w-[800px] h-[800px] text-[#2a2822]" />
+            <div key={page.id} className="w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border-2 border-[#8a7d64] print:border-[#8a7d64] relative print-page flex flex-col justify-between shrink-0 p-12 mx-auto overflow-hidden">
+
+              {/* Background mandalas */}
+              <div className="absolute -top-[15%] -left-[15%] pointer-events-none opacity-[0.05]">
+                <Mandala className="w-[700px] h-[700px] text-[#2a2822]" />
               </div>
-              <div className="absolute -bottom-[20%] -right-[20%] pointer-events-none opacity-[0.05]">
-                <Mandala className="w-[800px] h-[800px] text-[#2a2822]" />
+              <div className="absolute -bottom-[15%] -right-[15%] pointer-events-none opacity-[0.05]">
+                <Mandala className="w-[700px] h-[700px] text-[#2a2822]" />
               </div>
 
-              {/* Inner border */}
-              <div className="absolute inset-10 border border-[#a59e8c] pointer-events-none opacity-30"></div>
+              {/* === SAME ORNATE FRAME AS CONTENT PAGES === */}
+              <div className="absolute inset-3 border-2 border-[#8a7d64] pointer-events-none"></div>
+              <div className="absolute inset-[14px] border border-[#8a7d64] pointer-events-none opacity-60"></div>
+              <div className="absolute inset-[18px] border border-[#8a7d64] pointer-events-none opacity-25"></div>
+              {/* Top-left corner */}
+              <svg className="absolute top-1 left-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <path d="M4 4 L30 4" stroke="currentColor" strokeWidth="2.5"/><path d="M4 4 L4 30" stroke="currentColor" strokeWidth="2.5"/>
+                <path d="M8 9 L22 9" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M9 8 L9 22" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+                <circle cx="4" cy="4" r="3.5" fill="currentColor"/>
+                <path d="M4 -1 Q7 4 4 9 Q1 4 4 -1Z" fill="currentColor" opacity="0.3"/>
+                <path d="M-1 4 Q4 7 9 4 Q4 1 -1 4Z" fill="currentColor" opacity="0.3"/>
+                <path d="M11 11 Q18 13 20 20 Q13 18 11 11Z" fill="currentColor" opacity="0.3"/>
+                <circle cx="20" cy="20" r="1.5" fill="currentColor" opacity="0.5"/>
+              </svg>
+              {/* Top-right corner */}
+              <svg className="absolute top-1 right-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <path d="M52 4 L26 4" stroke="currentColor" strokeWidth="2.5"/><path d="M52 4 L52 30" stroke="currentColor" strokeWidth="2.5"/>
+                <path d="M48 9 L34 9" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M47 8 L47 22" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+                <circle cx="52" cy="4" r="3.5" fill="currentColor"/>
+                <path d="M52 -1 Q55 4 52 9 Q49 4 52 -1Z" fill="currentColor" opacity="0.3"/>
+                <path d="M47 4 Q52 7 57 4 Q52 1 47 4Z" fill="currentColor" opacity="0.3"/>
+                <path d="M45 11 Q38 13 36 20 Q43 18 45 11Z" fill="currentColor" opacity="0.3"/>
+                <circle cx="36" cy="20" r="1.5" fill="currentColor" opacity="0.5"/>
+              </svg>
+              {/* Bottom-left corner */}
+              <svg className="absolute bottom-1 left-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <path d="M4 52 L30 52" stroke="currentColor" strokeWidth="2.5"/><path d="M4 52 L4 26" stroke="currentColor" strokeWidth="2.5"/>
+                <path d="M8 47 L22 47" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M9 48 L9 34" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+                <circle cx="4" cy="52" r="3.5" fill="currentColor"/>
+                <path d="M4 47 Q7 52 4 57 Q1 52 4 47Z" fill="currentColor" opacity="0.3"/>
+                <path d="M-1 52 Q4 55 9 52 Q4 49 -1 52Z" fill="currentColor" opacity="0.3"/>
+                <path d="M11 45 Q18 43 20 36 Q13 38 11 45Z" fill="currentColor" opacity="0.3"/>
+                <circle cx="20" cy="36" r="1.5" fill="currentColor" opacity="0.5"/>
+              </svg>
+              {/* Bottom-right corner */}
+              <svg className="absolute bottom-1 right-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <path d="M52 52 L26 52" stroke="currentColor" strokeWidth="2.5"/><path d="M52 52 L52 26" stroke="currentColor" strokeWidth="2.5"/>
+                <path d="M48 47 L34 47" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M47 48 L47 34" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+                <circle cx="52" cy="52" r="3.5" fill="currentColor"/>
+                <path d="M52 47 Q55 52 52 57 Q49 52 52 47Z" fill="currentColor" opacity="0.3"/>
+                <path d="M47 52 Q52 55 57 52 Q52 49 47 52Z" fill="currentColor" opacity="0.3"/>
+                <path d="M45 45 Q38 43 36 36 Q43 38 45 45Z" fill="currentColor" opacity="0.3"/>
+                <circle cx="36" cy="36" r="1.5" fill="currentColor" opacity="0.5"/>
+              </svg>
+              {/* Left medallion */}
+              <div className="absolute left-[7px] top-1/2 -translate-y-1/2 bg-[#f5ead5] py-1.5 pointer-events-none">
+                <svg width="16" height="60" viewBox="0 0 16 60" fill="currentColor" className="text-[#8a7d64]">
+                  <circle cx="8" cy="30" r="4.5" opacity="0.85"/><circle cx="8" cy="30" r="7" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.4"/>
+                  <path d="M8 21 Q11 26 8 30 Q5 26 8 21Z" opacity="0.35"/><path d="M8 39 Q11 34 8 30 Q5 34 8 39Z" opacity="0.35"/>
+                  <circle cx="8" cy="14" r="2" opacity="0.4"/><circle cx="8" cy="46" r="2" opacity="0.4"/>
+                </svg>
+              </div>
+              {/* Right medallion */}
+              <div className="absolute right-[7px] top-1/2 -translate-y-1/2 bg-[#f5ead5] py-1.5 pointer-events-none">
+                <svg width="16" height="60" viewBox="0 0 16 60" fill="currentColor" className="text-[#8a7d64]">
+                  <circle cx="8" cy="30" r="4.5" opacity="0.85"/><circle cx="8" cy="30" r="7" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.4"/>
+                  <path d="M8 21 Q11 26 8 30 Q5 26 8 21Z" opacity="0.35"/><path d="M8 39 Q11 34 8 30 Q5 34 8 39Z" opacity="0.35"/>
+                  <circle cx="8" cy="14" r="2" opacity="0.4"/><circle cx="8" cy="46" r="2" opacity="0.4"/>
+                </svg>
+              </div>
+              {/* Top center ornament */}
+              <div className="absolute top-[6px] left-1/2 -translate-x-1/2 bg-[#f5ead5] px-2 pointer-events-none">
+                <svg width="90" height="20" viewBox="0 0 90 20" fill="currentColor" className="text-[#8a7d64]">
+                  <path d="M45 2L51 10L45 18L39 10L45 2Z"/>
+                  <path d="M29 10L35 14.5L33 18L26 13L29 10Z" opacity="0.6"/><path d="M61 10L55 14.5L57 18L64 13L61 10Z" opacity="0.6"/>
+                  <circle cx="9" cy="10" r="2" opacity="0.4"/><circle cx="81" cy="10" r="2" opacity="0.4"/>
+                </svg>
+              </div>
+              {/* Bottom center ornament */}
+              <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2 bg-[#f5ead5] px-2 pointer-events-none">
+                <svg width="90" height="20" viewBox="0 0 90 20" fill="currentColor" className="text-[#8a7d64]">
+                  <path d="M45 18L51 10L45 2L39 10L45 18Z"/>
+                  <path d="M29 10L35 5.5L33 2L26 7L29 10Z" opacity="0.6"/><path d="M61 10L55 5.5L57 2L64 7L61 10Z" opacity="0.6"/>
+                  <circle cx="9" cy="10" r="2" opacity="0.4"/><circle cx="81" cy="10" r="2" opacity="0.4"/>
+                </svg>
+              </div>
 
-              <div className="flex-1 flex flex-col items-center justify-center z-10 px-12">
-                <div className="mb-6 flex justify-center">
-                  <img 
-                    src="/image.png" 
-                    alt={restaurantName} 
-                    className="h-32 w-auto object-contain"
-                  />
+              {/* === CONTENT === */}
+              <div className="flex-1 flex flex-col items-center justify-center z-10 px-8">
+
+                {/* Logo */}
+                <div className="mb-4 flex justify-center">
+                  <img src="/image.png" alt={restaurantName} className="h-28 w-auto object-contain drop-shadow-sm" />
                 </div>
-                
-                <div className="flex justify-center mb-6 opacity-70">
-                  <svg width="160" height="15" viewBox="0 0 160 15" fill="none" className="text-[#5c5643]">
-                    <path d="M0 7.5 H 65 M 95 7.5 H 160" stroke="currentColor" strokeWidth="1" />
-                    <path d="M80 0 L85 7.5 L80 15 L75 7.5 Z" fill="currentColor" />
-                    <circle cx="68" cy="7.5" r="2" fill="currentColor" />
-                    <circle cx="92" cy="7.5" r="2" fill="currentColor" />
+
+                {/* Top decorative divider */}
+                <div className="flex items-center justify-center gap-3 mb-2 w-full opacity-60">
+                  <div className="flex-1 border-t border-[#8a7d64]"></div>
+                  <svg width="60" height="16" viewBox="0 0 60 16" fill="currentColor" className="text-[#8a7d64]">
+                    <path d="M30 0L34 8L30 16L26 8L30 0Z"/>
+                    <circle cx="18" cy="8" r="2.5" opacity="0.6"/>
+                    <circle cx="42" cy="8" r="2.5" opacity="0.6"/>
+                    <circle cx="8"  cy="8" r="1.5" opacity="0.3"/>
+                    <circle cx="52" cy="8" r="1.5" opacity="0.3"/>
                   </svg>
+                  <div className="flex-1 border-t border-[#8a7d64]"></div>
                 </div>
 
-                <EditableText 
-                  value={subtitle} 
-                  onChange={setSubtitle} 
-                  tagName="p" 
-                  className="text-sm font-lora tracking-[0.3em] text-[#5c5643] text-center mb-24 uppercase hover:bg-[#e8dfc7] p-2 transition" 
-                />
+                <EditableText value={subtitle} onChange={setSubtitle} tagName="p"
+                  className="text-[11px] font-lora tracking-[0.35em] text-[#5c5643] text-center mb-2 uppercase hover:bg-[#e8dfc7] px-2 py-1 transition" />
 
-                <div className="flex justify-between w-full gap-8">
-                  {locations.map((loc) => (
-                    <div key={loc.id} className="flex-1 text-center font-lora text-sm flex flex-col items-center group relative p-4 hover:bg-[#e8dfc7]/50 transition">
-                      <EditableText value={loc.name} onChange={(v) => updateLocation(loc.id, 'name', v)} className="font-cormorant font-bold text-2xl mb-6 uppercase tracking-wider text-[#2a2822]" />
-                      
-                      <div className="mb-2 text-xs text-[#6b6452] tracking-widest uppercase">Opening Hours</div>
-                      
-                      <div className="flex items-center justify-center gap-2 mb-1 w-full">
-                        <EditableText value={loc.hoursDays} onChange={(v) => updateLocation(loc.id, 'hoursDays', v)} className="uppercase text-xs tracking-wider" />
-                        <span className="text-[#a59e8c]">|</span>
-                        <EditableText value={loc.hoursTime} onChange={(v) => updateLocation(loc.id, 'hoursTime', v)} className="" />
+                {/* Bottom decorative divider */}
+                <div className="flex items-center justify-center gap-3 mb-8 w-full opacity-60">
+                  <div className="flex-1 border-t border-[#8a7d64]"></div>
+                  <svg width="40" height="10" viewBox="0 0 40 10" fill="currentColor" className="text-[#8a7d64]">
+                    <circle cx="20" cy="5" r="3"/>
+                    <circle cx="10" cy="5" r="1.5" opacity="0.5"/>
+                    <circle cx="30" cy="5" r="1.5" opacity="0.5"/>
+                    <circle cx="3"  cy="5" r="1" opacity="0.25"/>
+                    <circle cx="37" cy="5" r="1" opacity="0.25"/>
+                  </svg>
+                  <div className="flex-1 border-t border-[#8a7d64]"></div>
+                </div>
+
+                {/* Location cards */}
+                <div className="flex justify-between w-full gap-6">
+                  {/* Vertical ornament between cards — left */}
+                  {locations.map((loc, i) => (
+                    <div key={loc.id} className="flex-1 relative">
+                      {/* Card bg with subtle border */}
+                      <div className="absolute inset-0 border border-[#8a7d64] opacity-20 pointer-events-none rounded-sm"></div>
+                      <div className="flex flex-col items-center text-center font-lora text-sm px-3 py-4 hover:bg-[#e8dfc7]/40 transition relative group">
+                        {/* Location name with ornament */}
+                        <div className="mb-1">
+                          <svg width="20" height="8" viewBox="0 0 20 8" fill="currentColor" className="text-[#8a7d64] mx-auto mb-1 opacity-60">
+                            <path d="M10 0L13 4L10 8L7 4L10 0Z"/>
+                            <circle cx="3" cy="4" r="1.5" opacity="0.5"/>
+                            <circle cx="17" cy="4" r="1.5" opacity="0.5"/>
+                          </svg>
+                        </div>
+                        <EditableText value={loc.name} onChange={(v) => updateLocation(loc.id, 'name', v)} className="font-cormorant font-bold text-[1.45rem] mb-3 uppercase tracking-wider text-[#2a2822]" />
+
+                        <div className="w-12 border-t border-[#8a7d64] opacity-40 mb-3"></div>
+
+                        <div className="text-[12px] text-[#5c5643] tracking-[0.2em] uppercase mb-2 font-extrabold">Opening Hours</div>
+
+                        <div className="flex items-center justify-center gap-2 mb-0.5 w-full">
+                          <EditableText value={loc.hoursDays} onChange={(v) => updateLocation(loc.id, 'hoursDays', v)} className="uppercase text-[13px] tracking-wide font-bold text-[#2a2822]" />
+                          <span className="text-[#a59e8c] text-[13px]">|</span>
+                          <EditableText value={loc.hoursTime} onChange={(v) => updateLocation(loc.id, 'hoursTime', v)} className="text-[13px] font-bold text-[#2a2822]" />
+                        </div>
+                        <EditableText value={loc.kitchenClose} onChange={(v) => updateLocation(loc.id, 'kitchenClose', v)} className="text-[11px] mb-2 uppercase text-[#5c5643] font-medium" />
+
+                        <div className="flex items-center justify-center gap-2 mb-0.5 w-full">
+                          <EditableText value={loc.weekendDays} onChange={(v) => updateLocation(loc.id, 'weekendDays', v)} className="uppercase text-[13px] tracking-wide font-bold text-[#2a2822]" />
+                          <span className="text-[#a59e8c] text-[13px]">|</span>
+                          <EditableText value={loc.weekendTime} onChange={(v) => updateLocation(loc.id, 'weekendTime', v)} className="text-[13px] font-bold text-[#2a2822]" />
+                        </div>
+                        <EditableText value={loc.weekendKitchen} onChange={(v) => updateLocation(loc.id, 'weekendKitchen', v)} className="text-[11px] mb-4 uppercase text-[#5c5643] font-medium" />
+
+                        <div className="w-8 border-t border-[#8a7d64] opacity-30 mb-3"></div>
+
+                        <EditableText value={loc.restName} onChange={(v) => updateLocation(loc.id, 'restName', v)} className="text-[14px] mb-0.5 uppercase tracking-widest font-bold font-cormorant text-[#2a2822]" />
+                        <EditableText value={loc.addressLine1} onChange={(v) => updateLocation(loc.id, 'addressLine1', v)} className="text-[11px] mb-0.5 uppercase tracking-wide text-[#6b6452]" />
+                        <EditableText value={loc.addressLine2} onChange={(v) => updateLocation(loc.id, 'addressLine2', v)} className="text-[11px] mb-3 uppercase tracking-wide text-[#6b6452]" />
+                        <EditableText value={loc.phone} onChange={(v) => updateLocation(loc.id, 'phone', v)} className="text-[14px] font-lora font-bold text-[#2a2822]" />
                       </div>
-                      <EditableText value={loc.kitchenClose} onChange={(v) => updateLocation(loc.id, 'kitchenClose', v)} className="text-xs mb-4 uppercase text-[#6b6452]" />
-                      
-                      <div className="flex items-center justify-center gap-2 mb-1 w-full">
-                        <EditableText value={loc.weekendDays} onChange={(v) => updateLocation(loc.id, 'weekendDays', v)} className="uppercase text-xs tracking-wider" />
-                        <span className="text-[#a59e8c]">|</span>
-                        <EditableText value={loc.weekendTime} onChange={(v) => updateLocation(loc.id, 'weekendTime', v)} className="" />
-                      </div>
-                      <EditableText value={loc.weekendKitchen} onChange={(v) => updateLocation(loc.id, 'weekendKitchen', v)} className="text-xs mb-8 uppercase text-[#6b6452]" />
-
-                      <EditableText value={loc.restName} onChange={(v) => updateLocation(loc.id, 'restName', v)} className="text-sm mb-1 uppercase tracking-wider font-bold font-cormorant" />
-                      <EditableText value={loc.addressLine1} onChange={(v) => updateLocation(loc.id, 'addressLine1', v)} className="text-xs mb-1 uppercase tracking-wider" />
-                      <EditableText value={loc.addressLine2} onChange={(v) => updateLocation(loc.id, 'addressLine2', v)} className="text-xs mb-8 uppercase tracking-wider" />
-
-                      <EditableText value={loc.phone} onChange={(v) => updateLocation(loc.id, 'phone', v)} className="text-sm" />
                     </div>
                   ))}
                 </div>
 
-                {/* Gallery QR Code */}
-                <div className="mt-12 flex flex-col items-center">
-                  <div className="w-32 h-32 p-2 bg-white border border-[#d8d0b7] shadow-sm">
-                    <img 
-                      src="/gallery_qr.png" 
-                      alt="Gallery QR Code" 
-                      className="w-full h-full object-contain"
-                    />
+                {/* QR Code */}
+                <div className="mt-6 flex flex-col items-center">
+                  <div className="flex items-center gap-3 mb-2 w-full opacity-50">
+                    <div className="flex-1 border-t border-[#8a7d64]"></div>
+                    <circle cx="4" cy="4" r="3" fill="#8a7d64"/>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="#8a7d64" className="opacity-60"><circle cx="4" cy="4" r="3"/></svg>
+                    <div className="flex-1 border-t border-[#8a7d64]"></div>
                   </div>
-                  <p className="mt-2 text-[10px] font-lora uppercase tracking-[0.2em] text-[#6b6452]">Scan for Gallery</p>
+                  <div className="w-32 h-32 p-1.5 bg-white border border-[#8a7d64] shadow-sm opacity-90">
+                    <img src="/gallery_qr.png" alt="Gallery QR Code" className="w-full h-full object-contain" />
+                  </div>
+                  <p className="mt-2 text-[10px] font-lora uppercase tracking-[0.25em] font-bold text-[#5c5643]">Scan for Gallery</p>
                 </div>
               </div>
             </div>
           ) : (
-          <div key={page.id} className={`w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border border-[#d8d0b7] print:!border-none relative print-page ${page.id === 'page-sides' ? 'p-8' : 'p-12'} flex flex-col group/page shrink-0 mx-auto`}>
+          <div key={page.id} className={`w-[210mm] h-[297mm] bg-[#f5ead5] shadow-none border-2 border-[#8a7d64] print:border-[#8a7d64] relative print-page ${page.id === 'page-sides' ? 'p-8' : 'p-12'} flex flex-col group/page shrink-0 mx-auto`}>
             
             {/* Background Watermark - Clipped to page */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02] overflow-hidden">
               <Mandala className="w-[120%] h-[120%] text-[#2a2822]" />
             </div>
 
-            {/* Elegant Vintage Frame */}
-            <div className="absolute inset-6 border border-[#c8bfa7] pointer-events-none opacity-60"></div>
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 bg-[#f5ead5] px-4 pointer-events-none opacity-60">
-               <svg width="40" height="12" viewBox="0 0 40 12" fill="currentColor" className="text-[#a59e8c]"><path d="M20 0L24 6L20 12L16 6L20 0ZM8 6L12 9L10 12L6 8L8 6ZM32 6L28 9L30 12L34 8L32 6Z"/></svg>
+            {/* ── DECORATIVE FRAME ──────────────────────────────── */}
+            {/* Triple border system */}
+            <div className="absolute inset-3 border-2 border-[#8a7d64] pointer-events-none"></div>
+            <div className="absolute inset-[14px] border border-[#8a7d64] pointer-events-none opacity-60"></div>
+            <div className="absolute inset-[18px] border border-[#8a7d64] pointer-events-none opacity-25"></div>
+
+            {/* Top-left corner */}
+            <svg className="absolute top-1 left-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <path d="M4 4 L30 4" stroke="currentColor" strokeWidth="2.5"/><path d="M4 4 L4 30" stroke="currentColor" strokeWidth="2.5"/>
+              <path d="M8 9 L22 9" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M9 8 L9 22" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+              <circle cx="4" cy="4" r="3.5" fill="currentColor"/>
+              <circle cx="4" cy="4" r="6" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35"/>
+              <path d="M4 -1 Q7 4 4 9 Q1 4 4 -1Z" fill="currentColor" opacity="0.3"/>
+              <path d="M-1 4 Q4 7 9 4 Q4 1 -1 4Z" fill="currentColor" opacity="0.3"/>
+              <path d="M11 11 Q18 13 20 20 Q13 18 11 11Z" fill="currentColor" opacity="0.3"/>
+              <circle cx="20" cy="20" r="1.5" fill="currentColor" opacity="0.5"/>
+              <circle cx="26" cy="4" r="1" fill="currentColor" opacity="0.4"/>
+              <circle cx="4" cy="26" r="1" fill="currentColor" opacity="0.4"/>
+            </svg>
+
+            {/* Top-right corner */}
+            <svg className="absolute top-1 right-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <path d="M52 4 L26 4" stroke="currentColor" strokeWidth="2.5"/><path d="M52 4 L52 30" stroke="currentColor" strokeWidth="2.5"/>
+              <path d="M48 9 L34 9" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M47 8 L47 22" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+              <circle cx="52" cy="4" r="3.5" fill="currentColor"/>
+              <circle cx="52" cy="4" r="6" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35"/>
+              <path d="M52 -1 Q55 4 52 9 Q49 4 52 -1Z" fill="currentColor" opacity="0.3"/>
+              <path d="M47 4 Q52 7 57 4 Q52 1 47 4Z" fill="currentColor" opacity="0.3"/>
+              <path d="M45 11 Q38 13 36 20 Q43 18 45 11Z" fill="currentColor" opacity="0.3"/>
+              <circle cx="36" cy="20" r="1.5" fill="currentColor" opacity="0.5"/>
+              <circle cx="30" cy="4" r="1" fill="currentColor" opacity="0.4"/>
+              <circle cx="52" cy="26" r="1" fill="currentColor" opacity="0.4"/>
+            </svg>
+
+            {/* Bottom-left corner */}
+            <svg className="absolute bottom-1 left-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <path d="M4 52 L30 52" stroke="currentColor" strokeWidth="2.5"/><path d="M4 52 L4 26" stroke="currentColor" strokeWidth="2.5"/>
+              <path d="M8 47 L22 47" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M9 48 L9 34" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+              <circle cx="4" cy="52" r="3.5" fill="currentColor"/>
+              <circle cx="4" cy="52" r="6" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35"/>
+              <path d="M4 47 Q7 52 4 57 Q1 52 4 47Z" fill="currentColor" opacity="0.3"/>
+              <path d="M-1 52 Q4 55 9 52 Q4 49 -1 52Z" fill="currentColor" opacity="0.3"/>
+              <path d="M11 45 Q18 43 20 36 Q13 38 11 45Z" fill="currentColor" opacity="0.3"/>
+              <circle cx="20" cy="36" r="1.5" fill="currentColor" opacity="0.5"/>
+              <circle cx="26" cy="52" r="1" fill="currentColor" opacity="0.4"/>
+              <circle cx="4" cy="30" r="1" fill="currentColor" opacity="0.4"/>
+            </svg>
+
+            {/* Bottom-right corner */}
+            <svg className="absolute bottom-1 right-1 text-[#8a7d64] pointer-events-none" width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <path d="M52 52 L26 52" stroke="currentColor" strokeWidth="2.5"/><path d="M52 52 L52 26" stroke="currentColor" strokeWidth="2.5"/>
+              <path d="M48 47 L34 47" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/><path d="M47 48 L47 34" stroke="currentColor" strokeWidth="0.8" opacity="0.5"/>
+              <circle cx="52" cy="52" r="3.5" fill="currentColor"/>
+              <circle cx="52" cy="52" r="6" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35"/>
+              <path d="M52 47 Q55 52 52 57 Q49 52 52 47Z" fill="currentColor" opacity="0.3"/>
+              <path d="M47 52 Q52 55 57 52 Q52 49 47 52Z" fill="currentColor" opacity="0.3"/>
+              <path d="M45 45 Q38 43 36 36 Q43 38 45 45Z" fill="currentColor" opacity="0.3"/>
+              <circle cx="36" cy="36" r="1.5" fill="currentColor" opacity="0.5"/>
+              <circle cx="30" cy="52" r="1" fill="currentColor" opacity="0.4"/>
+              <circle cx="52" cy="30" r="1" fill="currentColor" opacity="0.4"/>
+            </svg>
+
+            {/* Left side medallion */}
+            <div className="absolute left-[7px] top-1/2 -translate-y-1/2 bg-[#f5ead5] py-1.5 pointer-events-none">
+              <svg width="16" height="60" viewBox="0 0 16 60" fill="currentColor" className="text-[#8a7d64]">
+                <circle cx="8" cy="30" r="4.5" opacity="0.85"/>
+                <circle cx="8" cy="30" r="7" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.4"/>
+                <path d="M8 21 Q11 26 8 30 Q5 26 8 21Z" opacity="0.35"/>
+                <path d="M8 39 Q11 34 8 30 Q5 34 8 39Z" opacity="0.35"/>
+                <path d="M2 30 Q8 27 8 30 Q8 27 14 30 Q8 33 2 30Z" opacity="0.28"/>
+                <circle cx="8" cy="14" r="2" opacity="0.4"/>
+                <circle cx="8" cy="46" r="2" opacity="0.4"/>
+                <circle cx="8" cy="7"  r="1" opacity="0.25"/>
+                <circle cx="8" cy="53" r="1" opacity="0.25"/>
+              </svg>
             </div>
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-[#f5ead5] px-4 pointer-events-none opacity-60">
-               <svg width="40" height="12" viewBox="0 0 40 12" fill="currentColor" className="text-[#a59e8c]"><path d="M20 12L24 6L20 0L16 6L20 12ZM8 6L12 3L10 0L6 4L8 6ZM32 6L28 3L30 0L34 4L32 6Z"/></svg>
+
+            {/* Right side medallion */}
+            <div className="absolute right-[7px] top-1/2 -translate-y-1/2 bg-[#f5ead5] py-1.5 pointer-events-none">
+              <svg width="16" height="60" viewBox="0 0 16 60" fill="currentColor" className="text-[#8a7d64]">
+                <circle cx="8" cy="30" r="4.5" opacity="0.85"/>
+                <circle cx="8" cy="30" r="7" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.4"/>
+                <path d="M8 21 Q11 26 8 30 Q5 26 8 21Z" opacity="0.35"/>
+                <path d="M8 39 Q11 34 8 30 Q5 34 8 39Z" opacity="0.35"/>
+                <path d="M2 30 Q8 27 8 30 Q8 27 14 30 Q8 33 2 30Z" opacity="0.28"/>
+                <circle cx="8" cy="14" r="2" opacity="0.4"/>
+                <circle cx="8" cy="46" r="2" opacity="0.4"/>
+                <circle cx="8" cy="7"  r="1" opacity="0.25"/>
+                <circle cx="8" cy="53" r="1" opacity="0.25"/>
+              </svg>
+            </div>
+
+            {/* Top center ornament */}
+            <div className="absolute top-[6px] left-1/2 -translate-x-1/2 bg-[#f5ead5] px-2 pointer-events-none">
+              <svg width="90" height="20" viewBox="0 0 90 20" fill="currentColor" className="text-[#8a7d64]">
+                <path d="M45 2L51 10L45 18L39 10L45 2Z"/>
+                <path d="M29 10L35 14.5L33 18L26 13L29 10Z" opacity="0.6"/>
+                <path d="M61 10L55 14.5L57 18L64 13L61 10Z" opacity="0.6"/>
+                <path d="M18 10L23 13L22 16L15 12L18 10Z" opacity="0.4"/>
+                <path d="M72 10L67 13L68 16L75 12L72 10Z" opacity="0.4"/>
+                <circle cx="9"  cy="10" r="2" opacity="0.4"/>
+                <circle cx="81" cy="10" r="2" opacity="0.4"/>
+                <circle cx="3"  cy="10" r="1" opacity="0.2"/>
+                <circle cx="87" cy="10" r="1" opacity="0.2"/>
+              </svg>
+            </div>
+
+            {/* Bottom center ornament */}
+            <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2 bg-[#f5ead5] px-2 pointer-events-none">
+              <svg width="90" height="20" viewBox="0 0 90 20" fill="currentColor" className="text-[#8a7d64]">
+                <path d="M45 18L51 10L45 2L39 10L45 18Z"/>
+                <path d="M29 10L35 5.5L33 2L26 7L29 10Z" opacity="0.6"/>
+                <path d="M61 10L55 5.5L57 2L64 7L61 10Z" opacity="0.6"/>
+                <path d="M18 10L23 7L22 4L15 8L18 10Z" opacity="0.4"/>
+                <path d="M72 10L67 7L68 4L75 8L72 10Z" opacity="0.4"/>
+                <circle cx="9"  cy="10" r="2" opacity="0.4"/>
+                <circle cx="81" cy="10" r="2" opacity="0.4"/>
+                <circle cx="3"  cy="10" r="1" opacity="0.2"/>
+                <circle cx="87" cy="10" r="1" opacity="0.2"/>
+              </svg>
             </div>
 
             <div className="flex-1 z-10 flex flex-col relative px-4">
@@ -1035,7 +1254,7 @@ export default function Home() {
                               <EditableText 
                                 value={sub.name} 
                                 onChange={(v) => updateSubItem(page.id, item.id, sub.id, 'name', v)} 
-                                className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#2a2822] flex-1`} 
+                                className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14.5px]'} font-lora font-medium text-[#2a2822] flex-1`} 
                               />
                               <div className="scale-75 origin-left flex items-center gap-1">
                                 <AllergenIconsList allergens={sub.allergens} />
@@ -1137,17 +1356,17 @@ export default function Home() {
                         value={item.description_sv} 
                         onChange={(v) => updateMenuItem(page.id, item.id, 'description_sv', v)} 
                         tagName="p" 
-                        className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#4a473e] leading-[1.5] mb-0.5 italic whitespace-pre-wrap`} 
+                        className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14.5px]'} font-lora font-medium text-[#2a2822] leading-[1.55] mb-0.5 whitespace-pre-wrap`} 
                       />
                       
                       <div className="flex w-full items-end gap-2">
                         <div className="flex-1">
                           {item.description_en && (
-                            <EditableText 
+                          <EditableText 
                               value={item.description_en} 
                               onChange={(v) => updateMenuItem(page.id, item.id, 'description_en', v)} 
                               tagName="p" 
-                              className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14px]'} font-lora text-[#4a473e] leading-[1.5] italic whitespace-pre-wrap`} 
+                              className={`${page.id === 'page-sides' ? 'text-[13px]' : 'text-[14.5px]'} font-lora font-medium text-[#2a2822] leading-[1.55] whitespace-pre-wrap`} 
                             />
                           )}
                         </div>
@@ -1155,7 +1374,7 @@ export default function Home() {
                           <EditableText 
                             value={item.price} 
                             onChange={(v) => updateMenuItem(page.id, item.id, 'price', v)} 
-                            className="text-lg font-lora font-semibold tracking-wide whitespace-nowrap text-[#2a2822] mb-1" 
+                            className="text-[1.05rem] font-lora font-bold tracking-wide whitespace-nowrap text-[#2a2822] mb-1" 
                           />
                         )}
                       </div>
@@ -1168,7 +1387,7 @@ export default function Home() {
                               <EditableText 
                                 value={sub.name} 
                                 onChange={(v) => updateSubItem(page.id, item.id, sub.id, 'name', v)} 
-                                className="text-[14px] font-lora text-[#2a2822] flex-1" 
+                                className="text-[14.5px] font-lora font-medium text-[#2a2822] flex-1" 
                                 renderValue={(val) => {
                                   const parts = val.split(/(\(.*?\))/);
                                   return (
